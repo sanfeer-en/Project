@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load static %}
+
+ {% block css %}
+   
+{% endblock css %}
+
+{% block content %}
+<div class="container">
+  <form action="" method="POST">
+    {% csrf_token %}
+    <input class="form-control" type="text" placeholder="Default input">
+    <input class="form-control" type="text" placeholder="Default input">
+  </form>
+</div>
+{% endblock %}
