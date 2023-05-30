@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block css %}
+
+{% endblock css %}
+
+{% block content %}
+<div class="container-flud">
+    <nav class="navbar navbar-light bg-light">
+      <span class="navbar-brand mb-0 h1">Category Table</span>
+    </nav>
+  </div>
+<div class="container d-flex justify-content-center">
+    <table class="table">
+        <tr>
+            <th>No</th>
+            <th>Category Name</th>
+            <th>Category Image</th>
+            <th colspan="2">Action</th>
+        </tr>
+        <tbody>
+            {% for x in categorytable  %}
+              <tr>
+                <td>{{x.id}}</td>
+                <td>{{x.Namecategory}}</td>
+                <td>{{x.Imagecategory }}</td>
+                <td><a href="{% url 'category_delete' x.id  %}" class="btn btn-danger">Delete</a></td>
+                <td><a href="{% url 'category_edit' x.id  %}" class="btn btn-primary">Edit</a></td> 
+              </tr>
+            {% endfor %}
+        </tbody>
+
+    </table>
+</div>
+{% endblock content %}

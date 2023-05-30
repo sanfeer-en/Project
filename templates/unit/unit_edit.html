@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+
+ {% block css %}
+   
+{% endblock css %}
+
+{% block content %}
+<div class="container-flud">
+  <nav class="navbar navbar-light bg-light">
+    <span class="navbar-brand mb-0 h1">Unit</span>
+  </nav>
+</div>
+<div class="container">
+  <div class="row">
+  <form action="{% url 'update' userdata.id %}" method="POST" class="p-3">
+    {% csrf_token %}
+    <div class="form-group">
+    <input class="form-control form-control-lg" name="UnitName" type="text" placeholder="Unit Name" value="{{userdata.UnitName}}">
+  </div>
+  <div class="form-group">
+    <input class="form-control form-control-lg" name="UnitValue" type="number" placeholder="Unit Number" value="{{userdata.UnitValue}}">
+    </div>
+    <input type="submit" class="btn btn-primary  " value="submit">
+  </form>
+</div>
+</div>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+
+ {% block css %}
+   
+{% endblock css %}
+
+{% block content %}
+<div class="container-flud">
+  <nav class="navbar navbar-light bg-light">
+    <span class="navbar-brand mb-0 h1">Tax</span>
+  </nav>
+</div>
+<div class="container">
+  <div class="row">
+  <form action="{% url 'tax_update' taxdata.id %}" method="POST" class="p-3">
+    {% csrf_token %}
+    <div class="form-group">
+    <input class="form-control form-control-lg" name="TaxName" type="text" placeholder="Tax Name" value="{{taxdata.Taxname}}">
+  </div>
+  <div class="form-group">
+    <input class="form-control form-control-lg" name="TaxValue" type="number" placeholder="Tax Percentage" value="{{taxdata.Taxpercentage}}">
+    </div>
+    <input type="submit" class="btn btn-primary  " value="submit">
+  </form>
+</div>
+</div>
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+
+ {% block css %}
+   
+{% endblock css %}
+
+{% block content %}
+<div class="container-flud">
+  <nav class="navbar navbar-light bg-light">
+    <span class="navbar-brand mb-0 h1">Tax</span>
+  </nav>
+</div>
+<div class="container">
+  <div class="row">
+  <form action="{% url 'attribute_update' attribute_Data.id %}" method="POST" class="p-3">
+    {% csrf_token %}
+    <div class="form-group">
+    <input class="form-control form-control-lg" name="attributeName" type="text" placeholder="Category Name" value="{{attribute_Data.attributeName}}">
+  </div>
+    <input type="submit" class="btn btn-primary  " value="submit">
+  </form>
+</div>
+</div>
+{% endblock %}
