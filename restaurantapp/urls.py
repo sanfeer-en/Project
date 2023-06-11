@@ -28,5 +28,14 @@ urlpatterns = [
     path('attributecategory_delete/<int:atrictgry>/',attributecategory_delete,name='attributecategory_delete'),
     path("attributecategory_edit/<int:atrictgry>", attributecategory_edit , name="attributecategory_edit"),
     path('attribute_update/<int:atrictgry>/',attribute_update,name='attribute_update'),
+
+    path('attribute_form' ,attribute,name='attribute' ),
+    path('atribte_table',attribute_Table , name="attribute_Table"),
+    path('attribut_delete/<int:id>/',attribute_Delete,name='attribut_delete'),
+    path("attribute_edit/<int:id>", attribute_Edit , name="attribute_edit"),
+    path('atribute_Update/<int:id>/',atribute_Update,name='atribute_Update'),
+
+    path('prodct_nam',product)
+    
    
 ]

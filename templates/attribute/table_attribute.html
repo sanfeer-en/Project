@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block css %}
+
+{% endblock css %}
+
+{% block content %}
+<div class="container-flud">
+    <nav class="navbar navbar-light bg-light">
+      <span class="navbar-brand mb-0 h1">table</span>
+    </nav>
+  </div>
+<div class="container d-flex justify-content-center">
+    <table class="table">
+        <tr>
+            <th>No</th>
+            <th>Attribute Category</th>
+            <th>Attribute Name</th>
+            <th>Variants</th>
+            <th>Price</th>
+            <th colspan="2">Action</th>
+        </tr>
+        <tbody>
+            {% for x in attribute_Data  %}
+              <tr>
+                <td>{{x.id}}</td>
+                <td>{{x.attribute_category}}</td>
+                <td>{{x.attribute_name}}</td>
+                <td>{{x.Varients }}</td>
+                <td>{{x.Price}}</td>
+                <td><a href="{% url 'attribut_delete' x.id  %}" class="btn btn-danger">Delete</a></td>
+                <td><a href="{% url 'attribute_edit' x.id  %}" class="btn btn-primary">Edit</a></td> 
+              </tr>
+            {% endfor %}
+        </tbody>
+
+    </table>
+</div>
+{% endblock content %}

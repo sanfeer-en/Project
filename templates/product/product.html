@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+
+ {% block css %}
+   
+{% endblock css %}
+
+{% block content %}
+<div class="container-flud">
+  <nav class="navbar navbar-light bg-light">
+    <span class="navbar-brand mb-0 h1">Product</span>
+  </nav>
+</div>
+<div class="container">
+  <div class="row">
+  <form action="" method="POST" class="p-3">
+    {% csrf_token %}
+    <div class="form-group">
+    <input class="form-control form-control-lg" name="ProductName" type="text" placeholder="Product Name">
+  </div>
+  <label for="">Category</label>
+  <select name="CategoryValue" id="" class="custom-select">
+    {% for x in category_data %}
+    <option  value="{{x.id}}">{{x.Namecategory }}</option>
+    {% endfor %}
+  </select>
+  <br><br>
+  <label for="">Unit</label>
+  <select name="UnitValue" id="" class="custom-select">
+    {% for x in Unit_Data %}
+    <option  value="{{x.id}}">{{x.UnitName }}</option>
+    {% endfor %}
+  </select>
+  <br><br>
+    <input type="submit" class="btn btn-primary  " value="submit">
+  </form>
+</div>
+</div>
+{% endblock %}

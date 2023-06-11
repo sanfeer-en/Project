@@ -66,6 +66,7 @@ def add_tax(request):
         taxvalue = request.POST.get('TaxValue')
         tax=Tax(Taxname=taxname,Taxpercentage=taxvalue)
         tax.save()
+        return redirect ('/tax_table')
     return render(request, 'Tax/form_tax.html') 
 def tax_table(request):
     Tax_data = Tax.objects.all()
@@ -90,6 +91,7 @@ def attribute_add(request):
         attributename = request.POST.get('attributeName')
         attributedata=attributecategory(attributeName=attributename)
         attributedata.save()
+        return redirect ('/attribute_table')
     return render(request, 'attributecategory/attribute_form.html')
 def attribute_table(request):
     attribute_data = attributecategory.objects.all()
@@ -110,5 +112,61 @@ def attribute_update(request,atrictgry):
 
 
 
+def attribute(request):
+    attribute_category =attributecategory.objects.all()
+    if request.method == 'POST':
+        attribute_Name = request.POST.get('attributname')
+        attribute_Price = request.POST.get('attributprice')
+        variant_Data =request.POST['variant']
+        attribute_Category_id =request.POST.get('atributName')
+        attribute_Category =attributecategory.objects.get(id=attribute_Category_id)                  
+        attribute=Attribute(attribute_name=attribute_Name ,Price=attribute_Price,Varients = variant_Data  ,attribute_category =attribute_Category)
+        attribute.save()
+        return redirect('/atribte_table')
+
+    return render(request, 'attribute/form_attribute.html',{'attribute_data':attribute_category})
 
 
+def attribute_Table(request):
+    attribute_Data =Attribute.objects.all()
+    return render(request,'attribute/table_attribute.html',{'attribute_Data':attribute_Data}) 
+def attribute_Delete(request,id):
+    attribut_Data =Attribute.objects.get(id=id)
+    attribut_Data.delete()
+    return redirect('/atribte_table')
+
+def attribute_Edit(request, id):
+    attribute_Data =Attribute.objects.get(id=id)
+    attribute_Category = attributecategory.objects.all()
+    return render(request, 'attribute/edit_attribute.html',{"attribute_data":attribute_Data ,'category':attribute_Category})
+def atribute_Update(request,id):
+    atribute_Data =Attribute.objects.get(id=id)
+    
+    
+    if request.method == 'POST':
+        attribute_Category_id =request.POST['atributName']
+        atribute_Data.attribute_Category =attributecategory.objects.get(id=attribute_Category_id)
+        atribute_Data.attribute_name=request.POST['attributname']
+        atribute_Data.Varients=request.POST['variant']
+        atribute_Data.Price=request.POST['attributprice']
+         
+        atribute_Data.save()
+        return redirect('/atribte_table')
+    
+def product(request):
+    category =Category.objects.all()
+    unit = Unit.objects.all()
+    
+    if request.method == 'POST':
+        product_Name = request.POST.get('ProductName')
+        Category_id =request.POST.get('CategoryValue')
+        Categories =Category.objects.get(id=Category_id)
+        unit_Id = request.POST.get('UnitValue')
+        unities =Unit.objects.get(id=unit_Id)
+
+
+        all_Product=Product(Product_Name=product_Name,Category_Fr=Categories,Unit_Fr=unities)
+        all_Product.save()
+        # return redirect ('/tax_table')
+    return render(request, 'product/product.html', {'category_data':category , 'Unit_Data' : unit})
+    
