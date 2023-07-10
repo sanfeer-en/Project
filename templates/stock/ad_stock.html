@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% load static %}
+
+ {% block css %}
+   
+{% endblock css %}
+
+{% block content %}
+<div class="container-flud">
+  <nav class="navbar navbar-light bg-light">
+    <span class="navbar-brand mb-0 h1">Stock</span>
+  </nav>
+</div>
+<div class="container">
+  <div class="row">
+  <form action="" method="POST" class="p-3" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="form-group">
+      <label for="">Vendor Bill Number</label>
+    <input class="form-control form-control-lg" name="vendorBill" type="text" placeholder="Vendor Bill">
+  </div>
+  
+  <label for="">Product</label>
+  <select name="ProductValue" id="" class="custom-select">
+    {% for x in product_Data %}
+    <option  value="{{x.id}}">{{x.Product_Name}}</option>
+    {% endfor %}
+  </select>
+  <br><br>
+
+  
+  <label for="">Unit</label>
+  <select name="UnitData" id="" class="custom-select">
+    {% for y in unities_Data %}
+    <option  value="{{y.id}}">{{y.UnitName}}</option>
+    {% endfor %}
+  </select>
+  <br><br>
+  <div class="form-group">
+    <label for="">Quantity</label>
+    <input class="form-control form-control-lg" name="QuantityValue" type="number" placeholder="Quantity">
+    </div>
+
+    <div class="form-group">
+      <label for="">Purchasing Amount</label>
+      <input class="form-control form-control-lg" name="PurchaseValue" type="number" placeholder="Purchase Amount">
+      </div>
+      <div class="form-group">
+        <label for="">Selling Amount</label>
+        <input class="form-control form-control-lg" name="SellingValue" type="number" placeholder="Selling Amount">
+        </div>
+
+       <div class="form-group">
+        <label for="">Manufacture Date </label>
+        <input class="form-control form-control-lg" name="DateValue" type="date" >
+        </div>
+
+        <div class="form-group">
+          <label for="">Expire Date </label>
+          <input class="form-control form-control-lg" name="DateWorth" type="date" >
+          </div>
+        
+
+    <input type="submit" class="btn btn-primary  " value="submit">
+  </form>
+</div>
+</div>
+{% endblock %}

@@ -11,13 +11,17 @@
   </div>
   <div class="container">
     <div class="row">
-    <form action="" method="POST" class="p-3">
+    <form action="" method="POST" class="p-3"  enctype="multipart/form-data">
       {% csrf_token %}
       <div class="form-group">
-      <input class="form-control form-control-lg" name="CategoryName" type="text" placeholder="Catogory Name" value="{{categorytable.Namecategory}}">
+      <input class="form-control form-control-lg" name="CategoryName" type="text"  value="{{categorytable.Namecategory}}">
     </div>
     <div class="form-group">
-      <input class=" form-control-lg" name="CategoryImage" type="file" placeholder="Category Image" value="{{categorytable.Imagecategory}}">
+      <input class=" form-control-lg" name="CategoryImage" type="file" placeholder="Category Image">
+      <br>
+      {% if categorytable.Imagecategory  %}
+      <img src="{{ categorytable.Imagecategory.url }}" alt="Current Image" height="50%" width="40%">
+      {% endif %}
       </div>
       <input type="submit" class="btn btn-primary  " value="submit">
     </form>  

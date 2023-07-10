@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block css %}
+
+{% endblock css %}
+
+{% block content %}
+<div class="container-flud">
+    <nav class="navbar navbar-light bg-light">
+      <span class="navbar-brand mb-0 h1">Stock Table</span>
+    </nav>
+  </div>
+<div class="container d-flex justify-content-center">
+    <table class="table">
+        <tr>
+            <th>No</th>
+            <th>Vendor Bill Number</th>
+            <th>Product</th>
+            <th>Unit/th>
+            <th>Quantity</th>
+            <th>Purchasing Amount</th>
+            <th>Selling Amount</th>
+            <th>Manufacture Date</th>
+            <th>Expire Date</th>
+            <th colspan="2">Action</th>
+        </tr>
+        <tbody>
+            {% for x in Stock_Data  %}
+              <tr>
+                <td>{{x.id}}</td>
+                <td>{{x.Vendor_Bill_No}}</td>
+                <td>{{x.Product }}</td>
+                <td>{{x.Units }}</td>
+                <td>{{x.Quantity }}</td>
+                <td>{{x.Purchasing_Amount }}</td>
+                <td>{{x.Selling_Amount }}</td>
+                <td>{{x.Manufacture_Date }}</td>
+                <td>{{x.Expire_Date }}</td>
+                <td><a href="{% url 'stckdelete' x.id  %}" class="btn btn-danger">Delete</a></td>
+                <td><a href="{% url 'stock_edit' x.id  %}" class="btn btn-primary">Edit</a></td> 
+              </tr>
+            {% endfor %}
+        </tbody>
+
+    </table>
+</div>
+{% endblock content %}

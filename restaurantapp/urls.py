@@ -35,7 +35,22 @@ urlpatterns = [
     path("attribute_edit/<int:id>", attribute_Edit , name="attribute_edit"),
     path('atribute_Update/<int:id>/',atribute_Update,name='atribute_Update'),
 
-    path('prodct_nam',product)
+    path('prodct_nam',product ,name='generate'),
+    path('product_tble',Product_Table , name="product_Table"),
+    path('product_delte/<int:id>/',Product_Delete,name="product_Delete"),
+    path('product_edit/<int:id>/',Product_edit,name='product_edit'),
+    path('product_Update/<int:id>/',Product_Update,name='product_Update'),
+
+    path('company_info',company_Inform , name='cmpnyinfo'),
+    path('company_tble',Company_Table , name="cmpny_Table"),
+    path('compny_delte/<int:id>/',Company_Delete, name='compnydelete'),
+    path('company_edit/<int:id>/',company_edit,name='company_edit'),
+    path('cpmpany_Update/<int:id>/',company_Update,name='compani_Update'),
+
+    path('ad_stock',ad_stock ,name='adStck'),
+    path('table_stock',stock_Table ,),
+    path('stck_delte/<int:id>/',stock_Delete, name='stckdelete'),
+    path('stock_edit/<int:id>/',stock_edit,name='stock_edit'),
     
    
 ]

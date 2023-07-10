@@ -1,0 +1,10 @@
+.navbar{
+    height: 80px;
+    box-shadow: 2px 0px 3px 0px #888888;
+}
+.container{
+    box-shadow: 1px 1px 1px 1px #bebebe;
+    border: 1px solid rgb(211, 211, 211);
+    margin-top: 10px;
+
+}

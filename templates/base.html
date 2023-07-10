@@ -13,6 +13,8 @@
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     {% block css %}
     
     {% endblock  %}
@@ -40,52 +42,58 @@
       </li>
       <li>
        <a href="{% url 'unit' %}">
-         <i class='bx bx-user' ></i>
-         <span class="links_name">User</span>
+        <i class="fa-brands fa-unity"></i>
+         <span class="links_name">Unit</span>
        </a>
-       <span class="tooltip">User</span>
+       <span class="tooltip">Unit</span>
      </li>
      <li>
-       <a href="{% url 'unitabel' %}">
-         <i class='bx bx-chat' ></i>
-         <span class="links_name">Table</span>
-       </a>
-       <span class="tooltip">Table</span>
-     </li>
-     <li>
-       <a href="#">
+       <a href="{% url 'add_category' %}">
+         
          <i class='bx bx-pie-chart-alt-2' ></i>
-         <span class="links_name">Analytics</span>
+         <span class="links_name">Category</span>
        </a>
-       <span class="tooltip">Analytics</span>
+       <span class="tooltip">Category</span>
      </li>
      <li>
-       <a href="#">
+       <a href="{% url 'add_tax' %}">
+        <!-- <i class='bx bx-chat' ></i> -->
+        
+        <i class="fa-regular fa-plus"></i>
+         <span class="links_name">Tax</span>
+       </a>
+       <span class="tooltip">Tax</span>
+     </li>
+     <li>
+       <a href="{% url 'addattribute'  %}">
          <i class='bx bx-folder' ></i>
-         <span class="links_name">File Manager</span>
+         <span class="links_name">Attribute Category</span>
        </a>
-       <span class="tooltip">Files</span>
+       <span class="tooltip">Attribute Category</span>
      </li>
      <li>
-       <a href="#">
+       <a href="{% url 'attribute' %}">
+        <!-- <i class='bx bx-heart' ></i> -->
+        <i class="fa-sharp fa-regular fa-clipboard"></i>
+         <span class="links_name">Attribute</span>
+       </a>
+       <span class="tooltip">Attribute</span>
+     </li>
+     <li>
+       <a href="{% url 'generate' %}">
+         
          <i class='bx bx-cart-alt' ></i>
-         <span class="links_name">Order</span>
+         <span class="links_name">Product</span>
        </a>
-       <span class="tooltip">Order</span>
+       <span class="tooltip">Product</span>
      </li>
      <li>
-       <a href="#">
-         <i class='bx bx-heart' ></i>
-         <span class="links_name">Saved</span>
+       <a href="{% url 'cmpnyinfo' %}">
+         <!-- <i class='bx bx-cog' ></i> -->
+         <i class="fa-regular fa-building"></i>
+         <span class="links_name">Company Information</span>
        </a>
-       <span class="tooltip">Saved</span>
-     </li>
-     <li>
-       <a href="#">
-         <i class='bx bx-cog' ></i>
-         <span class="links_name">Setting</span>
-       </a>
-       <span class="tooltip">Setting</span>
+       <span class="tooltip">Compay Information</span>
      </li>
      <li class="profile">
          <div class="profile-details">
@@ -97,12 +105,21 @@
          </div>
          <i class='bx bx-log-out' id="log_out" ></i>
      </li>
+     <li>
+      <a href="{% url 'adStck' %}">
+        <i class="fa-sharp fa-solid fa-cart-arrow-down"></i>
+        
+        <span class="links_name">Stock</span>
+      </a>
+      <span class="tooltip">Stock</span>
+    </li>
     </ul>
   </div>
  
   <section class="home-section">
     {% block content %}
       <div class="text">Dashboard</div>
+      
   {% endblock content %}
   </section>
   

@@ -47,9 +47,9 @@ class Product(models.Model):
     Product_Name = models.CharField(max_length=100, null=True, blank=True)
     Category_Fr =models.ForeignKey(Category,on_delete=models.CASCADE,null=True,blank=True)
     Unit_Fr = models.ForeignKey(Unit,on_delete=models.CASCADE,null=True,blank=True)
-    Variant_fr = models.ManyToManyField(attributecategory,null=True,blank=True)
+    Variant_fr = models.ManyToManyField(attributecategory,blank=True)
     Tax_Fr = models.ForeignKey(Tax,on_delete=models.CASCADE,null=True,blank=True)
-    Is_for_sale = models.BooleanField(default=False,null=True,blank=True)
+    Is_for_sale = models.BooleanField(default=False,blank=True)
     Product_Image = models.ImageField(upload_to='product_images/',null=True,blank=True)
     Product_code = models.CharField(max_length=5,unique=True,null=True, blank=True,)
      
@@ -62,8 +62,27 @@ class Product(models.Model):
                 break
         super().save(*args, **kwargs)
     
-    def str(self):
+    def __str__(self):
         return self.Product_Name
+class CompanyInformation(models.Model):
+    Company_Name = models.CharField(max_length=100, null=True, blank=True)
+    Company_Address = models.TextField(max_length=100, null=True, blank=True)
+    GST_Number = models.CharField(max_length=100, null=True, blank=True)
+    Country_Code = models.IntegerField(default=8,null=True, blank=True)
+    Manufacturing_code = models.CharField(max_length=100, null=True, blank=True)
+
+    def str(self):
+        return self.Company_Name
+class Stock(models.Model):
+    Vendor_Bill_No =models.CharField(max_length=100,null=True,blank=True)
+    Product=models.ForeignKey(Product,on_delete=models.CASCADE,blank=True)
+    Units=models.ForeignKey(Unit,on_delete=models.CASCADE,blank=True)
+    Quantity = models.PositiveIntegerField(null=True,blank=True,default=0)
+    Purchasing_Amount = models.DecimalField(max_digits=10,null=True,blank=True,decimal_places=2)
+    Selling_Amount = models.DecimalField(max_digits=10,null=True,blank=True,decimal_places=2)
+    Manufacture_Date =models.DateField(null=True,blank=True)
+    Expire_Date =models.DateField(null=True,blank=True)
+
 
 
 

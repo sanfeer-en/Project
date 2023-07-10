@@ -2,7 +2,7 @@
 {% load static %}
 
  {% block css %}
-   
+ <link rel="stylesheet" href="{% static 'css/product/product.css' %}">
 {% endblock css %}
 
 {% block content %}
@@ -11,27 +11,57 @@
     <span class="navbar-brand mb-0 h1">Product</span>
   </nav>
 </div>
-<div class="container">
+<div class="container w-75">
   <div class="row">
-  <form action="" method="POST" class="p-3">
+  <form action="" method="POST" class="p-3" enctype="multipart/form-data">
     {% csrf_token %}
     <div class="form-group">
+      <label for="">Product</label>
     <input class="form-control form-control-lg" name="ProductName" type="text" placeholder="Product Name">
   </div>
+
   <label for="">Category</label>
-  <select name="CategoryValue" id="" class="custom-select">
+  <select name="CategoryValue" class="custom-select">
     {% for x in category_data %}
     <option  value="{{x.id}}">{{x.Namecategory }}</option>
     {% endfor %}
   </select>
   <br><br>
+
   <label for="">Unit</label>
   <select name="UnitValue" id="" class="custom-select">
     {% for x in Unit_Data %}
-    <option  value="{{x.id}}">{{x.UnitName }}</option>
+    <option  value="{{x.id}}">{{x.UnitName}}</option>
     {% endfor %}
   </select>
   <br><br>
+
+  <label for="">Variant</label>
+  <select name="VariantValue" id="" class="custom-select" multiple>
+    {% for x in Variant_Data %}
+    <option  value="{{x.id}}">{{x.attributeName}}</option>
+    {% endfor %}
+  </select>
+  <br><br>
+
+  <label for="">Tax</label>
+  <select name="TaxValue" id="" class="custom-select" >
+    {% for x in Tax_Data %}
+    <option  value="{{x.id}}">{{x.Taxname }}</option>
+    {% endfor %}
+  </select>
+  <br><br>
+
+  <label for="">Is for Sale:</label>
+  <input type="checkbox" id="id_is_for_sale" name="for_Sale" value='True'>
+  <br>
+  <br>
+  <label for="">Product Image</label>
+  <div class="form-group">
+    <input class=" form-control-lg" name="ProductImage" type="file" placeholder="Product Image">
+    </div> 
+    <br> 
+    <br>
     <input type="submit" class="btn btn-primary  " value="submit">
   </form>
 </div>

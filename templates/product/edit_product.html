@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% load static %}
+
+ {% block css %}
+ <link rel="stylesheet" href="{% static 'css/product/product.css' %}">
+{% endblock css %}
+
+{% block content %}
+<div class="container-flud">
+  <nav class="navbar navbar-light bg-light">
+    <span class="navbar-brand mb-0 h1">Product</span>
+  </nav>
+</div>
+<div class="container w-75">
+  <div class="row">
+  <form action="{% url 'product_Update' product_data.id  %}" method="POST" class="p-3" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="form-group">
+      <label for="">Product</label>
+    <input class="form-control form-control-lg" name="ProductName" type="text" placeholder="Product Name" value="{{product_data.Product_Name}}">
+  </div>
+
+  <label for="">Category</label>
+  <select name="CategoryValue" class="custom-select" value="{{product_data.Category_Fr}}">
+    {% for x in for_category %}
+    <option  value="{{x.id}}" {% if product_data.Category_Fr.id == x.id  %}selected{% endif %}>{{x.Namecategory}}</option>
+    {% endfor %}
+  </select>
+  <br><br>
+
+  <label for="">Unit</label>
+  <select name="UnitValue" id="" class="custom-select" value="{{product_data.Unit_Fr}}">
+    {% for x in for_unit %}
+    <option  value="{{x.id}}" {% if product_data.Unit_Fr.id == x.id  %}selected{% endif %}>{{x.UnitName}}</option>
+    {% endfor %}
+  </select>
+  <br><br>
+
+  <label for="">Variant</label>
+  <select name="VariantValue" id="" class="custom-select" multiple value="{{product_data.Variant_fr}}">
+    {% for x in fr_variants %}
+    <option  value="{{x.id}}" {% if product_data.Variant_fr.all  %} selected {% endif %}> {{x.attributeName}}</option>
+    {% endfor %}
+  </select>
+  <br><br>
+
+  <label for="">Tax</label>
+  <select name="TaxValue" id="" class="custom-select" value="{{product_data.Tax_Fr}}" >
+    {% for x in fr_tax %}
+    <option  value="{{x.id}}" {% if product_data.Tax_Fr.id == x.id %} selected {% endif %}>{{x.Taxname }}</option>
+    {% endfor %}
+  </select>
+  <br><br>
+
+  <label for="">Is for Sale:</label>
+  <input type="checkbox" id="id_is_for_sale" name="for_Sale"  {% if product_data.Is_for_sale %}checked{% endif %}>
+  <br>
+  <br>
+  <label for="">Product Image</label>
+  <div class="form-group">
+    <input class=" form-control-lg" name="ProductImage" type="file" >
+    {% if product_data.Product_Image %}
+    
+    <br>
+    <img src="{{ product_data.Product_Image.url }}" alt="Current Image" height="10%" width="15%">
+    {% endif %}
+    </div> 
+    <br> 
+    <br>
+    <input type="submit" class="btn btn-primary " value="submit">
+  </form>
+</div>
+</div>
+{% endblock %}

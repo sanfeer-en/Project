@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block css %}
+
+{% endblock css %}
+
+{% block content %}
+<div class="container-flud">
+    <nav class="navbar navbar-light bg-light">
+      <span class="navbar-brand mb-0 h1">Company Table</span>
+    </nav>
+  </div>
+<div class="container d-flex justify-content-center">
+    <table class="table">
+        <tr>
+            <th>No</th>
+            <th>Company Name</th>
+            <th>Company Address</th>
+            <th>GST Number</th>
+            <th>Country Code</th>
+            <th>Manufacturing Code</th>
+            <th colspan="2">Action</th>
+        </tr>
+        <tbody>
+            {% for x in Compnay_Data  %}
+              <tr>
+                <td>{{x.id}}</td>
+                <td>{{x.Company_Name}}</td>
+                <td>{{x.Company_Address }}</td>
+                <td>{{x.GST_Number }}</td>
+                <td>{{x.Country_Code }}</td>
+                <td>{{x.Manufacturing_code }}</td>
+                <td><a href="{% url 'compnydelete' x.id  %}" class="btn btn-danger">Delete</a></td>
+                <td><a href="{% url 'company_edit' x.id  %}" class="btn btn-primary">Edit</a></td> 
+              </tr>
+            {% endfor %}
+        </tbody>
+
+    </table>
+</div>
+{% endblock content %}

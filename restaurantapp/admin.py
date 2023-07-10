@@ -14,4 +14,15 @@ admin.site.register(attributecategory)
 
 admin.site.register(Attribute)
 
+
 admin.site.register(Product)
+
+admin.site.register(CompanyInformation)
+
+admin.site.register(Stock)
+
+
+# class ProductAdmin(admin.ModelAdmin):
+#     list_display = ['Product_Name', 'Product_Image','Tax_Fr' ,'Unit_Fr']
+#     # prepopulated_fields = {'Product_Name': ('',)}
+# admin.site.register(Product,ProductAdmin)
