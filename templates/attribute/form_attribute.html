@@ -7,8 +7,8 @@
 
 {% block content %}
 <div class="container-flud">
-  <nav class="navbar navbar-light bg-light">
-    <span class="navbar-brand mb-0 h1">Attribute</span>
+  <nav class="navbar navbar-light bg-light shadow-sm p-3 mb-1 bg-light rounded border-bottom-5">
+    <span class="navbar-brand mb-0 h1">Attribute Form</span>
   </nav>
 </div>
 <div class="container">
@@ -25,7 +25,7 @@
       <br><br>
       <div class="form-group">
         <label for="">Attribute Name</label>
-        <input class="form-control form-control-lg" name="attributname" type="text" placeholder="Attribut name">
+        <input class="form-control form-control-lg" name="attributname" type="text" placeholder="Attribut name" required>
         </div>
         <label for="Varaint" >Varaint</label>
         <select name="variant" id="variant" class="custom-select">
@@ -37,7 +37,7 @@
         <br><br>
         <div class="form-group">
           <label for="">Price</label>
-          <input class="form-control form-control-lg" name="attributprice" type="number" placeholder="Enter Price">
+          <input class="form-control form-control-lg" name="attributprice" type="number" placeholder="Enter Price" required>
           </div>
       <input type="submit" class="btn btn-primary  " value="submit">
     </form>

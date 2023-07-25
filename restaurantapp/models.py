@@ -41,7 +41,7 @@ class Attribute(models.Model):
     Price = models.IntegerField(null=True, blank=True)
     
     def __str__(self):
-        return self. attribute_name
+        return self.attribute_name
     
 class Product(models.Model):
     Product_Name = models.CharField(max_length=100, null=True, blank=True)
@@ -71,7 +71,7 @@ class CompanyInformation(models.Model):
     Country_Code = models.IntegerField(default=8,null=True, blank=True)
     Manufacturing_code = models.CharField(max_length=100, null=True, blank=True)
 
-    def str(self):
+    def __str__(self):
         return self.Company_Name
 class Stock(models.Model):
     Vendor_Bill_No =models.CharField(max_length=100,null=True,blank=True)
@@ -82,6 +82,26 @@ class Stock(models.Model):
     Selling_Amount = models.DecimalField(max_digits=10,null=True,blank=True,decimal_places=2)
     Manufacture_Date =models.DateField(null=True,blank=True)
     Expire_Date =models.DateField(null=True,blank=True)
+
+    
+    def __str__(self):
+        return self.Product
+    
+    
+class Product_Fr(models.Model):
+    Product_fr=models.ForeignKey(Product,on_delete=models.CASCADE,blank=True,null=True)
+
+    def __str__(self):
+        return self.Product_fr
+  
+class ProductionRawMaterial(models.Model):
+    Production = models.ForeignKey(Product_Fr,on_delete=models.CASCADE,blank=True,null=True)
+    Raw_Material = models.ForeignKey(Stock,on_delete=models.CASCADE,blank=True,null=True)
+    Measurement = models.PositiveIntegerField(blank=True,null=True)
+
+    def __str__(self):
+        return f"{self.Production} - {self.Raw_Material} ({self.Measurement})"
+  
 
 
 

@@ -6,17 +6,20 @@
 
 {% block content %}
 <div class="container-flud">
-    <nav class="navbar navbar-light bg-light">
+      <nav class="navbar navbar-light bg-light shadow-sm p-3 mb-1 bg-light rounded border-bottom-5">
+
       <span class="navbar-brand mb-0 h1">Stock Table</span>
     </nav>
   </div>
+  <a href="{% url 'adStck' %} " type="button" class="btn btn-primary font-weight-bolder float-right mr-3 mt-2">Purchase</a>
+  <a href="{% url 'adPrdct' %} " type="button" class="btn btn-primary font-weight-bolder float-right mr-3 mt-2">Production</a>
 <div class="container d-flex justify-content-center">
     <table class="table">
         <tr>
             <th>No</th>
             <th>Vendor Bill Number</th>
             <th>Product</th>
-            <th>Unit/th>
+            <th>Unit</th>
             <th>Quantity</th>
             <th>Purchasing Amount</th>
             <th>Selling Amount</th>

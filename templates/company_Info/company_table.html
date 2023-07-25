@@ -5,11 +5,12 @@
 {% endblock css %}
 
 {% block content %}
-<div class="container-flud">
-    <nav class="navbar navbar-light bg-light">
+<div class="container-flud"> 
+  <nav class="navbar navbar-light bg-light shadow-sm p-3 mb-1 bg-light rounded border-bottom-5">
       <span class="navbar-brand mb-0 h1">Company Table</span>
     </nav>
   </div>
+  <a href="{% url 'cmpnyinfo' %} " type="button" class="btn btn-primary font-weight-bolder float-right mr-3 mt-2">Add company Info</a>
 <div class="container d-flex justify-content-center">
     <table class="table">
         <tr>

@@ -7,8 +7,9 @@
 
 {% block content %}
 <div class="container-flud">
-  <nav class="navbar navbar-light bg-light">
-    <span class="navbar-brand mb-0 h1">Stock</span>
+  <nav class="navbar navbar-light bg-light shadow-sm p-3 mb-1 bg-light rounded border-bottom-5">
+
+    <span class="navbar-brand mb-0 h1">Purchase</span>
   </nav>
 </div>
 <div class="container">
@@ -17,11 +18,11 @@
     {% csrf_token %}
     <div class="form-group">
       <label for="">Vendor Bill Number</label>
-    <input class="form-control form-control-lg" name="vendorBill" type="text" placeholder="Vendor Bill">
+    <input class="form-control form-control-lg" name="vendorBill" type="text" placeholder="Vendor Bill" required>
   </div>
   
   <label for="">Product</label>
-  <select name="ProductValue" id="" class="custom-select">
+  <select name="ProductValue" id="" class="custom-select products">
     {% for x in product_Data %}
     <option  value="{{x.id}}">{{x.Product_Name}}</option>
     {% endfor %}
@@ -38,12 +39,12 @@
   <br><br>
   <div class="form-group">
     <label for="">Quantity</label>
-    <input class="form-control form-control-lg" name="QuantityValue" type="number" placeholder="Quantity">
+    <input class="form-control form-control-lg" name="QuantityValue" type="number" placeholder="Quantity" required>
     </div>
 
     <div class="form-group">
       <label for="">Purchasing Amount</label>
-      <input class="form-control form-control-lg" name="PurchaseValue" type="number" placeholder="Purchase Amount">
+      <input class="form-control form-control-lg" name="PurchaseValue" type="number" placeholder="Purchase Amount" required>
       </div>
       <div class="form-group">
         <label for="">Selling Amount</label>
@@ -59,10 +60,66 @@
           <label for="">Expire Date </label>
           <input class="form-control form-control-lg" name="DateWorth" type="date" >
           </div>
-        
+
+          <div class="form-group">
+          <label for="">Bar Code </label>
+
+          <input type="checkbox" id="generate_barcode" name="generate_barcode" value="true"><br>
+          <svg id="barcode_canvas"></svg>
+          <button type="button" class="print-btn btn btn-info mt-1" onclick="printSvg()" style="display: none;">Print</button>
+          <input type="hidden" id="barcode" name="barcode" ><br>
+
+          <input id="manufactureCode" class="form-control form-control-lg"  type="text" hidden value="{{Code_Data.Manufacturing_code}}">
+          <input id="countryCode" class="form-control form-control-lg" type="text" hidden value="{{Code_Data.Country_Code}}">
+          
+      
+          <!-- Container to display the barcode -->
+          
+          </div>
+          
+         
 
     <input type="submit" class="btn btn-primary  " value="submit">
   </form>
 </div>
 </div>
+ <script type="text/javascript">
+// static/js/generateBarcode.js
+var generateCheckbox = document.getElementById('generate_barcode');
+var barcodeCanvas = document.getElementById("barcode_canvas");
+var productInput = document.querySelector('.products');
+
+function printSvg(){
+  const svg =document.getElementById('barcode_canvas');
+  const printWindow =window.open('','print');
+  printWindow.document.write(svg.outerHTML);
+  printWindow.print();
+
+}
+generateCheckbox.addEventListener('click',function(){
+  if (generateCheckbox.checked){
+    var countryCode =document.getElementById('countryCode').value;
+    var manufactureCode = document.getElementById('manufactureCode').value;
+    var productCode = productInput.value;
+    var barcodeValue = document.getElementById('barcode');
+    barcodeValue.value = countryCode + manufactureCode + productCode ;
+
+    var barcodeText = barcodeValue.value;
+    JsBarcode(barcodeCanvas,barcodeText, {
+        formate:"upc",
+        displayValue:true
+    
+    });
+    barcodeCanvas.style.display = 'block';
+    document.querySelector('.print-btn').style.display = 'block';
+
+  }
+  else {
+    document.querySelector('.print-btn').style.display = 'none';
+    barcodeCanvas.style.display = 'none';
+  }
+
+
+});
+</script> 
 {% endblock %}

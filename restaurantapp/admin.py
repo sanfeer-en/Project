@@ -21,8 +21,12 @@ admin.site.register(CompanyInformation)
 
 admin.site.register(Stock)
 
+admin.site.register(Product_Fr)
+
+admin.site.register(ProductionRawMaterial)
+
 
 # class ProductAdmin(admin.ModelAdmin):
 #     list_display = ['Product_Name', 'Product_Image','Tax_Fr' ,'Unit_Fr']
 #     # prepopulated_fields = {'Product_Name': ('',)}
-# admin.site.register(Product,ProductAdmin)
+# admin.site.register(Product,ProductAdmin) 

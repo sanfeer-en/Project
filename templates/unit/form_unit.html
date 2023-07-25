@@ -7,8 +7,8 @@
 
 {% block content %}
 <div class="container-flud">
-  <nav class="navbar navbar-light bg-light">
-    <span class="navbar-brand mb-0 h1">Unit</span>
+  <nav class="navbar navbar-light bg-light shadow-sm p-3 mb-1 bg-light rounded border-bottom-5">
+    <span class="navbar-brand mb-0 h1">Unit Form</span>
   </nav>
 </div>
 <div class="container">
@@ -16,10 +16,11 @@
   <form action="" method="POST" class="p-3">
     {% csrf_token %}
     <div class="form-group">
-    <input class="form-control form-control-lg" name="UnitName" type="text" placeholder="Unit Name">
+    <input class="form-control form-control-lg" name="UnitName" type="text" placeholder="Unit Name" required>
   </div>
   <div class="form-group">
     <input class="form-control form-control-lg" name="UnitValue" type="number" placeholder="Unit Number">
+     
     </div>
     <input type="submit" class="btn btn-primary  " value="submit">
   </form>

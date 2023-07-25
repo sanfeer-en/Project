@@ -7,7 +7,7 @@
 
 {% block content %}
 <div class="container-flud">
-  <nav class="navbar navbar-light bg-light">
+  <nav class="navbar navbar-light bg-light shadow-sm p-3 mb-1 bg-light rounded border-bottom-5">
     <span class="navbar-brand mb-0 h1">Company Information</span>
   </nav>
 </div>
@@ -17,11 +17,11 @@
     {% csrf_token %}
     <div class="form-group">
         <label for="">Company Name</label>
-    <input class="form-control form-control-lg" name="CmpName" type="text" placeholder="Company Name ">
+    <input class="form-control form-control-lg" name="CmpName" type="text" placeholder="Company Name " required>
   </div>
   <div class="form-group">
     <label for="">Company Adress</label>
-<input class="form-control form-control-lg" name="CmpAddrs" type="text" placeholder="Company Adress ">
+<input class="form-control form-control-lg" name="CmpAddrs" type="text" placeholder="Company Adress " required>
 </div>
 <div class="form-group">
   <label for="">GST Number</label>

@@ -7,13 +7,14 @@
 
 {% block content %}
 <div class="container-flud">
-  <nav class="navbar navbar-light bg-light">
-    <span class="navbar-brand mb-0 h1">Stock</span>
+  <nav class="navbar navbar-light bg-light shadow-sm p-3 mb-1 bg-light rounded border-bottom-5">
+
+    <span class="navbar-brand mb-0 h1">Stock Form</span>
   </nav>
 </div>
 <div class="container">
   <div class="row">
-  <form action="" method="POST" class="p-3" enctype="multipart/form-data">
+  <form action="{% url 'stock_Update' Stock_Data.id  %}" method="POST" class="p-3" enctype="multipart/form-data">
     {% csrf_token %}
     <div class="form-group">
       <label for="">Vendor Bill Number</label>
@@ -38,26 +39,26 @@
   <br><br>
   <div class="form-group">
     <label for="">Quantity</label>
-    <input class="form-control form-control-lg" name="QuantityValue" type="number" placeholder="Quantity">
+    <input class="form-control form-control-lg" name="QuantityValue" type="number" placeholder="Quantity" value="{{Stock_Data.Quantity}}">
     </div>
 
     <div class="form-group">
       <label for="">Purchasing Amount</label>
-      <input class="form-control form-control-lg" name="PurchaseValue" type="number" placeholder="Purchase Amount">
+      <input class="form-control form-control-lg" name="PurchaseValue" type="number" placeholder="Purchase Amount"  value="{{Stock_Data.Purchasing_Amount}}">
       </div>
       <div class="form-group">
         <label for="">Selling Amount</label>
-        <input class="form-control form-control-lg" name="SellingValue" type="number" placeholder="Selling Amount">
+        <input class="form-control form-control-lg" name="SellingValue" type="number" placeholder="Selling Amount"  value="{{Stock_Data.Selling_Amount}}">
         </div>
 
        <div class="form-group">
         <label for="">Manufacture Date </label>
-        <input class="form-control form-control-lg" name="DateValue" type="date" >
+        <input class="form-control form-control-lg" name="DateValue" type="date" value="{{ Stock_Data.Manufacture_Date|date:'Y-m-d'}}">
         </div>
 
         <div class="form-group">
           <label for="">Expire Date </label>
-          <input class="form-control form-control-lg" name="DateWorth" type="date" >
+          <input class="form-control form-control-lg" name="DateWorth" type="date" value="{{ Stock_Data.Expire_Date|date:'Y-m-d'}}" >
           </div>
         
 

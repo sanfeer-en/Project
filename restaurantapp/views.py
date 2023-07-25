@@ -264,6 +264,7 @@ def company_Update(request,id):
 def ad_stock(request):
     product_Value =Product.objects.all()
     units_Data= Unit.objects.all()
+    code_data =CompanyInformation.objects.all()
     if request.method == 'POST':
         vendor_Bill = request.POST.get('vendorBill')
 
@@ -283,7 +284,7 @@ def ad_stock(request):
         
         stock_Data.save()
         return redirect('/table_stock')
-    return render(request, 'stock/ad_stock.html',{'product_Data':product_Value,'unities_Data':units_Data}) 
+    return render(request, 'stock/ad_stock.html',{'product_Data':product_Value,'unities_Data':units_Data,'Code_Data':code_data}) 
 
 def stock_Table(request):
     stock_Data =Stock.objects.all()
@@ -297,6 +298,39 @@ def stock_edit(request,id):
     product_For =Product.objects.all()
     Unit_For =Unit.objects.all()
     return render(request, 'stock/edit_stock.html',{"Stock_Data":stock_Data ,'fr_Prdct':product_For,'fo_unit':Unit_For})
+def stock_Update(request,id):
+    stock_Data=Stock.objects.get(id=id)
+    if request.method == 'POST':
+        stock_Data.Vendor_Bill_No=request.POST['vendorBill']
+
+        product_id =request.POST['ProductValue']
+        stock_Data.Product =Product.objects.get(id=product_id)
+
+        unit_id =request.POST['UnitData']
+        stock_Data.Units =Unit.objects.get(id=unit_id)
+
+        stock_Data.Quantity=request.POST['QuantityValue']
+        stock_Data.Purchasing_Amount=request.POST['PurchaseValue']
+        stock_Data.Selling_Amount=request.POST['SellingValue']
+        stock_Data.Manufacture_Date=request.POST['DateValue']
+        stock_Data.Expire_Date=request.POST['DateWorth']
+
+
+        stock_Data.save()
+        return redirect('/table_stock')
+    
+def ad_Production(request):
+    product_Data =Product.objects.all()
+    RawMaterial_data =Stock.objects.all()
+    
+    # if request.method == 'POST':
+    #     # product_Name = request.POST.get('prdctValue')
+
+    #     production_Data=Product_Fr(Product_fr=product_Data,Raw_Material  =RawMaterial_data)
+    #     production_Data.save()
+
+
+    return render(request,'stock/ad_production.html',{'Product_Data':product_Data,'RawMaterial_Data':RawMaterial_data}) 
 
 
 

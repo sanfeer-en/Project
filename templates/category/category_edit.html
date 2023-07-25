@@ -5,13 +5,13 @@
 {% endblock css %}
  {% block content %}
  <div class="container-flud">
-    <nav class="navbar navbar-light bg-light">
+  <nav class="navbar navbar-light bg-light shadow-sm p-3 mb-1 bg-light rounded border-bottom-5">
       <span class="navbar-brand mb-0 h1">Category</span>
     </nav>
   </div>
   <div class="container">
     <div class="row">
-    <form action="" method="POST" class="p-3"  enctype="multipart/form-data">
+    <form action="{% url 'category_update' categorytable.id  %}" method="POST" class="p-3"  enctype="multipart/form-data">
       {% csrf_token %}
       <div class="form-group">
       <input class="form-control form-control-lg" name="CategoryName" type="text"  value="{{categorytable.Namecategory}}">

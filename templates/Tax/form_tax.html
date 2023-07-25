@@ -7,7 +7,7 @@
 
 {% block content %}
 <div class="container-flud">
-  <nav class="navbar navbar-light bg-light">
+  <nav class="navbar navbar-light bg-light shadow-sm p-3 mb-1 bg-light rounded border-bottom-5">
     <span class="navbar-brand mb-0 h1">Tax</span>
   </nav>
 </div>
@@ -16,7 +16,7 @@
   <form action="" method="POST" class="p-3">
     {% csrf_token %}
     <div class="form-group">
-    <input class="form-control form-control-lg" name="TaxName" type="text" placeholder="Tax Name">
+    <input class="form-control form-control-lg" name="TaxName" type="text" placeholder="Tax Name" required>
   </div>
   <div class="form-group">
     <input class="form-control form-control-lg" name="TaxValue" type="number" placeholder="Tax Percentage">
