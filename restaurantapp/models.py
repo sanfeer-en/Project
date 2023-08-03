@@ -1,6 +1,7 @@
 from django.db import models
 import random
 
+
 # Create your models here.
 class Unit(models.Model):
     UnitName=models.CharField(max_length=200)
@@ -21,33 +22,13 @@ class Tax(models.Model):
     def __str__(self):
         return self.Taxname
         
-class attributecategory(models.Model):
-    attributeName = models.CharField(max_length=100)
 
-    def __str__(self):
-        return self.attributeName
-class Attribute(models.Model):
-    attribute_category =models.ForeignKey(attributecategory,on_delete=models.CASCADE,null=True,blank=True)
-    attribute_name = models.CharField(max_length=100,null=True,blank=True)
-    SIZE =  'size'
-    ADD_ON = 'addon'
-    EXTRA = 'extra'
-    VARIANT_CHOICES = [
-        (SIZE, 'size'),
-        (ADD_ON , 'add-on'),
-        (EXTRA,  'extra'),
-    ]
-    Varients = models.CharField(max_length=100,choices=VARIANT_CHOICES)
-    Price = models.IntegerField(null=True, blank=True)
-    
-    def __str__(self):
-        return self.attribute_name
+
     
 class Product(models.Model):
     Product_Name = models.CharField(max_length=100, null=True, blank=True)
     Category_Fr =models.ForeignKey(Category,on_delete=models.CASCADE,null=True,blank=True)
     Unit_Fr = models.ForeignKey(Unit,on_delete=models.CASCADE,null=True,blank=True)
-    Variant_fr = models.ManyToManyField(attributecategory,blank=True)
     Tax_Fr = models.ForeignKey(Tax,on_delete=models.CASCADE,null=True,blank=True)
     Is_for_sale = models.BooleanField(default=False,blank=True)
     Product_Image = models.ImageField(upload_to='product_images/',null=True,blank=True)
@@ -64,6 +45,20 @@ class Product(models.Model):
     
     def __str__(self):
         return self.Product_Name
+    
+class attributecategory(models.Model):
+    attributeName = models.CharField(max_length=100,null=True,blank=True)
+    product = models.ForeignKey(Product,on_delete=models.CASCADE,null=True,blank=True,related_name='attribute_product')
+    price = models.IntegerField(null=True,blank=True)
+    quantity = models.IntegerField(null=True,blank=True)
+    add_On = models.ForeignKey(Product,on_delete=models.CASCADE,null=True,blank=True,related_name='add_on_product')
+    add_on_quantity = models.ForeignKey(Product,on_delete=models.CASCADE,null=True,blank=True)
+    extra =models.ForeignKey(Product,on_delete=models.CASCADE,null=True,blank=True,related_name='extra_product')
+    extra_quantity = models.IntegerField(null=True,blank=True)
+    def __str__(self):
+        return self.attributeName
+
+
 class CompanyInformation(models.Model):
     Company_Name = models.CharField(max_length=100, null=True, blank=True)
     Company_Address = models.TextField(max_length=100, null=True, blank=True)
@@ -85,14 +80,14 @@ class Stock(models.Model):
 
     
     def __str__(self):
-        return self.Product
+        return f"{self.Product} - Vendor Bill No: {self.Vendor_Bill_No}, Quantity: {self.Quantity}"
     
     
 class Product_Fr(models.Model):
     Product_fr=models.ForeignKey(Product,on_delete=models.CASCADE,blank=True,null=True)
 
     def __str__(self):
-        return self.Product_fr
+        return str(self.Product_fr)
   
 class ProductionRawMaterial(models.Model):
     Production = models.ForeignKey(Product_Fr,on_delete=models.CASCADE,blank=True,null=True)
@@ -100,7 +95,8 @@ class ProductionRawMaterial(models.Model):
     Measurement = models.PositiveIntegerField(blank=True,null=True)
 
     def __str__(self):
-        return f"{self.Production} - {self.Raw_Material} ({self.Measurement})"
+        production_str = str(self.Production) if self.Production else "No Production"
+        return f"{production_str} - {self.Raw_Material} ({self.Measurement})"
   
 
 

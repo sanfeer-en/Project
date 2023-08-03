@@ -1,0 +1,112 @@
+{% extends 'base.html' %}
+{% load static %}
+
+ {% block css %}
+   
+{% endblock css %}
+
+{% block content %}
+<div class="container-flud ">
+  <nav class="navbar navbar-light bg-light shadow-sm p-3 mb-1 bg-light rounded border-bottom-5">
+    <span class="navbar-brand mb-0 h1">Production</span>
+  </nav>
+</div>
+<div class="container bg-white w-50 mt-5 border rounded">
+  <div class="row">
+    <form action="{% url 'adPrdct' %}"  method="POST" class="p-3">
+      {% csrf_token %}
+      <div class="form-group">
+        <div class="col-md-12 w-100">
+        <label for="">Product</label>
+        <select name="prdctValue[]" id="" class="custom-select">
+          {% for x in Product_Data %}
+          <option value="{{x.id}}">{{x.Product_Name}}</option>
+          {% endfor %}
+        </select>
+        <br><br>
+      </div>
+    </div>
+  </div>    
+      <!-- ...style.html -->
+    
+        
+        
+     <!-- style -->
+
+      <!-- Container to hold dynamically added raw material inputs -->
+     
+      <div id="rawMaterialInputsContainer">
+        <!-- Raw material input template -->
+        <div class="raw-material-input-template" style="display: none;">
+          <div class="container row">
+          <div class="col-md-5">
+            <div class="form-group">
+              <label for="">Raw Material</label>
+              <select name="RawMaterialValue[]" class="custom-select" type="hidden">
+                {% for x in RawMaterial_Data %}
+                <option value="{{ x.id }}">{{ x.Product }}</option>
+                {% endfor %}
+              </select>
+            </div>
+          </div>
+          <div class="col-md-5">
+            
+              
+                <div class="form-group">
+                  <label for="">Quantity</label>
+                  
+                  <input class="form-control form-control-lg quantity-input" name="Quantity[]" type="number" placeholder="Quantity" required>
+                </div>
+              </div>
+              <div class="col-md-2">
+                
+                <a href="#" type="button" class="btn btn-primary font-weight-bolder float-right remove-button" style="margin-top: 33px;">Remove</a>
+              
+              </div>
+           
+            
+         
+        </div>
+      </div>
+    </div>
+      <div class="mb-3">
+        <a href="#" type="button" class="btn btn-primary font-weight-bolder  mt-4" id="addButton">Add</a>
+      </div>
+
+      <input type="submit" class="btn btn-primary mb-3"  value="submit">
+    </form>
+  </div>
+
+  
+
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    // Get the Add button, raw material inputs container, and raw material input template
+    const addButton = document.getElementById("addButton");
+    const rawMaterialInputsContainer = document.getElementById("rawMaterialInputsContainer");
+    const rawMaterialInputTemplate = document.querySelector(".raw-material-input-template");
+
+    // Add event listener to the Add button
+    addButton.addEventListener("click", function (event) {
+      event.preventDefault();
+
+      // Clone the raw material input template and make it visible
+      const newRawMaterialInput = rawMaterialInputTemplate.cloneNode(true);
+      newRawMaterialInput.style.display = "block";
+
+      // Add event listener to the remove button
+      const removeButton = newRawMaterialInput.querySelector(".remove-button");
+      removeButton.addEventListener("click", function (event) {
+        event.preventDefault();
+        rawMaterialInputsContainer.removeChild(newRawMaterialInput);
+      });
+
+      // Append the new raw material input to the raw material inputs container
+      rawMaterialInputsContainer.appendChild(newRawMaterialInput);
+    });
+  });
+</script>
+
+
+{% endblock %}

@@ -12,7 +12,6 @@ admin.site.register(Tax)
 
 admin.site.register(attributecategory)
 
-admin.site.register(Attribute)
 
 
 admin.site.register(Product)

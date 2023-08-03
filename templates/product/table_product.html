@@ -18,7 +18,6 @@
             <th>Product </th>
             <th>Category</th>
             <th>Unit</th>
-            <th>Variant</th>
             <th>Tax</th>
             <th>Is for Sale</th>
             <th>Product Image</th>
@@ -32,16 +31,6 @@
                 <td>{{x.Product_Name}}</td>
                 <td>{{x.Category_Fr}}</td>
                 <td>{{x.Unit_Fr }}</td>
-                <td>
-                  {% for y in x.Variant_fr.all %}
-                    {{y.attributeName}}
-                  {% if y.Variant_fr %}
-                  ,
-                  {% else %}
-                  ,
-                  {% endif %}
-                  
-                {% endfor %}</td>
                 <td>{{x.Tax_Fr }}</td>
                 <td>{% if x.Is_for_sale %}
                   yes

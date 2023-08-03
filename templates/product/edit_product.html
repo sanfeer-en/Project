@@ -35,15 +35,7 @@
     {% endfor %}
   </select>
   <br><br>
-
-  <label for="">Variant</label>
-  <select name="VariantValue" id="" class="custom-select" multiple value="{{product_data.Variant_fr}}">
-    {% for x in fr_variants %}
-    <option  value="{{x.id}}" {% if product_data.Variant_fr.all  %} selected {% endif %}> {{x.attributeName}}</option>
-    {% endfor %}
-  </select>
-  <br><br>
-
+  
   <label for="">Tax</label>
   <select name="TaxValue" id="" class="custom-select" value="{{product_data.Tax_Fr}}" >
     {% for x in fr_tax %}

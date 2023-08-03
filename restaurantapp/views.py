@@ -94,6 +94,8 @@ def tax_update(request,taxid):
         tax_data.save()
         return redirect ('/tax_table')
 
+
+
 def attribute_add(request):
     if request.method == 'POST':
         attributename = request.POST.get('attributeName')
@@ -120,51 +122,11 @@ def attribute_update(request,atrictgry):
 
 
 
-def attribute(request):
-    attribute_category =attributecategory.objects.all()
-    if request.method == 'POST':
-        attribute_Name = request.POST.get('attributname')
-        attribute_Price = request.POST.get('attributprice')
-        variant_Data =request.POST['variant']
-        attribute_Category_id =request.POST.get('atributName')
-        attribute_Category =attributecategory.objects.get(id=attribute_Category_id)                  
-        attribute=Attribute(attribute_name=attribute_Name ,Price=attribute_Price,Varients = variant_Data  ,attribute_category =attribute_Category)
-        attribute.save()
-        return redirect('/atribte_table')
 
-    return render(request, 'attribute/form_attribute.html',{'attribute_data':attribute_category})
-
-
-def attribute_Table(request):
-    attribute_Data =Attribute.objects.all()
-    return render(request,'attribute/table_attribute.html',{'attribute_Data':attribute_Data}) 
-def attribute_Delete(request,id):
-    attribut_Data =Attribute.objects.get(id=id)
-    attribut_Data.delete()
-    return redirect('/atribte_table')
-
-def attribute_Edit(request, id):
-    attribute_Data =Attribute.objects.get(id=id)
-    attribute_Category = attributecategory.objects.all()
-    return render(request, 'attribute/edit_attribute.html',{"attribute_data":attribute_Data ,'category':attribute_Category})
-def atribute_Update(request,id):
-    atribute_Data =Attribute.objects.get(id=id)
-    
-    
-    if request.method == 'POST':
-        attribute_Category_id =request.POST['atributName']
-        atribute_Data.attribute_Category =attributecategory.objects.get(id=attribute_Category_id)
-        atribute_Data.attribute_name=request.POST['attributname']
-        atribute_Data.Varients=request.POST['variant']
-        atribute_Data.Price=request.POST['attributprice']
-         
-        atribute_Data.save()
-        return redirect('/atribte_table')
-    
 def product(request):
     category =Category.objects.all()
     unit = Unit.objects.all()
-    variant_All =attributecategory.objects.all()
+  
     taxs = Tax.objects.all()
     
     if request.method == 'POST':
@@ -183,10 +145,10 @@ def product(request):
         img_Product=request.FILES.get('ProductImage')
 
         all_Product=Product.objects.create(Product_Name=product_Name,Category_Fr=Categories,Unit_Fr=unities,Tax_Fr =taxes ,Is_for_sale =is_or_Sale,Product_Image=img_Product)
-        all_Product.Variant_fr.set(variants)
+        
         all_Product.save()
         return redirect ('/product_tble')
-    return render(request, 'product/product.html', {'category_data':category , 'Unit_Data' : unit , 'Variant_Data' : variant_All , 'Tax_Data' : taxs })
+    return render(request, 'product/product.html', {'category_data':category , 'Unit_Data' :unit , 'Tax_Data': taxs })
 
 def Product_Table(request):
     product_Data =Product.objects.all()
@@ -199,9 +161,9 @@ def Product_edit(request,id):
     product_Data=Product.objects.get(id=id)
     Category_fori = Category.objects.all()
     Unit_Fori =Unit.objects.all()
-    variants_for = attributecategory.objects.all()
+    
     tax_for=Tax.objects.all()
-    return render(request, 'product/edit_product.html',{"product_data":product_Data , 'for_category':Category_fori , 'for_unit':Unit_Fori ,'fr_variants':variants_for , 'fr_tax':tax_for })
+    return render(request, 'product/edit_product.html',{"product_data":product_Data , 'for_category':Category_fori , 'for_unit':Unit_Fori  , 'fr_tax':tax_for })
 
 def Product_Update(request,id):
     product_Data=Product.objects.get(id=id)
@@ -264,7 +226,7 @@ def company_Update(request,id):
 def ad_stock(request):
     product_Value =Product.objects.all()
     units_Data= Unit.objects.all()
-    code_data =CompanyInformation.objects.all()
+    code_data =CompanyInformation.objects.first()
     if request.method == 'POST':
         vendor_Bill = request.POST.get('vendorBill')
 
@@ -284,7 +246,13 @@ def ad_stock(request):
         
         stock_Data.save()
         return redirect('/table_stock')
-    return render(request, 'stock/ad_stock.html',{'product_Data':product_Value,'unities_Data':units_Data,'Code_Data':code_data}) 
+    context = {
+        'product_Data': product_Value,
+        'unities_Data': units_Data,
+        'country_code': code_data.Country_Code,
+        'manufacture_code': code_data.Manufacturing_code
+    }
+    return render(request, 'stock/ad_stock.html',context) 
 
 def stock_Table(request):
     stock_Data =Stock.objects.all()
@@ -320,17 +288,41 @@ def stock_Update(request,id):
         return redirect('/table_stock')
     
 def ad_Production(request):
-    product_Data =Product.objects.all()
-    RawMaterial_data =Stock.objects.all()
-    
-    # if request.method == 'POST':
-    #     # product_Name = request.POST.get('prdctValue')
+    product_Data =Product.objects.filter(Is_for_sale = True)
+    RawMaterial_data =Stock.objects.filter(Product__Is_for_sale =False)
+    if request.method == 'POST':
+        
+        productFr_Id = request.POST.get('prdctValue') or request.POST.get('prdctValue[]')
+        products =Product.objects.get(id=productFr_Id)
 
-    #     production_Data=Product_Fr(Product_fr=product_Data,Raw_Material  =RawMaterial_data)
-    #     production_Data.save()
+        raw_materials=request.POST.getlist('RawMaterialValue[]')
+
+        measurments = request.POST.getlist('Quantity[]')
+
+        production =Product_Fr.objects.create(product=products)
+
+        for i in range(len(raw_materials)):
+            raw_material_id =raw_materials[i]
+            try:
+                raw_material_ =Stock.objects.filter(id=raw_material_id).first()
+                if raw_material_ is None:
+                    raise Stock.DoesNotExist
+            except Stock.DoesNotExist:
+                error_message = f"The {raw_material_id} does not exist in the stocks."
+                return render(request,'productions/ad_production.htm',{'error_message':error_message,'Product_Data':product_Data,'RawMaterial_Data':RawMaterial_data})
+            
+            measurment=measurments[i]
+
+            if float(measurment) > raw_material_.Quantity:
+                error_message =f"The Measurement for raw Material'{raw_material_.products.Product}' exceeds the availabile stock quantity."
+                return render(request,'productions/ad_production.html',{'error_message':error_message,'Product_Data':product_Data,'RawMaterial_Data':RawMaterial_data}) 
 
 
-    return render(request,'stock/ad_production.html',{'Product_Data':product_Data,'RawMaterial_Data':RawMaterial_data}) 
+            ProductionRawMaterial.objects.create(Production=production,Raw_Material=raw_material_,Measurement=measurment)
+
+        
+
+    return render(request,'productions/ad_production.html',{'Product_Data':product_Data,'RawMaterial_Data':RawMaterial_data}) 
 
 
 

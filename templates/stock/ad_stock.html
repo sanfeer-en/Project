@@ -69,8 +69,8 @@
           <button type="button" class="print-btn btn btn-info mt-1" onclick="printSvg()" style="display: none;">Print</button>
           <input type="hidden" id="barcode" name="barcode" ><br>
 
-          <input id="manufactureCode" class="form-control form-control-lg"  type="text" hidden value="{{Code_Data.Manufacturing_code}}">
-          <input id="countryCode" class="form-control form-control-lg" type="text" hidden value="{{Code_Data.Country_Code}}">
+          <input id="manufactureCode" class="form-control form-control-lg"  type="text" hidden value="{{country_code}}">
+          <input id="countryCode" class="form-control form-control-lg" type="text" hidden value="{{manufacture_code}}">
           
       
           <!-- Container to display the barcode -->
@@ -91,7 +91,7 @@ var productInput = document.querySelector('.products');
 
 function printSvg(){
   const svg =document.getElementById('barcode_canvas');
-  const printWindow =window.open('','print');
+  const printWindow =window.open('','Print');
   printWindow.document.write(svg.outerHTML);
   printWindow.print();
 
@@ -99,7 +99,10 @@ function printSvg(){
 generateCheckbox.addEventListener('click',function(){
   if (generateCheckbox.checked){
     var countryCode =document.getElementById('countryCode').value;
+    console.log(countryCode)
     var manufactureCode = document.getElementById('manufactureCode').value;
+    console.log(manufactureCode)
+
     var productCode = productInput.value;
     var barcodeValue = document.getElementById('barcode');
     barcodeValue.value = countryCode + manufactureCode + productCode ;

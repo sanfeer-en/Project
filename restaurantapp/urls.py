@@ -29,11 +29,7 @@ urlpatterns = [
     path("attributecategory_edit/<int:atrictgry>", attributecategory_edit , name="attributecategory_edit"),
     path('attribute_update/<int:atrictgry>/',attribute_update,name='attribute_update'),
 
-    path('attribute_form' ,attribute,name='attribute' ),
-    path('atribte_table',attribute_Table , name="attribute_Table"),
-    path('attribut_delete/<int:id>/',attribute_Delete,name='attribut_delete'),
-    path("attribute_edit/<int:id>", attribute_Edit , name="attribute_edit"),
-    path('atribute_Update/<int:id>/',atribute_Update,name='atribute_Update'),
+ 
 
     path('prodct_nam',product ,name='generate'),
     path('product_tble',Product_Table , name="product_Table"),
@@ -48,6 +44,7 @@ urlpatterns = [
     path('cpmpany_Update/<int:id>/',company_Update,name='compani_Update'),
 
     path('ad_stock',ad_stock ,name='adStck'),
+
     path('ad_production',ad_Production ,name='adPrdct'),
 
     path('table_stock',stock_Table ,name='table_stock'),
