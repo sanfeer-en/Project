@@ -16,6 +16,13 @@
         <tr>
             <th>No</th>
             <th>Attribute Name</th>
+            <th>Product</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Add On</th>
+            <th>Add On Quantity</th>
+            <th>Extra</th>
+            <th>Extra Quantity</th>
             <th colspan="2">Action</th>
         </tr>
         <tbody>
@@ -23,6 +30,13 @@
               <tr>
                 <td>{{x.id}}</td>
                 <td>{{x.attributeName}}</td>
+                <td>{{x.product}}</td>
+                <td>{{x.price}}</td>
+                <td>{{x.quantity}}</td>
+                <td>{{x.add_On}}</td>
+                <td>{{x.add_on_quantity}}</td>
+                <td>{{x.extra}}</td>
+                <td>{{x.extra_quantity}}</td>
                 <td><a href="{% url 'attributecategory_delete' x.id  %}" class="btn btn-danger">Delete</a></td>
                 <td><a href="{% url 'attributecategory_edit' x.id  %}" class="btn btn-primary">Edit</a></td> 
               </tr>

@@ -11,15 +11,72 @@
     <span class="navbar-brand mb-0 h1">Attribute Category</span>
   </nav>
 </div>
-<div class="container">
+<div class="container bg-white mt-5 w-75">
+
   <div class="row">
+    <div class="col-md-6">
   <form action="" method="POST" class="p-3">
     {% csrf_token %}
     <div class="form-group">
-    <input class="form-control form-control-lg" name="attributeName" type="text" placeholder="Attribute Name">
+      <label for="">Attribute</label>
+    <input class="form-control form-control-md" name="attributeName" type="text" placeholder="Attribute Name" required>
   </div>
-    <input type="submit" class="btn btn-primary " value="submit">
+
+  <label for="">Product</label>
+  <select name="ProductValue" id="" class="custom-select  ">
+    {% for x in product_Data %}
+    <option  value="{{x.id}}">{{x.Product_Name}}</option>
+    {% endfor %}
+  </select>
+  <br><br>
+
+<div class="form-group ">
+  <label for="">Quantity</label>
+  <input class="form-control form-control-md " name="QuantityValue" type="number" placeholder="Quantity" required>
+  </div>
+
+  <label for="">Add On</label>
+  <select name="AddOnValue" id="" class="custom-select  ">
+    {% for x in product_Data %}
+    <option  value="{{x.id}}">{{x.Product_Name}}</option>
+    {% endfor %}
+  </select>
+  <br><br>
+
+  <input type="submit" class="btn btn-primary " value="submit">
+  </div>
+<div class="col-md-6 mt-2">
+  <div class="form-group">
+    <label for="">Price</label>
+    <input class="form-control form-control-md  " name="PriceValue" type="number" placeholder="Price" required>
+    </div>
+
+
+  <label for="">Add On Quantity</label>
+  <select name="AdQuantityValue" id="" class="custom-select  ">
+    {% for x in product_Data %}
+    <option  value="{{x.id}}">{{x.Product_Name}}</option>
+    {% endfor %}
+  </select>
+  <br><br>
+      
+  <label for="">Extra</label>
+  <select name="ExtraValue" id="" class="custom-select  ">
+    {% for x in product_Data %}
+    <option  value="{{x.id}}">{{x.Product_Name}}</option>
+    {% endfor %}
+  </select>
+  <br><br>
+
+  <div class="form-group">
+    <label for="">Extra Quantity</label>
+  <input class="form-control form-control-md" name="ExtraQunatitytValue" type="text" placeholder="Extra Quantity" required>
+</div>
+
+</div>
+  
   </form>
+
 </div>
 </div>
 {% endblock %}

@@ -97,12 +97,37 @@ def tax_update(request,taxid):
 
 
 def attribute_add(request):
+    product_Value =Product.objects.all()
     if request.method == 'POST':
         attributename = request.POST.get('attributeName')
-        attributedata=attributecategory(attributeName=attributename)
+        
+    
+        product_Id = request.POST.get('ProductValue')
+        products =Product.objects.get(id=product_Id)
+
+        quantities = request.POST.get('QuantityValue') 
+        prices = request.POST.get('PriceValue') 
+
+        add_on_Id = request.POST.get('AddOnValue')
+        add_on =Product.objects.get(id=add_on_Id)
+
+        add_on_Quantity_Id = request.POST.get('AdQuantityValue')
+        add_on_quantity =Product.objects.get(id=add_on_Quantity_Id)
+
+        extra_Id = request.POST.get('ExtraValue')
+        extra_Value =Product.objects.get(id=extra_Id)
+
+      
+        extra_Quantity = request.POST.get('ExtraQunatitytValue')
+
+        attributedata=attributecategory(attributeName=attributename,product =products,quantity =quantities,price=prices ,add_On=add_on,add_on_quantity=add_on_quantity,
+                                        extra=extra_Value,extra_quantity=extra_Quantity)
         attributedata.save()
         return redirect ('/attribute_table')
-    return render(request, 'attributecategory/attribute_form.html')
+    context = {
+           'product_Data': product_Value,
+    }
+    return render(request, 'attributecategory/attribute_form.html',context)
 def attribute_table(request):
     attribute_data = attributecategory.objects.all()
     return render(request,'attributecategory/table_attribute.html',{'attribute_Data':attribute_data})
