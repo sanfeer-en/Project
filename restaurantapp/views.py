@@ -1,4 +1,5 @@
 from django.shortcuts import render , redirect ,HttpResponse
+from django.http import JsonResponse
 from .models import *
 
 # Create your views here.
@@ -135,17 +136,44 @@ def attributecategory_delete(request,atrictgry):
     attribute_data=attributecategory.objects.get(id=atrictgry)
     attribute_data.delete()
     return redirect('/attribute_table') 
+
 def attributecategory_edit(request,atrictgry):
     attribute_data=attributecategory.objects.get(id=atrictgry)
-    return render(request,'attributecategory/edit_attribute.html',{"attribute_Data":attribute_data})
+    product_Fr =Product.objects.all()
+    add_On =Product.objects.all()
+    context = {
+           'attribute_Data': attribute_data,
+           'product_Data' :product_Fr,
+           'addOn_data': add_On,
+           
+    } 
+    return render(request,'attributecategory/edit_attribute.html',context)
+   
 def attribute_update(request,atrictgry):
     attribute_data = attributecategory.objects.get(id=atrictgry)
     if request.method == 'POST':
         attribute_data.attributeName = request.POST['attributeName']
+        
+        product_id =request.POST['ProductValue']
+        attribute_data.product =Product.objects.get(id=product_id)
+
+        attribute_data.quantity = request.POST['QuantityValue']
+
+        ad_On_id =request.POST['AddOnValue']
+        attribute_data.add_On =Product.objects.get(id=ad_On_id)
+
+        attribute_data.price = request.POST['PriceValue']
+
+        ad_On_quan_id =request.POST['AdQuantityValue']
+        attribute_data.add_on_quantity =Product.objects.get(id=ad_On_quan_id)
+
+        extra_id =request.POST['AdQuantityValue']
+        attribute_data.extra =Product.objects.get(id=extra_id)
+
+        attribute_data.extra_quantity = request.POST['ExtraQunatitytValue']
+
         attribute_data.save()
         return redirect ('/attribute_table')
-
-
 
 
 def product(request):
@@ -161,8 +189,7 @@ def product(request):
         unit_Id = request.POST.get('UnitValue')
         unities =Unit.objects.get(id=unit_Id)
 
-        variant_Id =request.POST.getlist('VariantValue')
-        variants =attributecategory.objects.filter(id__in=variant_Id)
+       
        
         tax_Id = request.POST.get('TaxValue')
         taxes =Tax.objects.get(id=tax_Id)
@@ -312,47 +339,64 @@ def stock_Update(request,id):
         stock_Data.save()
         return redirect('/table_stock')
     
+
 def ad_Production(request):
-    product_Data =Product.objects.filter(Is_for_sale = True)
-    RawMaterial_data =Stock.objects.filter(Product__Is_for_sale =False)
+   
+    product_Data = Product.objects.filter(Is_for_sale=True)
+    RawMaterial_data = Stock.objects.filter(Product__Is_for_sale=False)
+
     if request.method == 'POST':
+        productFr_Id = request.POST.get('product')
         
-        productFr_Id = request.POST.get('prdctValue') or request.POST.get('prdctValue[]')
-        products =Product.objects.get(id=productFr_Id)
+        products = Product.objects.get(id=productFr_Id)
+        
 
-        raw_materials=request.POST.getlist('RawMaterialValue[]')
+        raw_materials = request.POST.getlist('raw_materials[]')
+       
 
-        measurments = request.POST.getlist('Quantity[]')
+        measurements = request.POST.getlist('raw_materials_measurement[]')
+        
 
-        production =Product_Fr.objects.create(product=products)
+        production = Product_Fr.objects.create(Product_fr=products)
 
         for i in range(len(raw_materials)):
-            raw_material_id =raw_materials[i]
+            raw_material_id = raw_materials[i]
             try:
-                raw_material_ =Stock.objects.filter(id=raw_material_id).first()
-                if raw_material_ is None:
-                    raise Stock.DoesNotExist
+                raw_material_ = Stock.objects.get(id=raw_material_id)
             except Stock.DoesNotExist:
-                error_message = f"The {raw_material_id} does not exist in the stocks."
-                return render(request,'productions/ad_production.htm',{'error_message':error_message,'Product_Data':product_Data,'RawMaterial_Data':RawMaterial_data})
-            
-            measurment=measurments[i]
+                error_message = f"The selected raw material does not exist in the stocks."
+                return render(request, 'productions/ad_production.html', {'error_message': error_message, 'Product_Data': product_Data, 'RawMaterial_Data': RawMaterial_data})
 
-            if float(measurment) > raw_material_.Quantity:
-                error_message =f"The Measurement for raw Material'{raw_material_.products.Product}' exceeds the availabile stock quantity."
-                return render(request,'productions/ad_production.html',{'error_message':error_message,'Product_Data':product_Data,'RawMaterial_Data':RawMaterial_data}) 
+            measurement = measurements[i]
 
+            if float(measurement) > raw_material_.Quantity:
+                error_message = f"The Measurement for raw Material '{raw_material_.Product}' exceeds the available stock quantity."
+                return render(request, 'productions/ad_production.html', {'error_message': error_message, 'Product_Data': product_Data, 'RawMaterial_Data': RawMaterial_data})
 
-            ProductionRawMaterial.objects.create(Production=production,Raw_Material=raw_material_,Measurement=measurment)
+            ProductionRawMaterial.objects.create(Production=production, Raw_Material=raw_material_, Measurement=measurement)
 
-        
+        return redirect('/table_production')  # Redirect after processing the form
 
-    return render(request,'productions/ad_production.html',{'Product_Data':product_Data,'RawMaterial_Data':RawMaterial_data}) 
+    return render(request, 'productions/ad_production.html', {'Product_Data': product_Data, 'RawMaterial_Data': RawMaterial_data})
 
+def production_Table(request):
+    production_Data =ProductionRawMaterial.objects.all()
+    return render(request, 'productions/production_table.html', {'Production_Data':production_Data})
+def production_Delete(request,id):
+    production_Data =ProductionRawMaterial.objects.get(id=id)
+    production_Data.delete()
+    return redirect('/table_production')
+def production_Edit(request,id):
+    production_Data=ProductionRawMaterial.objects.get(id=id)
+    product_fori = Product_Fr.objects.all()
+    
 
-
-
-
+    context ={
+        'purchase_Data': production_Data,
+        'products_Entir': product_fori,
+    }
+    return render(request, 'productions/production_edit.html',context)
+    
 
 
 

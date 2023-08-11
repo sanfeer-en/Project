@@ -44,13 +44,15 @@ urlpatterns = [
     path('cpmpany_Update/<int:id>/',company_Update,name='compani_Update'),
 
     path('ad_stock',ad_stock ,name='adStck'),
-
-    path('ad_production',ad_Production ,name='adPrdct'),
-
     path('table_stock',stock_Table ,name='table_stock'),
     path('stck_delte/<int:id>/',stock_Delete, name='stckdelete'),
     path('stock_edit/<int:id>/',stock_edit,name='stock_edit'),
     path('stock_Update/<int:id>/',stock_Update,name='stock_Update'),
     
+    path('ad_production',ad_Production ,name='adPrdct'),
+    path('table_production',production_Table ,name='table_production'),
+    path('prdction_delte/<int:id>/',production_Delete, name='productiondelete'),
+    path('producton_edit/<int:id>/',production_Edit,name='productionedit'),
+
    
 ]

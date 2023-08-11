@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block css %}
+
+{% endblock css %}
+
+{% block content %}
+<div class="container-flud">
+  <nav class="navbar navbar-light bg-light shadow-sm p-3 mb-1 bg-light rounded border-bottom-5">
+      <span class="navbar-brand mb-0 h1">Production Table</span>
+    </nav>
+  </div>
+  <!-- <a href="{% url 'add_tax' %} " type="button" class="btn btn-primary font-weight-bolder float-right mr-3 mt-2">Add Tax</a> -->
+<div class="container d-flex justify-content-center">
+    <table class="table">
+        <tr>
+            <th>No</th>
+            <th>Production Products</th>
+            <th>Raw Material</th>
+            <th>Measurement</th>
+            
+            <th colspan="2">Action</th>
+        </tr>
+        <tbody>
+            {% for x in Production_Data  %}
+            
+              
+           
+              <tr>
+                <td>{{x.id}}</td>
+                <td>{{x.Production}}</td>
+                <td>{{x.Raw_Material}}</td>
+                <td>{{x.Measurement}}</td>
+                
+                <td><a href="{% url 'productiondelete' x.id  %}" class="btn btn-danger">Delete</a></td>
+                <td><a href="{% url 'productionedit' x.id  %}" class="btn btn-primary">Edit</a></td> 
+              </tr>
+         
+            {% endfor %}
+        </tbody>
+
+    </table>
+</div>
+{% endblock content %}

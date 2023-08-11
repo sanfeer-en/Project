@@ -17,10 +17,10 @@
   <form method="post">
       {% csrf_token %}
       <label for="product">Product:</label><br>
-      <select name="product" id="product" class="js-example-basic-single product_input w-50">
+      <select name="product" id="product" class="js-example-basic-single product_input w-50" value="{{purchase_Data.Production}}">
         <option value="" selected></option>
-        {% for p in Product_Data %}
-          <option value="{{ p.id }}">{{ p.Product_Name }}</option>
+        {% for p in products_Entir %}
+          <option value="{{ p.id }}" {% if purchase_Data.Production.id == p.id %} selected {% endif %}>{{ p.Product_fr }}</option>
         {% endfor %}
       </select><br>
       <label>Raw Materials:</label>
