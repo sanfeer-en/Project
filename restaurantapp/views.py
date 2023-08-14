@@ -387,16 +387,56 @@ def production_Delete(request,id):
     production_Data.delete()
     return redirect('/table_production')
 def production_Edit(request,id):
+    print("Production Edit View Executed with ID:", id)
     production_Data=ProductionRawMaterial.objects.get(id=id)
     product_fori = Product_Fr.objects.all()
+    RawMaterial_data = Stock.objects.filter(Product__Is_for_sale=False)
     
 
     context ={
         'purchase_Data': production_Data,
         'products_Entir': product_fori,
+        'Rawmaterial_Entir': RawMaterial_data,
+        'production_id': id,
     }
     return render(request, 'productions/production_edit.html',context)
-    
+
+def update_Production(request, production_id):
+    try:
+        production = Product_Fr.objects.get(id=production_id)
+    except Product_Fr.DoesNotExist:
+        error_message = "The selected production does not exist."
+        return render(request, 'productions/production_edit.html', {'error_message': error_message})
+
+    product_Data = Product.objects.filter(Is_for_sale=True)
+    RawMaterial_data = Stock.objects.filter(Product__Is_for_sale=False)
+
+    if request.method == 'POST':
+        raw_materials = request.POST.getlist('raw_materials[]')
+        measurements = request.POST.getlist('raw_materials_measurement[]')
+
+        for i in range(len(raw_materials)):
+            raw_material_id = raw_materials[i]
+            try:
+                raw_material_ = Stock.objects.get(id=raw_material_id)
+            except Stock.DoesNotExist:
+                error_message = f"The selected raw material does not exist in the stocks."
+                return render(request, 'productions/production_edit.html', {'error_message': error_message, 'Product_Data': product_Data, 'RawMaterial_Data': RawMaterial_data})
+
+            measurement = measurements[i]
+
+            if float(measurement) > raw_material_.Quantity:
+                error_message = f"The Measurement for raw Material '{raw_material_.Product}' exceeds the available stock quantity."
+                return render(request, 'productions/production_edit.html', {'error_message': error_message, 'Product_Data': product_Data, 'RawMaterial_Data': RawMaterial_data})
+
+            production_raw_material, created = ProductionRawMaterial.objects.get_or_create(Production=production, Raw_Material=raw_material_)
+            production_raw_material.Measurement = measurement
+            production_raw_material.save()
+
+        return redirect('/table_production')  # Redirect after updating the form
+
+    production_raw_materials = ProductionRawMaterial.objects.filter(Production=production)
+    return render(request, 'productions/production_edit.html', {'Product_Data': product_Data, 'RawMaterial_Data': RawMaterial_data, 'production': production, 'production_raw_materials': production_raw_materials})
 
 
 
