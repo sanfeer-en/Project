@@ -52,8 +52,10 @@ urlpatterns = [
     path('ad_production',ad_Production ,name='adPrdct'),
     path('table_production',production_Table ,name='table_production'),
     path('prdction_delte/<int:id>/',production_Delete, name='productiondelete'),
-    path('producton_edit/<int:id>/',production_Edit,name='productionedit'),
-    path('update_production/<int:production_id>/',update_Production, name='update_production'),
+    path('producton_edit/<int:id>/', edit_production,name='productionedit'),
+    # path('update_production/<int:id>/',production_Update, name='update_production'),
+
+    path('billing',biling_Form ,name='billing'),
 
    
 ]

@@ -11,32 +11,36 @@
     <span class="navbar-brand mb-0 h1">Company Information</span>
   </nav>
 </div>
-<div class="container">
+<div class="container"style="background-image: linear-gradient(to right, #E4E9F7, #ffffff);">
   <div class="row">
+    <div class="col-6">
   <form action="{% url 'compani_Update' company_Data.id %}" method="POST" class="p-3">
     {% csrf_token %}
     <div class="form-group">
         <label for="">Company Name</label>
-    <input class="form-control form-control-lg" name="CmpName" type="text" placeholder="Company Name " value="{{company_Data.Company_Name}}">
+    <input class="form-control form-control" name="CmpName" type="text" placeholder="Company Name " value="{{company_Data.Company_Name}}">
   </div>
   <div class="form-group">
     <label for="">Company Adress</label>
-<input class="form-control form-control-lg" name="CmpAddrs" type="text" placeholder="Company Adress "  value="{{company_Data.Company_Address}}">
+<input class="form-control form-control" name="CmpAddrs" type="text" placeholder="Company Adress "  value="{{company_Data.Company_Address}}">
 </div>
 <div class="form-group">
   <label for="">GST Number</label>
-<input class="form-control form-control-lg" name="gstNumb" type="text" placeholder="Gst Number " value="{{company_Data.GST_Number}}">
+<input class="form-control form-control" name="gstNumb" type="text" placeholder="Gst Number " value="{{company_Data.GST_Number}}">
 </div>
+</div>
+<div class="col-6 mt-4">
 <div class="form-group">
   <label for="">Country Code</label>
-<input class="form-control form-control-lg" name="countryCode" type="text" placeholder="Country Code" value="{{company_Data.Country_Code}}">
+<input class="form-control form-control" name="countryCode" type="text" placeholder="Country Code" value="{{company_Data.Country_Code}}">
 </div>
 <div class="form-group">
   <label for="">Manufacture Code</label>
-<input class="form-control form-control-lg" name="manufacturCode" type="Number" placeholder="Manufacture Code" value="{{company_Data.Manufacturing_code}}">
+<input class="form-control form-control" name="manufacturCode" type="Number" placeholder="Manufacture Code" value="{{company_Data.Manufacturing_code}}">
 </div>
     <input type="submit" class="btn btn-primary  " value="submit">
   </form>
+</div>
 </div>
 </div>
 {% endblock %}

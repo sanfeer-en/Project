@@ -12,13 +12,14 @@
     <span class="navbar-brand mb-0 h1">Stock Form</span>
   </nav>
 </div>
-<div class="container">
-  <div class="row">
+<div class="container" style="background-image: linear-gradient(to right, #E4E9F7, #ffffff);">
+  <div class="row" >
+    <div class="col-6">
   <form action="{% url 'stock_Update' Stock_Data.id  %}" method="POST" class="p-3" enctype="multipart/form-data">
     {% csrf_token %}
     <div class="form-group">
       <label for="">Vendor Bill Number</label>
-    <input class="form-control form-control-lg" name="vendorBill" type="number" placeholder="Vendor Bill" value="{{Stock_Data.Vendor_Bill_No}}">
+    <input class="form-control form-control" name="vendorBill" type="number" placeholder="Vendor Bill" value="{{Stock_Data.Vendor_Bill_No}}">
   </div>
   
   <label for="">Product</label>
@@ -39,31 +40,34 @@
   <br><br>
   <div class="form-group">
     <label for="">Quantity</label>
-    <input class="form-control form-control-lg" name="QuantityValue" type="number" placeholder="Quantity" value="{{Stock_Data.Quantity}}">
+    <input class="form-control form-control" name="QuantityValue" type="number" placeholder="Quantity" value="{{Stock_Data.Quantity}}">
     </div>
 
     <div class="form-group">
       <label for="">Purchasing Amount</label>
-      <input class="form-control form-control-lg" name="PurchaseValue" type="number" placeholder="Purchase Amount"  value="{{Stock_Data.Purchasing_Amount}}">
+      <input class="form-control form-control" name="PurchaseValue" type="number" placeholder="Purchase Amount"  value="{{Stock_Data.Purchasing_Amount}}">
       </div>
+    </div>
+    <div class="col-6 mt-5">
       <div class="form-group">
         <label for="">Selling Amount</label>
-        <input class="form-control form-control-lg" name="SellingValue" type="number" placeholder="Selling Amount"  value="{{Stock_Data.Selling_Amount}}">
+        <input class="form-control form-control" name="SellingValue" type="number" placeholder="Selling Amount"  value="{{Stock_Data.Selling_Amount}}">
         </div>
 
        <div class="form-group">
         <label for="">Manufacture Date </label>
-        <input class="form-control form-control-lg" name="DateValue" type="date" value="{{ Stock_Data.Manufacture_Date|date:'Y-m-d'}}">
+        <input class="form-control form-control" name="DateValue" type="date" value="{{ Stock_Data.Manufacture_Date|date:'Y-m-d'}}">
         </div>
 
         <div class="form-group">
           <label for="">Expire Date </label>
-          <input class="form-control form-control-lg" name="DateWorth" type="date" value="{{ Stock_Data.Expire_Date|date:'Y-m-d'}}" >
+          <input class="form-control form-control" name="DateWorth" type="date" value="{{ Stock_Data.Expire_Date|date:'Y-m-d'}}" >
           </div>
         
 
     <input type="submit" class="btn btn-primary  " value="submit">
   </form>
+</div>
 </div>
 </div>
 {% endblock %}

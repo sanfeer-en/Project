@@ -12,13 +12,14 @@
     <span class="navbar-brand mb-0 h1">Purchase</span>
   </nav>
 </div>
-<div class="container">
+<div class="container" style="background-image: linear-gradient(to right, #E4E9F7, #ffffff);">
   <div class="row">
+    <div class="col-6">
   <form action="" method="POST" class="p-3" enctype="multipart/form-data">
     {% csrf_token %}
     <div class="form-group">
       <label for="">Vendor Bill Number</label>
-    <input class="form-control form-control-lg" name="vendorBill" type="text" placeholder="Vendor Bill" required>
+    <input class="form-control form-control" name="vendorBill" type="text" placeholder="Vendor Bill" required>
   </div>
   
   <label for="">Product</label>
@@ -39,26 +40,28 @@
   <br><br>
   <div class="form-group">
     <label for="">Quantity</label>
-    <input class="form-control form-control-lg" name="QuantityValue" type="number" placeholder="Quantity" required>
+    <input class="form-control form-control" name="QuantityValue" type="number" placeholder="Quantity" required>
     </div>
 
     <div class="form-group">
       <label for="">Purchasing Amount</label>
-      <input class="form-control form-control-lg" name="PurchaseValue" type="number" placeholder="Purchase Amount" required>
+      <input class="form-control form-control" name="PurchaseValue" type="number" placeholder="Purchase Amount" required>
       </div>
+    </div>
+    <div class="col-6 mt-5">
       <div class="form-group">
         <label for="">Selling Amount</label>
-        <input class="form-control form-control-lg" name="SellingValue" type="number" placeholder="Selling Amount">
+        <input class="form-control form-control" name="SellingValue" type="number" placeholder="Selling Amount">
         </div>
 
        <div class="form-group">
         <label for="">Manufacture Date </label>
-        <input class="form-control form-control-lg" name="DateValue" type="date" >
+        <input class="form-control form-control" name="DateValue" type="date" >
         </div>
 
         <div class="form-group">
           <label for="">Expire Date </label>
-          <input class="form-control form-control-lg" name="DateWorth" type="date" >
+          <input class="form-control form-control" name="DateWorth" type="date" >
           </div>
 
           <div class="form-group">
@@ -78,9 +81,10 @@
           </div>
           
          
-
-    <input type="submit" class="btn btn-primary  " value="submit">
+    
+    <input type="submit" class="btn btn-primary  fl" value="submit">
   </form>
+</div>
 </div>
 </div>
  <script type="text/javascript">

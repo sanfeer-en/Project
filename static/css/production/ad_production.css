@@ -1,0 +1,18 @@
+.form-div {
+    width: 45%;
+    height: auto;
+    border: 1px solid rgb(228, 228, 228);
+    padding: 10px;
+    border-radius: 25px;
+    background-image: linear-gradient(to right, #E4E9F7, #ffffff);
+}
+.raw-material-measurement {
+  /* Your styles here */
+  padding: 10px; /* For example, set the width to 50px */
+  border: 1px solid rgb(228, 228, 228);
+}
+.select-styled {
+    padding: 10px;
+    border: 1px solid rgb(228, 228, 228);
+    /* Other styles if needed */
+  }

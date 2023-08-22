@@ -2,7 +2,7 @@
 {% load static %}
 
  {% block css %}
-   
+ <link rel="stylesheet" href="{% static 'css/production/ad_production.css' %}"> 
 {% endblock css %}
 
 {% block content %}
@@ -12,12 +12,12 @@
   </nav>
 </div>
 
-<div class="form-div container mt-5 w-50 border-bottom-5 rounded" style="height: 100%;">
- <div class=" d-flex justify-content-center bg-white">
+<div class="form-div container pt-5  border-bottom-5 rounded" >
+ <div class=" d-flex justify-content-center ">
   <form method="post">
       {% csrf_token %}
       <label for="product">Product:</label><br>
-      <select name="product" id="product" class="js-example-basic-single product_input w-50">
+      <select name="product" id="product" class="js-example-basic-single product_input w-50 select-styled">
         <option value="" selected></option>
         {% for p in Product_Data %}
           <option value="{{ p.id }}">{{ p.Product_Name }}</option>
@@ -57,7 +57,7 @@ $(document).ready(function() {
 
   addRawMaterialButton.on('click', function() {
     const newRawMaterialDiv = $('<div></div>');
-    const rawMaterialSelect = $('<select></select>').addClass('raw-material-select raw_input mt-2').attr('name', 'raw_materials[]');
+    const rawMaterialSelect = $('<select></select>').addClass('raw-material-select raw_input mt-2 ').attr('name', 'raw_materials[]');
     const rawMaterialMeasurementInput = $('<input>').attr('type', 'text').attr('name', 'raw_materials_measurement[]').addClass('raw-material-measurement measure_input ml-1');
     const removeRawMaterialButton = $('<button></button>').attr('type', 'button').addClass('remove-raw-material btn btn-danger ml-1  mt-1').text('Remove');
 

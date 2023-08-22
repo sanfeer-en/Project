@@ -83,23 +83,21 @@ class Stock(models.Model):
         return f"{self.Product} - Vendor Bill No: {self.Vendor_Bill_No}, Quantity: {self.Quantity}"
     
     
-class Product_Fr(models.Model):
+class Production(models.Model):
     Product_fr=models.ForeignKey(Product,on_delete=models.CASCADE,blank=True,null=True)
 
     def __str__(self):
         return str(self.Product_fr)
   
+
+
 class ProductionRawMaterial(models.Model):
-    Production = models.ForeignKey(Product_Fr,on_delete=models.CASCADE,blank=True,null=True)
-    Raw_Material = models.ForeignKey(Stock,on_delete=models.CASCADE,blank=True,null=True)
-    Measurement = models.PositiveIntegerField(blank=True,null=True)
+    production = models.ForeignKey(Production, on_delete=models.CASCADE, blank=True, null=True)
+    Raw_Material = models.ForeignKey(Stock, on_delete=models.DO_NOTHING, blank=True, null=True)
+    Measurement = models.PositiveIntegerField(blank=True, null=True)
 
     def __str__(self):
-        production_str = str(self.Production) if self.Production else "No Production"
+        production_str = str(self.production) if self.production else "No Production"
         return f"{production_str} - {self.Raw_Material} ({self.Measurement})"
-  
-
-
-
 
     

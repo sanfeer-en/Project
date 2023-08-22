@@ -16,9 +16,9 @@
         <tr>
             <th>No</th>
             <th>Production Products</th>
-            <th>Raw Material</th>
+            <!-- <th>Raw Material</th>
             <th>Measurement</th>
-            
+             -->
             <th colspan="2">Action</th>
         </tr>
         <tbody>
@@ -28,10 +28,11 @@
            
               <tr>
                 <td>{{x.id}}</td>
-                <td>{{x.Production}}</td>
-                <td>{{x.Raw_Material}}</td>
-                <td>{{x.Measurement}}</td>
+                <td>{{x.Product_fr}}</td>
                 
+                <!-- <td>{{x.Raw_Material}}</td>
+                <td>{{x.Measurement}}</td>
+                 -->
                 <td><a href="{% url 'productiondelete' x.id  %}" class="btn btn-danger">Delete</a></td>
                 <td><a href="{% url 'productionedit' x.id  %}" class="btn btn-primary">Edit</a></td> 
               </tr>

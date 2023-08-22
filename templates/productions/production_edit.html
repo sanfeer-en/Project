@@ -1,56 +1,56 @@
 {% extends 'base.html' %}
-{% debug %}
 {% load static %}
 
- {% block css %}
-   
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/production/ad_production.css' %}">
 {% endblock css %}
 
 {% block content %}
 <div class="container-flud ">
   <nav class="navbar navbar-light bg-light shadow-sm p-3 mb-1 bg-light rounded border-bottom-5">
-    <span class="navbar-brand mb-0 h1">Production Update</span>
+    <span class="navbar-brand mb-0 h1">Edit Production</span>
   </nav>
 </div>
 
-<div class="form-div container mt-5 w-50 border-bottom-5 rounded" style="height: 100%;">
- <div class=" d-flex justify-content-center bg-white">
-  <form method="post" action="{% url 'update_production' purchase_Data.id %}">
-      {% csrf_token %}
-      <label for="product">Product:</label><br>
-      <select name="product" id="product" class="js-example-basic-single product_input w-50" value="{{purchase_Data.Production}}">
-        <option value="" selected></option>
-        {% for p in products_Entir %}
-          <option value="{{ p.id }}" {% if purchase_Data.Production.id == p.id %} selected {% endif %}>{{ p.Product_fr }}</option>
-        {% endfor %}
-      </select><br>
+<div class="container form-div ">
+  <form method="post">
+    {% csrf_token %}
+    <label for="product">Product:</label><br>
+    <select name="product" id="product" class="js-example-basic-single product_input w-50">
+      <option value="" selected></option>
+      {% for p in Product_Data %}
+        <option value="{{ p.id }}" {% if p.id == production.Product_fr.id %} selected {% endif %}>{{ p.Product_Name }}</option>
+      {% endfor %}
+    </select><br>
+    <div class="form-group">
       <label>Raw Materials:</label>
       <div id="raw-materials-container">
-        <div>
-          <select name="raw_materials[]" class="js-example-basic-single raw-material-select raw_input custom-select w-50" value="{{purchase_Data.Raw_Material}}">
+        {% for raw_material in raw_materials %}
+        <div class="raw-material-row">
+          <select name="raw_materials[]" class="js-example-basic-single raw-material-select raw_input custom-select w-50">
             <option value="" selected></option>
-            {% for p in Rawmaterial_Entir %}
-              <option value="{{ p.id }}" {% if purchase_Data.Raw_Material.id == p.id %} selected {% endif %}>{{ p.Product.Product_Name }} - {{p.Expire_Date}}></option>
+            {% for p in RawMaterial_Data %}
+              <option value="{{ p.id }}" {% if p.id == raw_material.Raw_Material.id %} selected {% endif %}>{{ p.Product.Product_Name }} - {{ p.Expire_Date }}</option>
             {% endfor %}
           </select>
           <label>Quantity:</label>
-          <input type="number" name="raw_materials_measurement[]" class="raw-material-measurement measure_input" required value="{{purchase_Data.Measurement}}">
+          <input type="number" name="raw_materials_measurement[]" class="raw-material-measurement measure_input" required value="{{ raw_material.Measurement }}">
           <button type="button" class="remove-raw-material btn btn-danger">Remove</button>
         </div>
+        {% endfor %}
       </div>
       <button type="button" id="add-raw-material" class="btn btn-success mt-2">Add</button><br>
-      <!-- {% comment %} <label for="product_qty">Product Quantity:</label><br>
-      <input type="number" name="product_qty" class="product_qty"><br>  {% endcomment %} -->
-      <input type="submit" class="sub-btn btn mt-1 mb-1 btn-primary" value="Create Production">
-      <!-- {% comment %} <a class="cancel-btn" href="{% url 'production_table'%}">Cancel</a> {% endcomment %} -->
-    </form>
-    {% if error_message %}
-      <div class="alert alert-danger mt-3" role="alert">
-          {{ error_message }}
-      </div>
-    {% endif %}
+    </div>
+    <input type="submit" class="sub-btn btn mt-1 mb-1 btn-primary" value="Update Production">
+  </form>
+  {% if error_message %}
+  <div class="alert alert-danger mt-3" role="alert">
+    {{ error_message }}
+  </div>
+  {% endif %}
 </div>
 </div>
+
 <script>
 $(document).ready(function() {
   const addRawMaterialButton = $('#add-raw-material');
@@ -60,7 +60,7 @@ $(document).ready(function() {
     const newRawMaterialDiv = $('<div></div>');
     const rawMaterialSelect = $('<select></select>').addClass('raw-material-select raw_input mt-2').attr('name', 'raw_materials[]');
     const rawMaterialMeasurementInput = $('<input>').attr('type', 'text').attr('name', 'raw_materials_measurement[]').addClass('raw-material-measurement measure_input ml-1');
-    const removeRawMaterialButton = $('<button></button>').attr('type', 'button').addClass('remove-raw-material btn btn-danger ml-1  mt-1').text('Remove');
+    const removeRawMaterialButton = $('<button></button>').attr('type', 'button').addClass('remove-raw-material btn btn-danger ml-1  mt-2').text('Remove');
 
     const rawMaterials = $('.raw-material-select');
     const rawMaterialOptions = Array.from(rawMaterials.eq(0).find('option'));
@@ -87,6 +87,4 @@ $(document).ready(function() {
   });
 });
 </script>
-
-
 {% endblock %}

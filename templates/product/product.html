@@ -11,8 +11,9 @@
     <span class="navbar-brand mb-0 h1">Product Form</span>
   </nav>
 </div>
-<div class="container w-75">
+<div class="container w-75" style="background-image: linear-gradient(to right, #E4E9F7, #ffffff);">
   <div class="row">
+    <div class="col-6">
   <form action="" method="POST" class="p-3" enctype="multipart/form-data">
     {% csrf_token %}
     <div class="form-group">
@@ -44,7 +45,8 @@
     {% endfor %}
   </select>
   <br><br>
-
+</div>
+<div class="col-6 mt-5">
   <label for="">Is for Sale:</label>
   <input type="checkbox" id="id_is_for_sale" name="for_Sale" value='True'>
   <br>
@@ -57,6 +59,7 @@
     <br>
     <input type="submit" class="btn btn-primary  " value="submit">
   </form>
+  </div>
 </div>
 </div>
 {% endblock %}

@@ -20,7 +20,7 @@ admin.site.register(CompanyInformation)
 
 admin.site.register(Stock)
 
-admin.site.register(Product_Fr)
+admin.site.register(Production)
 
 admin.site.register(ProductionRawMaterial)
 
