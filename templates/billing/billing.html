@@ -7,28 +7,63 @@
 
 {% block HomeBilling %}
 <div class="homeSection">
-<div class="container-fluid">
-    <div class="row">
+  <div class="container-fluid">
+     <div class="row">
         <div class="col-md-8 mt-1">
             <div class="float-start">
-                <button class="btn text-light  px-4 py-3 bg-success"><i class="fa-solid fa-gauge-circle-plus fa-sm"></i> Dashboard</button>
-                <button class="btn btn-primary  px-4 py-3">Button 2</button>
-                <button class="btn btn-primary  px-4 py-3">Button 3</button>
-                <button class="btn bg-white  px-4 py-3">Button 4</button>
-                <button class="btn bg-danger text-light   px-4 py-3">Button 5</button>
+                <button class="btn text-light  px-4 py-3 bg-success "><i class="fa-solid fa-gauge  mr-1"></i>Dashboard</button>
+                <button class="btn btn-primary  px-4 py-3"><i class="fa-solid fa-hand-point-up mr-1"></i>Order</button>
+                <button class="btn btn-primary  px-4 py-3"><i class="fa-solid fa-circle-user mr-1"></i>Customer</button>
+                <button class="btn bg-white  px-4 py-3"><i class="fa-solid fa-truck mr-1"></i>Order Type</button>
+                <button class="btn bg-danger text-light   px-4 py-3">Reset</button>
             </div>
         </div>
        
         <div class="col-md-4  mt-1">
             <div class="float-end d-flex justify-content-end">
-                <button class="btn btn-secondary p-3">Button A</button>
-                <button class="btn btn-secondary">Button B</button>
+                <button class="btn bg-white px-4 py-3 mr-1"><i class="fa-solid fa-table-cells mr-1"></i>Grid View</button>
+                <button class="btn bg-white px-4 py-3 "><i class="fa-solid fa-list mr-1"></i>List View</button>
             </div>
         </div>
     </div>
 </div>
 
 
-</div>
+<div class="container-fluid">
+   <div class="row">
+    <div class="col-md-6 ">
 
+        <div class="firstDiv">
+          
+                <div class="commentdiv">
+                    <span class=""><i class="fa-solid fa-comment"> &nbsp;</i>Comments</span>
+            
+                
+                 </div>
+                <div class="coupendiv">
+                    <span class=""><i class="fa-solid fa-tag">&nbsp;</i>Coupens</span>
+                </div>
+             
+        </div>
+
+        <table class="w-100">
+            <tr style="border-top: 2px solid rgb(192, 192, 192);"></tr>
+                <th style="border-right: 2px solid rgb(192, 192, 192);" class="text-center">Product</th>
+                <th  class="text-center">Quantity</th>
+                <th  class="text-center">Price</th>
+            </tr>
+
+        </table>
+            
+    </div>
+
+       
+    
+            <div class="col-md-6 bg-success mt-1">
+
+            </div>
+        </div>
+    </div>
+  
+</div>
 {% endblock HomeBilling %}
