@@ -31,9 +31,9 @@
 
 <div class="container-fluid">
    <div class="row">
-    <div class="col-md-6 ">
-
-        <div class="firstDiv">
+    <div class="col-md-6  mt-1 ">
+        <section class="bg-white p-1 rounded">
+            <div class="firstDiv">
           
                 <div class="commentdiv">
                     <span class=""><i class="fa-solid fa-comment"> &nbsp;</i>Comments</span>
@@ -44,17 +44,53 @@
                     <span class=""><i class="fa-solid fa-tag">&nbsp;</i>Coupens</span>
                 </div>
              
-        </div>
+             </div>
 
-        <table class="w-100">
-            <tr style="border-top: 2px solid rgb(192, 192, 192);"></tr>
-                <th style="border-right: 2px solid rgb(192, 192, 192);" class="text-center">Product</th>
-                <th  class="text-center">Quantity</th>
-                <th  class="text-center">Price</th>
-            </tr>
+        <table class="w-100 mt-1 table">
+            <thead>
+                <tr style="border-top: 2px solid rgb(176, 175, 175);">
+                    <th  class="text-center w-50 border-right ">Product</th>
+                    <th  class="text-center w-25 border-right">Quantity</th>
+                    <th  class="text-center w-25">Price</th>
+                </tr>
+                  </thead>
 
+                  <tbody style="height: 350px;">
+               
+                </tbody>
+
+                <tfoot  style="border: 2px solid rgb(176, 175, 175);">
+                    <tr>
+                        <td class="border-right">Customer</td>
+                        <td class="border-right">Sub Total</td>
+                        <td>Rs</td>
+                    </tr>
+                    <tr>
+                        <td class="border-right">Order Type</td>
+                        <td class="border-right">Discount Rs</td>
+                        <td> Rs</td>
+                        
+                    </tr>
+                    <tr>
+                        <td class="border-right table-success "></td>
+                        <td class="border-right table-success">Total</td>
+                        <td class="table-success ">Rs</td>
+                    </tr>
+                    
+                </tfoot>
+            </thead>
         </table>
-            
+        <div class="container">
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 ">
+              <div class="col bg-success text-white py-3 btn"><i class="fa-brands fa-alipay">&nbsp;</i>Pay</div>
+              <div class="col bg-primary text-white py-3 btn"><i class="fa-solid fa-pause">&nbsp;</i>Hold</div>
+              <div class="col bg-white py-3 btn"><i class="fa-solid fa-percent">&nbsp;</i>Discount</div>
+              <div class="col bg-danger text-white py-3 btn"><i class="fa-solid fa-trash">&nbsp;</i>Void</div>
+            </div>
+          </div>
+    </section>
+  
+    
     </div>
 
        
