@@ -48,7 +48,9 @@
         justify-content: center; 
         align-items: center;
 }
-
+.custom-border {
+        border-right: 1px solid #bebcbc
+}
 
 /* .couponsdiv p{
         border-right: 6px solid rgb(150, 150, 150);
