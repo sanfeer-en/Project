@@ -10,7 +10,7 @@
         z-index: 2;
 }
 .firstDiv{
-        border-radius: 5PX;
+        /* border-radius: 5PX; */
         margin-left: 1px;
         background-color: white;
         width: 100%;
@@ -55,3 +55,33 @@
 /* .couponsdiv p{
         border-right: 6px solid rgb(150, 150, 150);
 } */
+.searchBar {
+        border: 2px solid rgb(192, 192, 192);
+        margin-left: 1px;
+        background-color: white;
+        width: 100%;
+        height: auto;
+        margin-top: 5px;
+        display: flex;
+}
+.searchdiv{
+        width: 50px;
+        height: 40px;
+        margin-top: 0px;
+        background-color: #cccccc;
+        border-right: 1px solid rgb(192, 192, 192);
+        align-items: center;
+        justify-content: center; 
+        
+        display: flex;
+       
+}
+.gridDiv {
+        border-right: 2px solid rgb(192, 192, 192);
+        background-color: #cccccc;
+        width: 50px;
+        display: flex;
+        
+        justify-content: center; 
+        align-items: center;
+}

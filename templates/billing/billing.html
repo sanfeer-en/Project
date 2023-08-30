@@ -11,7 +11,7 @@
      <div class="row">
         <div class="col-md-8 mt-1">
             <div class="float-start">
-                <button class="btn text-light  px-4 py-3 bg-success "><i class="fa-solid fa-gauge  mr-1"></i>Dashboard</button>
+                <a href="{% url 'home' %}"><button class="btn text-light  px-4 py-3 bg-success "><i class="fa-solid fa-gauge  mr-1"></i>Dashboard</button></a>
                 <button class="btn btn-primary  px-4 py-3"><i class="fa-solid fa-hand-point-up mr-1"></i>Order</button>
                 <button class="btn btn-primary  px-4 py-3"><i class="fa-solid fa-circle-user mr-1"></i>Customer</button>
                 <button class="btn bg-white  px-4 py-3"><i class="fa-solid fa-truck mr-1"></i>Order Type</button>
@@ -46,7 +46,7 @@
              
              </div>
 
-        <table class="w-100 mt-1 tables" style="height: 500px;">
+        <table class="w-100 mt-1 tables" style="height: 476px;">
             <thead>
                 <tr style="border: 2px solid rgb(216, 216, 216);">
                     <th  class="text-center w-50 border-right ">Product</th>
@@ -54,10 +54,9 @@
                     <th  class="text-center w-25">Price</th>
                 </tr>
                  </thead>
-                <tr>
-                    <td>Tomato</td>
-                    <td></td>
-                    <td></td>
+                <tr >
+                    <td >Tomato</td>
+                    
                 </tr>
            
         </table>
@@ -100,7 +99,18 @@
 
        
     
-            <div class="col-md-6 bg-success mt-1">
+            <div class="col-md-6 bg-white mt-1" >
+                <section class="">
+                    <div class="searchBar">
+                        <div class="searchdiv">
+                            <span><i class="fa-solid fa-magnifying-glass"></i></span>
+                        </div>
+                        <div class="gridDiv">
+                            <span class=""><i class="fa-solid fa-barcode"></i></span>
+                        </div>
+
+                    </div>
+                </section>
 
             </div>
         </div>
