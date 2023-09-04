@@ -85,3 +85,18 @@
         justify-content: center; 
         align-items: center;
 }
+
+
+.parentproduct {
+        margin: 5px 15px;
+        padding: 3px;
+        border: solid black 1px;
+        overflow: auto;
+    }
+    
+    .productDiv {
+        height: 150px;
+        width: 50%;
+        overscroll-behavior-x: contain;
+        overscroll-behavior-y: contain;
+    }

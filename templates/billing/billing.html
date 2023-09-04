@@ -15,7 +15,8 @@
                 <button class="btn btn-primary  px-4 py-3"><i class="fa-solid fa-hand-point-up mr-1"></i>Order</button>
                 <button class="btn btn-primary  px-4 py-3"><i class="fa-solid fa-circle-user mr-1"></i>Customer</button>
                 <button class="btn bg-white  px-4 py-3"><i class="fa-solid fa-truck mr-1"></i>Order Type</button>
-                <button class="btn bg-danger text-light   px-4 py-3">Reset</button>
+                <button class="btn bg-danger text-light px-4 py-3" onclick="resetPage()">Reset</button>
+
             </div>
         </div>
        
@@ -100,13 +101,26 @@
        
     
             <div class="col-md-6 bg-white mt-1" >
-                <section class="">
+                <section class="" style="height: 300px;">
                     <div class="searchBar">
                         <div class="searchdiv">
                             <span><i class="fa-solid fa-magnifying-glass"></i></span>
                         </div>
                         <div class="gridDiv">
                             <span class=""><i class="fa-solid fa-barcode"></i></span>
+                        </div>
+
+                    </div>
+                    <div class="container   parentproduct">
+                        <div class="productDiv">
+                        {% for category in categories %}
+                        
+                            <p>{{ category.Namecategory }}</p>
+                            {% if category.Imagecategory %}
+                                <img src="{{ category.Imagecategory.url }}" alt="{{ category.Namecategory }} Image" height="50px" width="80px">
+                            {% endif %}
+                        
+                         {% endfor %}
                         </div>
 
                     </div>
@@ -117,4 +131,10 @@
     </div>
   
 </div>
+<script>
+    function resetPage() {
+        window.location.reload(); // Reloads the page
+    }
+    </script>
+    
 {% endblock HomeBilling %}

@@ -56,6 +56,7 @@ urlpatterns = [
     # path('update_production/<int:id>/',production_Update, name='update_production'),
 
     path('billing',biling_Form ,name='billing'),
+  
 
    
 ]
