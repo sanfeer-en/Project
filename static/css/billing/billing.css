@@ -1,20 +1,18 @@
 .homeSection{
      
-        position: relative;
         background: #E4E9F7;
-        min-height: 100vh;
-        top: 0;
-        
+        height: 100%;
+      
        
-        transition: all 0.5s ease;
-        z-index: 2;
+   
+     
 }
 .firstDiv{
         /* border-radius: 5PX; */
         margin-left: 1px;
         background-color: white;
         width: 100%;
-        height: auto;
+        height: 6%;
         margin-top: 5px;
         display: flex;
         border: 2px solid rgb(192, 192, 192);
@@ -25,7 +23,6 @@
 
 .commentdiv{
    width: 150px;
-   height: 40px;
    margin-top: 0px;
    background-color: #cccccc;
    border-right: 1px solid rgb(192, 192, 192);
@@ -88,15 +85,47 @@
 
 
 .parentproduct {
-        margin: 5px 15px;
-        padding: 3px;
         border: solid black 1px;
-        overflow: auto;
+        overflow-x: scroll;
+        overflow-y: hidden;
+        height: 139px;
+        margin-top: 5px;
     }
     
     .productDiv {
-        height: 150px;
-        width: 50%;
-        overscroll-behavior-x: contain;
-        overscroll-behavior-y: contain;
+        display: flex;
+        /* Center items horizontally */
+        height: 120px;
+        padding: 0 !important;
+        
     }
+    
+    .category-item {
+        text-align: center; /* Center the text within each category item */
+        /* Add margin between category items */
+        display: flex;
+       
+    }
+    
+    .image-container {
+        position: relative;
+        /* display: flex;   */
+    }
+    
+    .image-container img {
+        display: flex;
+        margin: 0 auto; /* Center the image horizontally */
+    }
+    
+    
+    .image-container .categoryNmae {
+        position: absolute;
+        top: 80%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        margin: 0;
+        background-color:  rgb(255, 255, 255 , 0.7);
+        width: 120px;
+        height: 60px;
+    }
+    

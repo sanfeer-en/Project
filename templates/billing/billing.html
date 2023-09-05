@@ -7,7 +7,7 @@
 
 {% block HomeBilling %}
 <div class="homeSection">
-  <div class="container-fluid">
+  <div class="container-fluid"  style="height: 9%;">
      <div class="row">
         <div class="col-md-8 mt-1">
             <div class="float-start">
@@ -30,11 +30,12 @@
 </div>
 
 
-<div class="container-fluid">
-   <div class="row">
-    <div class="col-md-6  mt-1 ">
-        <section class="bg-white p-1 rounded">
-            <div class="firstDiv">
+<div class="container-fluid" style="height: 91%;">
+   <div class="row" >
+    <div class="col-md-6  mt-1 " style="height: 680px;">
+        <div class="h-100 w-100">
+        <section class="bg-white p-1 rounded w-100 " style="height: 680px;">
+            <div class="firstDiv" >
           
                 <div class="commentdiv">
                     <span class=""><i class="fa-solid fa-comment"> &nbsp;</i>Comments</span>
@@ -46,8 +47,8 @@
                 </div>
              
              </div>
-
-        <table class="w-100 mt-1 tables" style="height: 476px;">
+   <div class="tableRap w-100 bg-success" style="height: 70%;overflow-y: scroll;">
+        <table class="w-100 mt-1  " style="height: 400px ;overflow: scroll;">
             <thead>
                 <tr style="border: 2px solid rgb(216, 216, 216);">
                     <th  class="text-center w-50 border-right ">Product</th>
@@ -55,14 +56,132 @@
                     <th  class="text-center w-25">Price</th>
                 </tr>
                  </thead>
+                 <tbody>
                 <tr >
                     <td >Tomato</td>
                     
+                    
                 </tr>
+                <tr >
+                    <td >Tomato</td>
+                    
+                    
+                </tr>
+                <tr >
+                    <td >Tomato</td>
+                    
+                    
+                </tr>
+                <tr >
+                    <td >Tomato</td>
+                    
+                    
+                </tr>
+                <tr >
+                    <td >Tomato</td>
+                    
+                    
+                </tr>
+                <tr >
+                    <td >Tomato</td>
+                    
+                    
+                </tr>
+                <tr >
+                    <td >Tomato</td>
+                    
+                    
+                </tr>
+                <tr >
+                    <td >Tomato</td>
+                    
+                    
+                </tr>
+                <tr >
+                    <td >Tomato</td>
+                    
+                    
+                </tr>
+                <tr >
+                    <td >Tomato</td>
+                    
+                    
+                </tr>
+                <tr >
+                    <td >Tomato</td>
+                    
+                    
+                </tr>
+                <tr >
+                    <td >Tomato</td>
+                    
+                    
+                </tr>
+                <tr >
+                    <td >Tomato</td>
+                    
+                    
+                </tr>   <tr >
+                    <td >Tomato</td>
+                    
+                    
+                </tr>
+                <tr >
+                    <td >Tomato</td>
+                    
+                    
+                </tr>
+                <tr >
+                    <td >Tomato</td>
+                    
+                    
+                </tr>
+                <tr >
+                    <td >Tomato</td>
+                    
+                    
+                </tr>
+                <tr >
+                    <td >Tomato</td>
+                    
+                    
+                </tr>
+                <tr >
+                    <td >Tomato</td>
+                    
+                    
+                </tr>
+                <tr >
+                    <td >Tomato</td>
+                    
+                    
+                </tr>
+                <tr >
+                    <td >Tomato</td>
+                    
+                    
+                </tr>
+                <tr >
+                    <td >Tomato</td>
+                    
+                    
+                </tr>
+                <tr >
+                    <td >Tomato</td>
+                    
+                    
+                </tr>
+                <tr >
+                    <td >Tomato</td>
+                    
+                    
+                </tr>
+            </tbody>
            
         </table>
-
-                
+    </div>
+       
+            <div class="amountDivRap w-100" style="height:24% ;">
                 <table class="w-100 rounded" style="height: 90px;">
                 <tfoot   style="border: 1px solid rgb(195, 194, 194);">
                     <tr>
@@ -93,15 +212,17 @@
               <div class="col bg-danger text-white py-3 btn"><i class="fa-solid fa-trash">&nbsp;</i>Void</div>
             </div>
           </div>
+        </div>    
     </section>
   
-    
+        </div>
     </div>
 
        
     
-            <div class="col-md-6 bg-white mt-1" >
-                <section class="" style="height: 300px;">
+            <div class="col-md-6 bg-white mt-1 h-100" >
+                <div class="h-100 w-100">
+                <section class="" style="height: 680px;">
                     <div class="searchBar">
                         <div class="searchdiv">
                             <span><i class="fa-solid fa-magnifying-glass"></i></span>
@@ -111,21 +232,28 @@
                         </div>
 
                     </div>
-                    <div class="container   parentproduct">
+                    <div class=" parentproduct">
                         <div class="productDiv">
-                        {% for category in categories %}
-                        
-                            <p>{{ category.Namecategory }}</p>
-                            {% if category.Imagecategory %}
-                                <img src="{{ category.Imagecategory.url }}" alt="{{ category.Namecategory }} Image" height="50px" width="80px">
-                            {% endif %}
-                        
-                         {% endfor %}
+                            {% for category in categories %}
+                                <div class="category-item">
+                                    {% if category.Imagecategory %}
+                                        <div class="image-container">
+                                            <img src="{{ category.Imagecategory.url }}" alt="{{ category.Namecategory }} Image" height="120px" width="120px">
+                                            <div class="categoryNmae">
+                                            <p>{{ category.Namecategory }}</p>
+                                           </div>
+                                        </div>
+                                    {% endif %}
+                                </div>
+                            {% endfor %}
                         </div>
+                    </div>
+                    <div class="listingCategory" style="height: ;">
 
                     </div>
                 </section>
 
+             </div>
             </div>
         </div>
     </div>
