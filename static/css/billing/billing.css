@@ -36,6 +36,40 @@
   
 }
 
+.tableRap::-webkit-scrollbar {
+        width: 10px; /* Set the width of the scrollbar */
+    }
+
+    /* Track (the area where the scrollbar moves) */
+    .tableRap::-webkit-scrollbar-track {
+        background: #f1f1f1; /* Color of the track */
+    }
+
+    /* Thumb (the draggable part of the scrollbar) */
+    .tableRap::-webkit-scrollbar-thumb {
+        background: #bbbbbb; /* Color of the thumb */
+        border-radius: 5px; /* Rounded corners */
+    }
+
+    /* On hover, the thumb color */
+    .tableRap::-webkit-scrollbar-thumb:hover {
+        background:  rgb(192, 192, 192)
+    }
+
+    /* Custom scrollbar for Firefox */
+    .tableRap {
+        scrollbar-width: thin; /* Set the width of the scrollbar */
+        scrollbar-color: #d6d6d6 #f1f1f1; /* Thumb and track colors */
+    }
+
+    /* Your existing styles for the .tableRap container */
+    .tableRap {
+        height: 70%;
+        overflow-y: scroll;
+    }
+
+
+
 .coupendiv {
         border-right: 2px solid rgb(192, 192, 192);
         background-color: #cccccc;
@@ -88,9 +122,40 @@
         border: solid black 1px;
         overflow-x: scroll;
         overflow-y: hidden;
-        height: 139px;
+        height: 131px;
         margin-top: 5px;
     }
+
+    .parentproduct::-webkit-scrollbar {
+        width: 5px; /* Set the width of the scrollbar */
+        height: 10px;
+    }
+    
+    /* Track (the area where the scrollbar moves) */
+    .parentproduct::-webkit-scrollbar-track {
+        background: #f3f3f3; /* Color of the track */
+    }
+    
+    /* Thumb (the draggable part of the scrollbar) */
+    .parentproduct::-webkit-scrollbar-thumb {
+        background: #d5d0d0; /* Color of the thumb */
+        border-radius: 5px; /* Rounded corners */
+    }
+    
+    /* On hover, the thumb color */
+    .parentproduct::-webkit-scrollbar-thumb:hover {
+        background:  rgb(192, 192, 192)
+    }
+    
+    /* Custom scrollbar for Firefox */
+    .parentproduct {
+        scrollbar-width: none; /* Set the width of the scrollbar */
+        scrollbar-color: #888 #f1f1f1; /* Thumb and track colors */
+    }
+
+
+
+
     
     .productDiv {
         display: flex;

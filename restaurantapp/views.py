@@ -438,7 +438,7 @@ def edit_production(request, id):
     }
     return render(request, 'productions/production_edit.html', context)
 
-def biling_Form(request):
+def billing_Form(request):
     categories = Category.objects.all()
     return render(request, 'billing/billing.html', {'categories': categories})
 

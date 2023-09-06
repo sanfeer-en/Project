@@ -55,7 +55,8 @@ urlpatterns = [
     path('producton_edit/<int:id>/', edit_production,name='productionedit'),
     # path('update_production/<int:id>/',production_Update, name='update_production'),
 
-    path('billing',biling_Form ,name='billing'),
+    path('bills', billing_Form, name='billing'),
+
   
 
    
