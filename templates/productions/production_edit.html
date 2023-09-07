@@ -27,14 +27,14 @@
       <div id="raw-materials-container">
         {% for raw_material in raw_materials %}
         <div class="raw-material-row">
-          <select name="raw_materials[]" class="js-example-basic-single raw-material-select raw_input custom-select w-50">
+          <select name="raw_materials[]" class="js-example-basic-single raw-material-select raw_input custom-select " style="width: 250px;">
             <option value="" selected></option>
             {% for p in RawMaterial_Data %}
               <option value="{{ p.id }}" {% if p.id == raw_material.Raw_Material.id %} selected {% endif %}>{{ p.Product.Product_Name }} - {{ p.Expire_Date }}</option>
             {% endfor %}
           </select>
           <label>Quantity:</label>
-          <input type="number" name="raw_materials_measurement[]" class="raw-material-measurement measure_input" required value="{{ raw_material.Measurement }}">
+          <input type="number" name="raw_materials_measurement[]" class="raw-material-measurement measure_input w-25" required value="{{ raw_material.Measurement }}">
           <button type="button" class="remove-raw-material btn btn-danger">Remove</button>
         </div>
         {% endfor %}
@@ -58,9 +58,9 @@ $(document).ready(function() {
 
   addRawMaterialButton.on('click', function() {
     const newRawMaterialDiv = $('<div></div>');
-    const rawMaterialSelect = $('<select></select>').addClass('raw-material-select raw_input mt-2').attr('name', 'raw_materials[]');
-    const rawMaterialMeasurementInput = $('<input>').attr('type', 'text').attr('name', 'raw_materials_measurement[]').addClass('raw-material-measurement measure_input ml-1');
-    const removeRawMaterialButton = $('<button></button>').attr('type', 'button').addClass('remove-raw-material btn btn-danger ml-1  mt-2').text('Remove');
+    const rawMaterialSelect = $('<select></select>').addClass('raw-material-select raw_input ').attr('name', 'raw_materials[]');
+    const rawMaterialMeasurementInput = $('<input>').attr('type', 'text').attr('name', 'raw_materials_measurement[]').addClass('raw-material-measurement measure_input ');
+    const removeRawMaterialButton = $('<button></button>').attr('type', 'button').addClass('remove-raw-material btn btn-danger  mt-2').text('Remove');
 
     const rawMaterials = $('.raw-material-select');
     const rawMaterialOptions = Array.from(rawMaterials.eq(0).find('option'));
