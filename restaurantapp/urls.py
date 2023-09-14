@@ -48,12 +48,15 @@ urlpatterns = [
     path('stck_delte/<int:id>/',stock_Delete, name='stckdelete'),
     path('stock_edit/<int:id>/',stock_edit,name='stock_edit'),
     path('stock_Update/<int:id>/',stock_Update,name='stock_Update'),
+
+    path('ad_production_product',ad_Production_product ,name='ad_productions_Prdct'),
     
     path('ad_production',ad_Production ,name='adPrdct'),
     path('table_production',production_Table ,name='table_production'),
     path('prdction_delte/<int:id>/',production_Delete, name='productiondelete'),
     path('producton_edit/<int:id>/', edit_production,name='productionedit'),
-    # path('update_production/<int:id>/',production_Update, name='update_production'),
+    
+
 
     path('bills', billing_Form, name='billing'),
 

@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load static %}
+
+ {% block css %}
+ <link rel="stylesheet" href=""> 
+{% endblock css %}
+
+{% block content %}
+<div class="container-flud ">
+  <nav class="navbar navbar-light bg-light shadow-sm p-3 mb-1 bg-light rounded border-bottom-5">
+    <span class="navbar-brand mb-0 h1">Add Productions Product</span>
+  </nav>
+</div>
+
+
+    <div class="container w-50" style="background-image: linear-gradient(to right, #E4E9F7, #ffffff);">
+        <div class="row">
+            <form action="" method="POST" class="p-3">
+              {% csrf_token %}
+
+              <label for="">Product</label>
+              <select name="PrdntsPrdct" id="" class="custom-select products">
+                {% for x in production_proct_Data %}
+                <option  value="{{x.id}}">{{x.Product_fr}}</option>
+                {% endfor %}
+              </select>
+              <br><br>
+
+              <div class="form-group">
+                <label for="">Count:</label>
+                <input class="form-control form-control" name="QuantityValue" type="number" placeholder="Count" required>
+                </div>
+
+                <div class="form-group">
+                  <label for="">Manufacture Date </label>
+                  <input class="form-control form-control" name="DateValue" type="date" >
+                  </div>
+          
+                  <div class="form-group">
+                    <label for="">Expire Date </label>
+                    <input class="form-control form-control" name="DateWorth" type="date" >
+                    </div>
+
+                    <div class="form-group">
+                      <label for="">Price</label>
+                      <input class="form-control form-control" name="PricValue" type="number" placeholder="Price" required>
+                      </div>
+          
+              <input type="submit" class="btn btn-primary " value="submit">
+            </form>
+          </div>
+      </div>
+      
+      </div>
+
+
+
+{% endblock %}

@@ -12,7 +12,7 @@
     </nav>
   </div>
   <a href="{% url 'adStck' %} " type="button" class="btn btn-primary font-weight-bolder float-right mr-3 mt-2">Purchase</a>
-  <a href="{% url 'adPrdct' %} " type="button" class="btn btn-primary font-weight-bolder float-right mr-3 mt-2">Add Production</a>
+ 
 <div class="container d-flex justify-content-center">
     <table class="table">
         <tr>
@@ -29,8 +29,8 @@
         </tr>
         <tbody>
             {% for x in Stock_Data  %}
-              <tr>
-                <td>{{x.id}}</td>
+              <tr>     
+                <td>{{forloop.counter}}</td>
                 <td>{{x.Vendor_Bill_No}}</td>
                 <td>{{x.Product }}</td>
                 <td>{{x.Units }}</td>

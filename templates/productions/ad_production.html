@@ -26,7 +26,7 @@
       <label>Raw Materials:</label>
       <div id="raw-materials-container">
         <div>
-          <select name="raw_materials[]" class="js-example-basic-single raw-material-select raw_input custom-select w-50">
+          <select name="raw_materials[]" class="js-example-basic-single raw-material-select raw_input custom-select w-50" required>
             <option value="" selected></option>
             {% for p in RawMaterial_Data %}
               <option value="{{ p.id }}">{{ p.Product.Product_Name }} - {{p.Expire_Date}}</option>

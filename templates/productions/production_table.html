@@ -10,6 +10,8 @@
       <span class="navbar-brand mb-0 h1">Production Table</span>
     </nav>
   </div>
+  <a href="{% url 'adPrdct' %} " type="button" class="btn btn-primary font-weight-bolder float-right mr-3 mt-2">Production</a>
+  <a href="{% url 'ad_productions_Prdct' %} " type="button" class="btn btn-primary font-weight-bolder float-right mr-3 mt-2"> Add Production Product</a><br>
   <!-- <a href="{% url 'add_tax' %} " type="button" class="btn btn-primary font-weight-bolder float-right mr-3 mt-2">Add Tax</a> -->
 <div class="container d-flex justify-content-center">
     <table class="table">
@@ -27,7 +29,7 @@
               
            
               <tr>
-                <td>{{x.id}}</td>
+                <td>{{forloop.counter}}</td>
                 <td>{{x.Product_fr}}</td>
                 
                 <!-- <td>{{x.Raw_Material}}</td>

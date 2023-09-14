@@ -71,7 +71,7 @@ class CompanyInformation(models.Model):
 class Stock(models.Model):
     Vendor_Bill_No =models.CharField(max_length=100,null=True,blank=True)
     Product=models.ForeignKey(Product,on_delete=models.CASCADE,blank=True)
-    Units=models.ForeignKey(Unit,on_delete=models.CASCADE,blank=True)
+    Units=models.ForeignKey(Unit,on_delete=models.CASCADE,blank=True,null=True, default=None)
     Quantity = models.PositiveIntegerField(null=True,blank=True,default=0)
     Purchasing_Amount = models.DecimalField(max_digits=10,null=True,blank=True,decimal_places=2)
     Selling_Amount = models.DecimalField(max_digits=10,null=True,blank=True,decimal_places=2)

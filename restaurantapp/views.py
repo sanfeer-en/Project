@@ -243,7 +243,8 @@ def Product_Update(request,id):
 
 def company_Inform(request):
     if request.method == 'POST':
-        Compni_name = request.POST.get('CmpName')
+        Compni_name = request.POST.get('CmpName') 
+
         Compani_adrss= request.POST.get('CmpAddrs')
         Gst_Numbr=request.POST.get('gstNumb')
         country_Code=request.POST.get('countryCode')
@@ -339,9 +340,37 @@ def stock_Update(request,id):
 
         stock_Data.save()
         return redirect('/table_stock')
+      
+    
+def ad_Production_product(request):
+    production_Product = Production.objects.all()
+
+    if request.method == 'POST':
+        productions_id = request.POST['PrdntsPrdct']
+        product = Product.objects.get(id=productions_id)  # Fetch the Product instance
+
+        quantity = request.POST['QuantityValue']
+        manufactur_Date = request.POST.get('DateValue')
+        expire_Date = request.POST.get('DateWorth')
+        price = request.POST.get('PricValue')
+
+        # Create a Stock instance with the Product instance
+        productions_Data = Stock.objects.create(
+            Product=product,
+            Quantity=quantity,
+            Manufacture_Date=manufactur_Date,
+            Expire_Date=expire_Date,
+            Selling_Amount=price
+        )
+        productions_Data.save()
+
+    return render(request, 'productions/productions_product.html', {'production_proct_Data': production_Product})
+
+
     
 
 def ad_Production(request):
+    
    
     product_Data = Product.objects.filter(Is_for_sale=True)
     RawMaterial_data = Stock.objects.filter(Product__Is_for_sale=False)
@@ -358,12 +387,12 @@ def ad_Production(request):
         measurements = request.POST.getlist('raw_materials_measurement[]')
         
 
-        production = Production.objects.create(Product_fr=products)
+        production = Production.objects.create(Product_fr=products)                                                                                                                                                                                                                                                             
 
         for i in range(len(raw_materials)):
             raw_material_id = raw_materials[i]
             try:
-                raw_material_ = Stock.objects.get(id=raw_material_id)
+                raw_material_ = Stock.objects.get(id=raw_material_id) 
             except Stock.DoesNotExist:
                 error_message = f"The selected raw material does not exist in the stocks."
                 return render(request, 'productions/ad_production.html', {'error_message': error_message, 'Product_Data': product_Data, 'RawMaterial_Data': RawMaterial_data})
