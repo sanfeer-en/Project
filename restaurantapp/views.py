@@ -2,6 +2,7 @@ from django.shortcuts import render , redirect ,HttpResponse
 from django.http import JsonResponse
 from .models import *
 from django.shortcuts import get_object_or_404
+from django.contrib import messages
 
 # Create your views here.
 
@@ -285,7 +286,7 @@ def ad_stock(request):
         vendor_Bill = request.POST.get('vendorBill')
 
         product_Id = request.POST.get('ProductValue')
-        products =Product.objects.get(id=product_Id)
+        products =Product.objects.get(Product_code=product_Id)
 
         uni_Id = request.POST.get('UnitData')
         units =Unit.objects.get(id=uni_Id)
@@ -304,7 +305,7 @@ def ad_stock(request):
         'product_Data': product_Value,
         'unities_Data': units_Data,
         'country_code': code_data.Country_Code,
-        'manufacture_code': code_data.Manufacturing_code
+        'manufacture_code': code_data.Manufacturing_code,
     }
     return render(request, 'stock/ad_stock.html',context) 
 
@@ -344,10 +345,13 @@ def stock_Update(request,id):
     
 def ad_Production_product(request):
     production_Product = Production.objects.all()
+    code_datas =CompanyInformation.objects.first()
 
     if request.method == 'POST':
         productions_id = request.POST['PrdntsPrdct']
-        product = Product.objects.get(id=productions_id)  # Fetch the Product instance
+        print(productions_id)
+        product = Production.objects.filter(Product_fr__Product_code=productions_id).first()  # Fetch the Product instance
+        pdct=Product.objects.get(Product_code=productions_id)
 
         quantity = request.POST['QuantityValue']
         manufactur_Date = request.POST.get('DateValue')
@@ -356,15 +360,42 @@ def ad_Production_product(request):
 
         # Create a Stock instance with the Product instance
         productions_Data = Stock.objects.create(
-            Product=product,
+            Product= pdct,
             Quantity=quantity,
             Manufacture_Date=manufactur_Date,
             Expire_Date=expire_Date,
-            Selling_Amount=price
+            Selling_Amount=price,
         )
         productions_Data.save()
+        production_raw_materials =ProductionRawMaterial.objects.filter(production=product)
 
-    return render(request, 'productions/productions_product.html', {'production_proct_Data': production_Product})
+        for raw_material in production_raw_materials:
+            try:
+                stock =Stock.objects.get(id=raw_material.Raw_Material.id)
+
+            except Stock.DoesNotExist:
+                # handle in case stock is doeasn't exist
+                continue
+            # measuremnet = raw_material.Measurement * quantity
+            # if measuremnet > stock.Quantity:
+            measuremnet = raw_material.Measurement * quantity
+            if measuremnet > stock.Quantity:
+                messages.error(request,'Not in Stock as per quantity given.')
+                productions_Data.delete()
+                return redirect ('/ad_productions_Prdct')
+            else:
+                stock.Quantity -= measuremnet
+                stock.save()
+        return redirect('/table_stock')
+    
+
+    return render(request, 'productions/productions_product.html', {
+            'manufacture_code':code_datas.Manufacturing_code,
+            'country_code': code_datas.Country_Code,
+            'production_proct_Data': production_Product,
+
+
+        })
 
 
     

@@ -25,14 +25,14 @@
   <label for="">Product</label>
   <select name="ProductValue" id="" class="custom-select products">
     {% for x in product_Data %}
-    <option  value="{{x.id}}">{{x.Product_Name}}</option>
+    <option  value="{{x.Product_code}}">{{x.Product_Name}}</option>
     {% endfor %}
   </select>
   <br><br>
 
   
   <label for="">Unit</label>
-  <select name="UnitData" id="" class="custom-select">
+  <select name="UnitData" id="" class="custom-select products">
     {% for y in unities_Data %}
     <option  value="{{y.id}}">{{y.UnitName}}</option>
     {% endfor %}
@@ -65,20 +65,20 @@
           </div>
 
           <div class="form-group">
-          <label for="">Bar Code </label>
-
-          <input type="checkbox" id="generate_barcode" name="generate_barcode" value="true"><br>
-          <svg id="barcode_canvas"></svg>
-          <button type="button" class="print-btn btn btn-info mt-1" onclick="printSvg()" style="display: none;">Print</button>
-          <input type="hidden" id="barcode" name="barcode" ><br>
-
-          <input id="manufactureCode" class="form-control form-control-lg"  type="text" hidden value="{{country_code}}">
-          <input id="countryCode" class="form-control form-control-lg" type="text" hidden value="{{manufacture_code}}">
-          
-      
-          <!-- Container to display the barcode -->
-          
-          </div>
+            <label for="">Bar Code </label>
+  
+            <input type="checkbox" id="generate_barcode" name="generate_barcode" value="true"><br>
+            <svg id="barcode_canvas"></svg>
+            <button type="button" class="print-btn btn btn-info mt-1" onclick="printSvg()" style="display: none;">Print</button>
+            <input type="hidden" id="barcode" name="barcode" ><br>
+  
+            <input id="manufactureCode" class="form-control form-control-lg"  type="text" hidden value="{{manufacture_code}}">
+            <input id="countryCode" class="form-control form-control-lg" type="text" hidden value="{{country_code}}">
+            
+        
+            <!-- Container to display the barcode -->
+            
+            </div>
           
          
     
@@ -87,46 +87,46 @@
 </div>
 </div>
 </div>
- <script type="text/javascript">
-// static/js/generateBarcode.js
-var generateCheckbox = document.getElementById('generate_barcode');
-var barcodeCanvas = document.getElementById("barcode_canvas");
-var productInput = document.querySelector('.products');
-
-function printSvg(){
-  const svg =document.getElementById('barcode_canvas');
-  const printWindow =window.open('','Print');
-  printWindow.document.write(svg.outerHTML);
-  printWindow.print();
-
-}
-generateCheckbox.addEventListener('click',function(){
-  if (generateCheckbox.checked){
-    var countryCode =document.getElementById('countryCode').value;
-    console.log(countryCode)
-    var manufactureCode = document.getElementById('manufactureCode').value;
-    console.log(manufactureCode)
-
-    var productCode = productInput.value;
-    var barcodeValue = document.getElementById('barcode');
-    barcodeValue.value = countryCode + manufactureCode + productCode ;
-
-    var barcodeText = barcodeValue.value;
-    JsBarcode(barcodeCanvas,barcodeText, {
-        formate:"upc",
-        displayValue:true
-    
-    });
-    barcodeCanvas.style.display = 'block';
-    document.querySelector('.print-btn').style.display = 'block';
-
+<script type="text/javascript">
+  // static/js/generateBarcode.js
+  var generateCheckbox = document.getElementById('generate_barcode');
+  var barcodeCanvas = document.getElementById("barcode_canvas");
+  var productInput = document.querySelector('.products');
+  
+  function printSvg(){
+    const svg =document.getElementById('barcode_canvas');
+    const printWindow =window.open('','Print');
+    printWindow.document.write(svg.outerHTML);
+    printWindow.print();
+  
   }
-  else {
-    document.querySelector('.print-btn').style.display = 'none';
-    barcodeCanvas.style.display = 'none';
-  }
-
-
-});
-</script> 
+  generateCheckbox.addEventListener('click',function(){
+    if (generateCheckbox.checked){
+      var countryCode =document.getElementById('countryCode').value;
+      console.log(countryCode)
+      var manufactureCode = document.getElementById('manufactureCode').value;
+      console.log(manufactureCode)
+  
+      var productCode = productInput.value;
+      var barcodeValue = document.getElementById('barcode');
+      barcodeValue.value = countryCode + manufactureCode + productCode ;
+  
+      var barcodeText = barcodeValue.value;
+      JsBarcode(barcodeCanvas,barcodeText, {
+          formate:"upc",
+          displayValue:true
+      
+      });
+      barcodeCanvas.style.display = 'block';
+      document.querySelector('.print-btn').style.display = 'block';
+  
+    }
+    else {
+      document.querySelector('.print-btn').style.display = 'none';
+      barcodeCanvas.style.display = 'none';
+    }
+  
+  
+  });
+  </script> 
 {% endblock %}

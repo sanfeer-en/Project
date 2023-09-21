@@ -35,7 +35,7 @@
   {% block HomeBilling %}
      <div class="sidebar">
     <div class="logo-details">
-      <i class='bx bxl-c-plus-plus icon'></i>
+      <i class="fa-solid fa-house"></i>
         <div class="logo_name">Home</div>
         <i class='bx bx-menu' id="btn" ></i>
     </div>
@@ -137,31 +137,30 @@
   </section>
   
 
+
  
   <script>
     $(document).ready(function() {
-    $('.js-example-basic-single').select2();
-});
-  let sidebar = document.querySelector(".sidebar");
-  let closeBtn = document.querySelector("#btn");
-  let searchBtn = document.querySelector(".bx-search");
-  closeBtn.addEventListener("click", ()=>{
-    sidebar.classList.toggle("open");
-    menuBtnChange();//calling the function(optional)
-  });
-  searchBtn.addEventListener("click", ()=>{ // Sidebar open when you click on the search iocn
-    sidebar.classList.toggle("open");
-    menuBtnChange(); //calling the function(optional)
-  });
-  // following are the code to change sidebar button(optional)
-  function menuBtnChange() {
-   if(sidebar.classList.contains("open")){
-     closeBtn.classList.replace("bx-menu", "bx-menu-alt-right");//replacing the iocns class
-   }else {
-     closeBtn.classList.replace("bx-menu-alt-right","bx-menu");//replacing the iocns class
-   }
-  }
+      $('.js-example-basic-single').select2();
+    });
+  
+    let sidebar = document.querySelector(".sidebar");
+  
+    // Remove the event listeners for toggling the sidebar
+    let closeBtn = document.querySelector("#btn");
+    let searchBtn = document.querySelector(".bx-search");
+  
+    // Set the "open" class on the sidebar to keep it expanded
+    sidebar.classList.add("open");
+  
+    // Hide the close button, assuming you don't want it visible in expanded mode
+    closeBtn.style.display = "none";
+  
+    // Remove the search button event listener, assuming you don't want it to toggle the sidebar
+    searchBtn.removeEventListener("click");
+  
   </script>
+  
 
 {% endblock HomeBilling %}
 </body>
