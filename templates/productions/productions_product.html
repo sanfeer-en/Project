@@ -13,11 +13,13 @@
 </div>
 
 
-    <div class="container w-50" style="background-image: linear-gradient(to right, #E4E9F7, #ffffff);">
-        <div class="row">
+    <div class="container w-50" style="background-image: linear-gradient(to right, #E4E9F7, #ffffff); ;">
+        <div class="row" >
+          <div class="col-md-6">
             <form action="" method="POST" class="p-3">
               {% csrf_token %}
 
+            
               <label for="">Product</label>
               <select name="PrdntsPrdct" id="" class="custom-select products">
                 {% for x in production_proct_Data %}
@@ -35,7 +37,9 @@
                   <label for="">Manufacture Date </label>
                   <input class="form-control form-control" name="DateValue" type="date" >
                   </div>
-          
+                  <input type="submit" class="btn btn-primary" value="submit"> 
+                </div>
+                <div class="col-md-6 mt-3">
                   <div class="form-group">
                     <label for="">Expire Date </label>
                     <input class="form-control form-control" name="DateWorth" type="date" >
@@ -56,14 +60,13 @@
               
                         <input id="manufactureCode" class="form-control form-control-lg"  type="text" hidden value="{{manufacture_code}}">
                         <input id="countryCode" class="form-control form-control-lg" type="text" hidden value="{{country_code}}">
-                        
-                    
                         <!-- Container to display the barcode -->
-                        
-                        </div>
+                      </div> 
+                     
+                    </div>
                       
                       
-              <input type="submit" class="btn btn-primary " value="submit">
+              
             </form>
           </div>
       </div>

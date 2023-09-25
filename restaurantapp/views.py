@@ -378,7 +378,7 @@ def ad_Production_product(request):
                 continue
             # measuremnet = raw_material.Measurement * quantity
             # if measuremnet > stock.Quantity:
-            measuremnet = raw_material.Measurement * quantity
+            measuremnet = int(raw_material.Measurement) * int(quantity)
             if measuremnet > stock.Quantity:
                 messages.error(request,'Not in Stock as per quantity given.')
                 productions_Data.delete()
