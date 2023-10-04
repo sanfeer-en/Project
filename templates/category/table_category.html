@@ -22,7 +22,7 @@
         <tbody>
             {% for x in categorytable  %}
               <tr>
-                <td>{{x.id}}</td>
+                <td>{{forloop.counter}}</td>
                 <td>{{x.Namecategory}}</td>
                 <td>{{x.Imagecategory }}</td>
                 <td><a href="{% url 'category_delete' x.id  %}" class="btn btn-danger">Delete</a></td>

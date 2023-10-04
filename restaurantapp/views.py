@@ -1,8 +1,17 @@
 from django.shortcuts import render , redirect ,HttpResponse
 from django.http import JsonResponse
 from .models import *
+
+from .serializer import *
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework.exceptions import ValidationError
+from rest_framework import status
+import json
 from django.shortcuts import get_object_or_404
 from django.contrib import messages
+from rest_framework import generics, permissions
+from rest_framework.permissions import DjangoModelPermissionsOrAnonReadOnly
 
 # Create your views here.
 
@@ -498,12 +507,38 @@ def edit_production(request, id):
     }
     return render(request, 'productions/production_edit.html', context)
 
+
 def billing_Form(request):
     categories = Category.objects.all()
+
+    
+
+
     return render(request, 'billing/billing.html', {'categories': categories})
 
 
+# --------------------API VIEWS-------------------------------------------------------------------------------------------------------------------------------------
 
+
+
+class CategoryProductApi(generics.ListAPIView):
+    queryset = Stock.objects.all()  # Define the queryset
+    serializer_class = StockSerializer
+    permission_classes = [permissions.DjangoModelPermissionsOrAnonReadOnly]
+
+# def category_product_api(request):
+#         id = request.data.get('id')  # Use request.POST to get POST data
+#         print(id)
+#         try:
+#             category = Category.objects.get(id=id)
+#         except Category.DoesNotExist:
+#             return HttpResponse("Category not found", status=404)
+
+#         product = Product.objects.filter(Category_Fr=category, is_for_sale=True)
+#         stock = Stock.objects.select_related('Product').filter(Product__in=product)
+#         serializer = StockSerializer(stock, many=True)
+
+#         return JsonResponse(serializer.data, status=200) 
 
 
 

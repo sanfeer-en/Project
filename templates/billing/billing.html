@@ -236,12 +236,12 @@
                     <div class=" parentproduct">
                         <div class="productDiv">
                             {% for category in categories %}
-                                <div class="category-item">
+                                <div data-category-name='{{category.Namecategory}}' class="category-item">
                                     {% if category.Imagecategory %}
                                         <div class="image-container">
-                                            <img src="{{ category.Imagecategory.url }}" alt="{{ category.Namecategory }} Image" height="120px" width="134px">
+                                            <img src="{{ category.Imagecategory.url }}" alt="{{ category.Namecategory }} Image" height="120px" width="134px"   >
                                             <div class="categoryNmae">
-                                            <p>{{ category.Namecategory }}</p>
+                                            <p class="btn">{{ category.Namecategory }}</p>
                                            </div>
                                         </div>
                                     {% endif %}
@@ -249,11 +249,16 @@
                             {% endfor %}
                         </div>
                     </div>
-                    <div class="listin ">
-                        <h6>Alfaham</h6>
-
+                    <div class="parent-listin">
+                        <div class="listin card">
+                            <img src="" alt="">
+                            <h6 id="categoryName"></h6>
+                            <p id="quantityDetails">Quantity: -</p>
+                            <p id="sellingAmountDetails">Selling Amount: -</p>
+                        </div>
                     </div>
-                </section>
+                    
+                 </section>
 
              </div>
             </div>
@@ -265,6 +270,8 @@
     function resetPage() {
         window.location.reload(); // Reloads the page
     }
+  
     </script>
+    <script src="{% static 'js/bill.js' %}"></script>
     
 {% endblock HomeBilling %}

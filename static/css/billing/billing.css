@@ -91,7 +91,7 @@
         margin-left: 1px;
         background-color: white;
         width: 100%;
-        height: auto;
+        height: 41px;
         margin-top: 5px;
         display: flex;
 }
@@ -194,9 +194,28 @@
         height: 60px;
     }
 
-.listin {
-    background-color: #888;
-    width: 350px;
-    height: 150px;
-}
+.listin  {
+        background-color: #e1e0e0;
+        width: 165px;
+        height: 128px;
+       
+    }
     
+.parent-listin{
+    display: flex;
+    background-color: red;
+    height: 508px;
+    overflow-y: scroll ;
+}
+
+.img-product{
+    width: 150px;
+    height: 80px;
+}
+.listin {
+    height: 200px;
+   
+}
+#quantityDetails {
+    font-size: 15px;
+}
