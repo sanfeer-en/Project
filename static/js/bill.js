@@ -40,11 +40,11 @@ $(document).ready(function () {
             
 
             let content = `
-            <div class="listin card">
+            <div class="listin card text-center">
                 <img src="${img}" alt="" class="img-product">
                 <h6 id="categoryName">${productName}</h6>
                 <p id="quantityDetails">Quantity: ${quantityValue}</p>
-                <p id="sellingAmountDetails">Selling Amount: ${price}</p>
+                <p id="sellingAmountDetails">Rs: ${price}</p>
                 </div>
             `;
             container.append(content);
