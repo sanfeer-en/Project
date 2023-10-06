@@ -227,14 +227,14 @@
 .listin {
     width:139px;
     background-color: #e1e0e0;
-    height: 190px;
+    height: 158px;
     font-family: 'Nunito', sans-serif;
     margin-top: 5px;
     
    
 }
 .listin.list-view {
-    height: 100px; /* Adjust the height as needed */
+    height: 90px; /* Adjust the height as needed */
 }
 #quantityDetails {
     font-size: 14px;

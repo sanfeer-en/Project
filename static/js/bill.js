@@ -53,7 +53,44 @@ $(document).ready(function () {
 
         // // Toggle the image visibility when the user clicks the grid view or list view button
   
-          // Initial view state
+    //       // Initial view state
+    // let isGridView = true;
+
+    // // Function to toggle between grid view and list view
+    // function toggleView() {
+    //     isGridView = !isGridView;
+
+    //     if (isGridView) {
+    //         // Show the image in grid view
+    //         $('.img-product').show();
+    //     } else {
+    //         // Hide the image in list view
+    //         $('.img-product').hide();
+    //     }
+    // }
+
+    // // Bind click events to the view buttons
+    // $('.btn-grid-view').on('click', function () {
+    //     if (!isGridView) {
+    //         toggleView();
+    //         $(this).addClass('active');
+    //         $('.btn-list-view').removeClass('active');
+    //     }
+    // });
+
+    // $('.btn-list-view').on('click', function () {
+    //     if (isGridView) {
+    //         toggleView();
+    //         $(this).addClass('active');
+    //         $('.btn-grid-view').removeClass('active');
+    //     }
+    // });
+    }
+});
+
+
+$(document).ready(function () {
+    // Initial view state
     let isGridView = true;
 
     // Function to toggle between grid view and list view
@@ -63,9 +100,11 @@ $(document).ready(function () {
         if (isGridView) {
             // Show the image in grid view
             $('.img-product').show();
+            $('.listin').removeClass('list-view'); // Remove the list view class
         } else {
             // Hide the image in list view
             $('.img-product').hide();
+            $('.listin').addClass('list-view'); // Add the list view class to adjust the height
         }
     }
 
@@ -85,6 +124,4 @@ $(document).ready(function () {
             $('.btn-grid-view').removeClass('active');
         }
     });
-    }
 });
-
