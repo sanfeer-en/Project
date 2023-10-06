@@ -23,8 +23,8 @@
        
         <div class="col-md-4  mt-1">
             <div class="float-end d-flex justify-content-end">
-                <button class="btn bg-white px-4 py-3 mr-1"><i class="fa-solid fa-table-cells mr-1"></i>Grid View</button>
-                <button class="btn bg-white px-4 py-3 "><i class="fa-solid fa-list mr-1"></i>List View</button>
+                <button class="btn bg-white px-4 py-3 btn-list-view mr-1 active"> <i class="fa-solid fa-list mr-1 "></i>List View</button>
+                <button class="btn bg-white px-4 py-3 btn-grid-view "><i class="fa-solid fa-table-cells mr-1 "></i>Grid View</button>
             </div>
         </div>
     </div>
@@ -249,12 +249,21 @@
                             {% endfor %}
                         </div>
                     </div>
-                    <div class="parent-listin">
+                    <!-- <div class="parent-listin product-list" data-view="grid">
                         <div class="listin card">
-                            <img src="" alt="">
+                            <img src="" alt="" class="img-product">
                             <h6 id="categoryName"></h6>
                             <p id="quantityDetails">Quantity:-</p>
                             <p id="sellingAmountDetails">Rs:-</p>
+                        </div>
+                    </div> -->
+                    <div class="product-list parent-listin" data-view="grid">
+                        <div class="listin card text-center">
+                            <img src="" alt="" class="img-product">
+                            <span id="categoryName"></span>
+                            <span id="sellingAmountDetails">Rs:-</span>
+                            <span id="quantityDetails">Quantity:-</span>
+                            
                         </div>
                     </div>
                     

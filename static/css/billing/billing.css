@@ -198,13 +198,13 @@
         height: 60px;
     }
 
-.listin  {
+/* .listin  {
         background-color: #e1e0e0;
         width: 165px;
-        height: 128px;
+        height: 10px;
        
     }
-    
+     */
 .parent-listin{
     display: flex;
     background-color: rgb(238, 238, 238);
@@ -214,6 +214,8 @@
     /* gap: 5px;  */
     flex-wrap: wrap; 
     border: 1px solid #ccc;
+
+    
 }
 
 .img-product{
@@ -224,16 +226,24 @@
 }
 .listin {
     width:139px;
-    height: 200px;
+    background-color: #e1e0e0;
+    height: 190px;
     font-family: 'Nunito', sans-serif;
     margin-top: 5px;
     
    
 }
+.listin.list-view {
+    height: 100px; /* Adjust the height as needed */
+}
 #quantityDetails {
-    font-size: 15px;
+    font-size: 14px;
     font-family: 'Nunito', sans-serif;
     
+}
+#categoryName{
+    font-size: 16px;
+    font-weight:bold;
 }
 #sellingAmountDetails{
     font-size: 15px;

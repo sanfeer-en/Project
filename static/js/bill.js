@@ -42,12 +42,49 @@ $(document).ready(function () {
             let content = `
             <div class="listin card text-center">
                 <img src="${img}" alt="" class="img-product">
-                <h6 id="categoryName">${productName}</h6>
-                <p id="quantityDetails">Quantity: ${quantityValue}</p>
-                <p id="sellingAmountDetails">Rs: ${price}</p>
+                <span id="categoryName">${productName}</span>
+                <span id="sellingAmountDetails">Rs: ${price}</span>
+                <span id="quantityDetails">Quantity: ${quantityValue}</span>
+                
                 </div>
             `;
             container.append(content);
         }
+
+        // // Toggle the image visibility when the user clicks the grid view or list view button
+  
+          // Initial view state
+    let isGridView = true;
+
+    // Function to toggle between grid view and list view
+    function toggleView() {
+        isGridView = !isGridView;
+
+        if (isGridView) {
+            // Show the image in grid view
+            $('.img-product').show();
+        } else {
+            // Hide the image in list view
+            $('.img-product').hide();
+        }
+    }
+
+    // Bind click events to the view buttons
+    $('.btn-grid-view').on('click', function () {
+        if (!isGridView) {
+            toggleView();
+            $(this).addClass('active');
+            $('.btn-list-view').removeClass('active');
+        }
+    });
+
+    $('.btn-list-view').on('click', function () {
+        if (isGridView) {
+            toggleView();
+            $(this).addClass('active');
+            $('.btn-grid-view').removeClass('active');
+        }
+    });
     }
 });
+
