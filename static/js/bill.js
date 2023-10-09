@@ -16,27 +16,29 @@ $(document).ready(function () {
         });
     });
 
+
+
     function displayCategoryProducts(data, category_name, clickedElement) {
-        console.log('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa');
+        // console.log('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa');
         const filteredData = data.filter(stock => {
-            console.log('stock:', stock); // Log the entire stock object
-            console.log('stock.Product:', stock.Product); // Log the Product property
+            // console.log('stock:', stock); // Log the entire stock object
+            // console.log('stock.Product:', stock.Product); // Log the Product property
     
             return stock.Product.Category_Fr.Namecategory  === category_name && stock.Product.Is_for_sale === true;
         });
-        console.log("dats",filteredData)
+        // console.log("dats",filteredData)
         const container = $('.parent-listin'); // Target the specific container
 
         container.empty();
         for (let i = 0; i < filteredData.length; i++) {
             const productName = filteredData[i].Product.Product_Name;
-            console.log(productName)
+            // console.log(productName)
             const quantityValue = filteredData[i].Quantity;
-            console.log(quantityValue)
+            // console.log(quantityValue)
             const price = filteredData[i].Selling_Amount;
             const img = filteredData[i].Product.Product_Image;
 
-            console.log(price)
+            // console.log(price)
             
 
             let content = `
@@ -125,3 +127,30 @@ $(document).ready(function () {
         }
     });
 });
+
+// modal search div....................
+
+const searchDiv = document.getElementById('searchdiv');
+const modal = document.getElementById('modal');
+const closeModal = document.getElementById('closeModal');
+
+searchDiv.addEventListener('click', () => {
+    modal.style.display = 'block';
+});
+
+closeModal.addEventListener('click', () => {
+    modal.style.display = 'none';
+});
+
+// Close the modal when clicking outside of it
+modal.addEventListener('click', (event) => {
+    if (event.target === modal) {
+        modal.style.display = 'none';
+    }
+});
+
+// Prevent modal from showing on page load
+window.addEventListener('load', () => {
+    modal.style.display = 'none';
+});
+

@@ -7,7 +7,7 @@
 
 {% block HomeBilling %}
 
-<div class="homeSection">
+<div class="homeSection  ">
   <div class="container-fluid"  style="height: 9%;">
      <div class="row">
         <div class="col-md-8 mt-1">
@@ -38,7 +38,7 @@
         <section class="bg-white p-1 rounded w-100 " style="height: 680px;">
             <div class="firstDiv" >
           
-                <div class="commentdiv">
+                <div class="commentdiv btn">
                     <span class=""><i class="fa-solid fa-comment"> &nbsp;</i>Comments</span>
             
                 
@@ -225,9 +225,30 @@
                 <div class="h-100 w-100">
                 <section class="" style="height: 680px;">
                     <div class="searchBar">
-                        <div class="searchdiv">
-                            <span><i class="fa-solid fa-magnifying-glass"></i></span>
-                        </div>
+                            <div class="searchdiv " id="searchdiv">
+                                <span ><i class="fa-solid fa-magnifying-glass"></i></span>
+                            </div>
+                                                <!-- #.......................modal....... -->
+                                     <div class="modal " id="modal" > 
+                                        
+                                         <div class="modal-content modal-dialog  modal-dialog-centered">
+                                            <div id="closeModal" class="btn-close"  >
+                                                <i class="fa-solid fa-xmark"></i>
+                                            </div>
+                                            <div class="input-group mt-3">
+                                                <input type="text" class="form-control" placeholder="Search Products" >
+                                              </div>
+                                              <div id="productSearchResults">
+                                                <!-- The search results will be displayed here -->
+                                            </div>
+                                              
+                                       
+                                            
+                                        </div>
+                                    </div>
+                                    
+                    
+                     
                         <div class="gridDiv">
                             <span class=""><i class="fa-solid fa-barcode"></i></span>
                         </div>
@@ -240,7 +261,7 @@
                                     {% if category.Imagecategory %}
                                         <div class="image-container">
                                             <img src="{{ category.Imagecategory.url }}" alt="{{ category.Namecategory }} Image" height="120px" width="134px"   >
-                                            <div class="categoryNmae">
+                                            <div class="categoryName">
                                             <p class="btn font-weight-bold">{{ category.Namecategory }}</p>
                                            </div>
                                         </div>
@@ -266,7 +287,8 @@
                             
                         </div>
                     </div>
-                    
+
+                
                  </section>
 
              </div>

@@ -510,10 +510,6 @@ def edit_production(request, id):
 
 def billing_Form(request):
     categories = Category.objects.all()
-
-    
-
-
     return render(request, 'billing/billing.html', {'categories': categories})
 
 
