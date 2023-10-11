@@ -118,8 +118,8 @@ $(document).ready(function () {
         let content = `
         <div class="result-container">
           <ul>
-            <li id="categoryName">${productName}</li>
-            <li id="sellingAmountDetails">Rs: ${price}</li>
+            <li id="produts">${productName}</li>
+            <li id="prices">Rs: ${price}</li>
             <li id="quantityDetails">Quantity: ${quantityValue}</li>
           </ul>
           </div>
@@ -151,6 +151,7 @@ $(document).ready(function () {
       });
     });
   });
+  
   
 
 // ... (the rest of your JavaScript code)
