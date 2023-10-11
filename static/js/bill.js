@@ -95,43 +95,63 @@ $(document).ready(function () {
 });
 
 // modal search div....................
+
+
+
+
 $(document).ready(function () {
+    // ...
+  
+    function displayModalProducts(data, product_name, clickedElement) {
+      // Filter the data for products that are for sale.
+      const filteredData = data.filter(stock => stock.Product.Is_for_sale === true);
+  
+      // Update the content of the result-container div with the filtered data.
+      const resultContainerDiv = $('.result-container');
+      resultContainerDiv.empty();
+  
+      for (let i = 0; i < filteredData.length; i++) {
+        const productName = filteredData[i].Product.Product_Name;
+        const quantityValue = filteredData[i].Quantity;
+        const price = filteredData[i].Selling_Amount;
+  
+        let content = `
+        <div class="result-container">
+          <ul>
+            <li id="categoryName">${productName}</li>
+            <li id="sellingAmountDetails">Rs: ${price}</li>
+            <li id="quantityDetails">Quantity: ${quantityValue}</li>
+          </ul>
+          </div>
+          `;
+  
+        resultContainerDiv.append(content);
+      }
+    }
+  
+    // ...
+  
+    // When the user clicks on a search result, call the displayModalProducts() function.
     $('.searchdiv').on('click', function () {
-        const product_name = $(this).data('product-name');
-        console.log(product_name);
-
-        // Make an AJAX request with product_name to fetch stock data
-        $.ajax({
-            url: '/api/category/?search=' + product_name,
-            type: 'GET',
-            dataType: 'json',
-            success: function (data) {
-                // Handle the success response here
-                console.log(data);
-                
-                // You can update the UI with the fetched stock data here
-                // For example, update the content of the #productSearchResults div
-                const productSearchResults = $('#productSearchResults');
-                productSearchResults.empty(); // Clear previous results
-
-                // Iterate through the data and append results to the div
-                $.each(data, function (index, stockItem) {
-                    const resultItem = $('<div class="result-item">');
-                    resultItem.append('<p class="product-name">Product: ' + stockItem.Product + '</p>');
-                    resultItem.append('<p class="quantity">Quantity: ' + stockItem.Quantity + '</p>');
-                    resultItem.append('<p class="selling-amount">Selling Amount: ' + stockItem.Selling_Amount + '</p>');
-
-                    productSearchResults.append(resultItem);
-                });
-            },
-            error: function (error) {
-                alert('error');
-            }
-        });
+      const product_name = $(this).data('product-name');
+      console.log(product_name);
+  
+      // Make an AJAX request with product_name to fetch stock data.
+      $.ajax({
+        url: '/api/category/?search=' + product_name,
+        type: 'GET',
+        dataType: 'json',
+        success: function (data) {
+          // Display the products in the modal.
+          displayModalProducts(data, product_name, $(this));
+        },
+        error: function (error) {
+          alert('error');
+        }
+      });
     });
-});
-
-
+  });
+  
 
 // ... (the rest of your JavaScript code)
 

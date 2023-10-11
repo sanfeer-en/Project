@@ -306,3 +306,6 @@
     right: 10px;
     cursor: pointer;
 }
+.result-container ul {
+    list-style: none;
+}
