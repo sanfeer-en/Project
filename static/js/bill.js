@@ -95,10 +95,6 @@ $(document).ready(function () {
 });
 
 // modal search div....................
-
-
-
-
 $(document).ready(function () {
     // ...
   
@@ -116,13 +112,11 @@ $(document).ready(function () {
         const price = filteredData[i].Selling_Amount;
   
         let content = `
-        <div class="result-container">
           <ul>
-            <li id="produts">${productName}</li>
-            <li id="prices">Rs: ${price}</li>
+            <li id="categoryName">${productName}</li>
+            <li id="sellingAmountDetails">Rs: ${price}</li>
             <li id="quantityDetails">Quantity: ${quantityValue}</li>
           </ul>
-          </div>
           `;
   
         resultContainerDiv.append(content);
@@ -152,7 +146,7 @@ $(document).ready(function () {
     });
   });
   
-  
+
 
 // ... (the rest of your JavaScript code)
 
