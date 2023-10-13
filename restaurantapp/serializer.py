@@ -11,11 +11,14 @@ class ProductSerializer(serializers.ModelSerializer):
     class Meta:
         model = Product
         fields = '__all__'
+
+
 class StockSerializer(serializers.ModelSerializer):
     Product = ProductSerializer()
     class Meta:
         model = Stock
         fields = '__all__'
+        
 class attributecategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = attributecategory

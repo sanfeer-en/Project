@@ -3,6 +3,25 @@
 
 
 $(document).ready(function () {
+    $('#searchInput').on('input', function () {
+        const searchText = $(this).val().toLowerCase();
+        console.log(searchText);
+
+        // Make an AJAX request with product_name to fetch stock data.
+        $.ajax({
+            url: '/api/category/?search=' + searchText,
+            type: 'GET',
+            dataType: 'json',
+            success: function (data) {
+                // Display the products in the modal.
+                displayModalProducts(data, searchText);
+                console.log(data)
+            },
+            error: function (error) {
+                alert('error');
+            }
+        });
+    });
     // ...
 
     // Function to display modal products based on the search input
@@ -36,24 +55,7 @@ $(document).ready(function () {
     });
 
     // When the user clicks on a search result, call the displayModalProducts() function.
-    $('.searchdiv').on('click', function () {
-        const product_name = $(this).val();
-        console.log(product_name);
-
-        // Make an AJAX request with product_name to fetch stock data.
-        $.ajax({
-            url: '/api/category/?search=' + product_name,
-            type: 'GET',
-            dataType: 'json',
-            success: function (data) {
-                // Display the products in the modal.
-                displayModalProducts(data, product_name);
-            },
-            error: function (error) {
-                alert('error');
-            }
-        });
-    });
+  
   });
   
   

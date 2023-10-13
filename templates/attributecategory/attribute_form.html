@@ -2,7 +2,7 @@
 {% load static %}
 
  {% block css %}
-   
+ <link rel="stylesheet" href="{% static 'css/attribute/attribute.css' %}"> 
 {% endblock css %}
 
 {% block content %}
@@ -22,13 +22,7 @@
     <input class="form-control form-control-md" name="attributeName" type="text" placeholder="Attribute Name" required>
   </div>
 
-  <label for="">Product</label>
-  <select name="ProductValue" id="" class="custom-select  ">
-    {% for x in product_Data %}
-    <option  value="{{x.id}}">{{x.Product_Name}}</option>
-    {% endfor %}
-  </select>
-  <br><br>
+   
 
 <div class="form-group ">
   <label for="">Quantity</label>
@@ -51,15 +45,15 @@
     <input class="form-control form-control-md  " name="PriceValue" type="number" placeholder="Price" required>
     </div>
 
-
+ 
   <label for="">Add On Quantity</label>
-  <select name="AdQuantityValue" id="" class="custom-select  ">
+  <select name="AdQuantityValue" id="" class="custom-select ">
     {% for x in product_Data %}
     <option  value="{{x.id}}">{{x.Product_Name}}</option>
     {% endfor %}
   </select>
   <br><br>
-      
+  
   <label for="">Extra</label>
   <select name="ExtraValue" id="" class="custom-select  ">
     {% for x in product_Data %}
