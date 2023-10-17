@@ -2,7 +2,7 @@ from django.shortcuts import render , redirect ,HttpResponse
 from django.http import JsonResponse
 from .models import *
 
-from .serializer import *
+from .serializers import *
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.exceptions import ValidationError
@@ -522,22 +522,18 @@ class CategoryProductApi(generics.ListAPIView):
     serializer_class = StockSerializer
     permission_classes = [permissions.DjangoModelPermissionsOrAnonReadOnly]
 
-# def category_product_api(request):
-#         id = request.data.get('id')  # Use request.POST to get POST data
-#         print(id)
-#         try:
-#             category = Category.objects.get(id=id)
-#         except Category.DoesNotExist:
-#             return HttpResponse("Category not found", status=404)
-
-#         product = Product.objects.filter(Category_Fr=category, is_for_sale=True)
-#         stock = Stock.objects.select_related('Product').filter(Product__in=product)
-#         serializer = StockSerializer(stock, many=True)
-
-#         return JsonResponse(serializer.data, status=200) 
 
 
+class AttributeCategoryViewSet(APIView):
+    def get_queryset(self):
+        product_name = self.request.data.get('product_name')
+        return attributecategory.objects.filter(product__Product_Name=product_name)
 
+    def get(self, request):
+        attribute = self.get_queryset()
+        print(attribute)
+        serializer = AttributeCategorySerializer(attribute, many=True)
+        return Response(serializer.data, status=200)
     
     
 

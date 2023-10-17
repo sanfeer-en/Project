@@ -13,7 +13,7 @@
         <div class="col-md-8 mt-1">
             <div class="float-start">
                 <a href="{% url 'home' %}"><button class="btn text-light  px-4 py-3 bg-success "><i class="fa-solid fa-gauge  mr-1"></i>Dashboard</button></a>
-                <button class="btn btn-primary  px-4 py-3"><i class="fa-solid fa-hand-point-up mr-1"></i>Order</button>
+                <button class="btn btn-primary  px-4 py-3"  data-toggle="modal" data-target="#exampleModal" ><i class="fa-solid fa-hand-point-up mr-1"></i>Order</button>
                 <button class="btn btn-primary  px-4 py-3"><i class="fa-solid fa-circle-user mr-1"></i>Customer</button>
                 <button class="btn bg-white  px-4 py-3"><i class="fa-solid fa-truck mr-1"></i>Order Type</button>
                 <button class="btn bg-danger text-light px-4 py-3" onclick="resetPage()">Reset</button>
@@ -225,25 +225,19 @@
                 <div class="h-100 w-100">
                 <section class="" style="height: 680px;">
                     <div class="searchBar">
-                            <div class="searchdiv " id="searchdiv" data-product-name="product-name">
+                            <div class="searchdiv " id="searchdiv" data-target="#modalSearch" data-toggle="modal"  data-product-name="product-name">
                                 <span ><i class="fa-solid fa-magnifying-glass"></i></span>
                             </div>
                             <!-- #.......................modal....... -->
-                            <div class="modal " id="modal" > 
+                            <!-- <div class="modal modalstyle fade" tabindex="-1" id="modalSearch" > 
 
                                 <div class="modal-content modal-dialog  modal-dialog-centered">
                                 <div id="closeModal" class="btn-close"  >
-                                    <i class="fa-solid fa-xmark"></i>
+                                    <i class="fa-solid fa-xmark" data-dismiss="modal"></i>
                                 </div>
-                                <div class="input-group mt-3">
-                                    <input type="text" class="form-control" id="searchInput" placeholder="Search Products" >
+                               
                                 </div>
-                            
-                                <div class="result-container">
-                            
-                                </div>
-                                </div>
-                            </div>
+                            </div> -->
                             
 
                      
@@ -288,6 +282,32 @@
     </div>
   
 </div>
+
+<!-- modaaaaaaaaaaaaal seachdiv -->
+
+<div class="modal fade" id="modalSearch" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Search Products</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <div class="input-group mt-3">
+                <input type="text" class="form-control" id="searchInput" placeholder="Search Products" >
+            </div>
+        
+            <div class="result-container">
+        
+            </div>
+            
+        </div>
+        
+      </div>
+    </div>
+  </div>
 <script>
     function resetPage() {
         window.location.reload(); // Reloads the page

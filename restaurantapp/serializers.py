@@ -19,7 +19,7 @@ class StockSerializer(serializers.ModelSerializer):
         model = Stock
         fields = '__all__'
         
-class attributecategorySerializer(serializers.ModelSerializer):
+class AttributeCategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = attributecategory
         fields = '__all__'
