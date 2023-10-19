@@ -41,6 +41,7 @@ class Product(models.Model):
             if not Product.objects.filter(Product_code=code).exists():
                 self.Product_code = code
                 break
+
         super().save(*args, **kwargs)
     
     def __str__(self):
@@ -52,7 +53,7 @@ class attributecategory(models.Model):
     price = models.IntegerField(null=True,blank=True)
     quantity = models.IntegerField(null=True,blank=True)
     add_On = models.ForeignKey(Product,on_delete=models.CASCADE,null=True,blank=True,related_name='add_on_product')
-    add_on_quantity = models.ForeignKey(Product,on_delete=models.CASCADE,null=True,blank=True)
+    add_on_quantity = models.IntegerField(null=True,blank=True)
     extra =models.ForeignKey(Product,on_delete=models.CASCADE,null=True,blank=True,related_name='extra_product')
     extra_quantity = models.IntegerField(null=True,blank=True)
     def __str__(self):

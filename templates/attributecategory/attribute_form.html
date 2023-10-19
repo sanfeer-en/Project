@@ -22,6 +22,14 @@
     <input class="form-control form-control-md" name="attributeName" type="text" placeholder="Attribute Name" required>
   </div>
 
+  <label for="">Add Product</label>
+  <select name="ProductValue" id="" class="custom-select  ">
+    {% for x in product_Data %}
+    <option  value="{{x.id}}">{{x.Product_Name}}</option>
+    {% endfor %}
+  </select>
+  <br><br>
+
    
 
 <div class="form-group ">
@@ -45,14 +53,18 @@
     <input class="form-control form-control-md  " name="PriceValue" type="number" placeholder="Price" required>
     </div>
 
- 
+<!--  
   <label for="">Add On Quantity</label>
   <select name="AdQuantityValue" id="" class="custom-select ">
     {% for x in product_Data %}
     <option  value="{{x.id}}">{{x.Product_Name}}</option>
     {% endfor %}
   </select>
-  <br><br>
+  <br><br> -->
+  <label for="">Add on Quantity</label>
+  <input class="form-control form-control-md  " name="adOnQuantity" type="number" placeholder="Price" required>
+  
+
   
   <label for="">Extra</label>
   <select name="ExtraValue" id="" class="custom-select  ">
@@ -70,7 +82,7 @@
 </div>
   
   </form>
-
+</div>
 </div>
 </div>
 {% endblock %}

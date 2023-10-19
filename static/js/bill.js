@@ -22,7 +22,7 @@ $(document).ready(function () {
     
             return stock.Product.Category_Fr.Namecategory  === category_name && stock.Product.Is_for_sale === true;
         });
-      
+        console.log(filteredData)
         const container = $('.parent-listin'); // Target the specific container
 
         container.empty();
@@ -127,7 +127,7 @@ $(document).ready(function () {
                             <ul>
                                 <li id="categoryName">${productName}</li>
                                 <li id="sellingAmountDetails">Rs: ${price}</li>
-                                <li id="quantityDetails">Quantity: ${quantityValue}</li>
+                                <li id="quantityDetails">Quantity:  ${quantityValue}</li>
                             </ul>
                             </div>
                         `;
@@ -135,52 +135,83 @@ $(document).ready(function () {
                         resultContainerDiv.append(content);
                     }
                 }
-                $('.result-container div').on('click', function(){
-        
+                $('.result-container div').on('click', function() {
                     const product_name = $(this).data('product_name');
-                    console.log('rootsysadadadad')
+                
                     $.ajax({
-                      url: '/api/attribute/',
-                      type: 'GET',
-                      dataType: 'json',
-                      data:{
-                          product_name: product_name,
-          
-                      },
-                      success: function(data) {
-                          console.log(data);
-          
-                      },
-                      error: function(error) {
-                          alert(error);
-                      }
-          
+                        url: '/api/attribute/',
+                        type: 'GET',
+                        dataType: 'json',
+                        success: function(data) {
+                            const filteredData = data.filter(attributCategory => {
+                                return attributCategory.product.Product_Name === product_name;
+                            });
+                
+                            if (filteredData.length > 0) {
+                                displayVariantDiv(filteredData);
+                            } else {
+                                alert('No data found for the selected product.');
+                            }
+                        },
+                        error: function(error) {
+                            alert('Error: ' + error);
+                        }
                     });
-                 }) 
+                });
+                
+                function displayVariantDiv(filteredData) {
+                    const modal = $("#modalVariens");
+                    const modalBody = modal.find('.modal-body');
+                    modalBody.empty();
+                
+                    // Assuming filteredData contains only one item (you can loop if there can be multiple)
+                    const item = filteredData[0];
+                    // console.log(item);
+                    // Extract relevant information from the item
+                    const productImg= item.product.Product_Image;
+                    console.log(productImg)
+                    const attributeName = item.attributeName;
+                    console.log(attributeName)
+                    const addOn = item.add_On.Product_Name;
+                    console.log(addOn)
+                    const addOnQuantity = item.add_on_quantity;
+                    console.log(addOnQuantity)
+                    const extra = item.extra.Product_Name;
+                    console.log(extra)
+                    const extraQuantity = item.extra_quantity;
+                    console.log(extraQuantity)
+                    const price = item.price;
+                    console.log(price)
+                
+                    // Create HTML elements with the extracted information
+                    const card = $('<div class="card w-50"></div>');
+                    card.append(`<img src="${productImg}" alt="" class="product_Image">`);
+                    card.append(`<p>attributeName: ${attributeName}</p>`);
+                    card.append(`<p>Add On: ${addOn}<span> add_on_quantity: ${addOnQuantity}</span></p>`);
+                    card.append(`<p>Extra: ${extra}<span> extra_quantity: ${extraQuantity}</span></p>`);
+                    card.append(`<p>Price: ${price}</p>`);
+                    
+                
+                    // Append the card to the modal body
+                    modalBody.append(card);
+                
+                    // Show the modal
+                    modal.modal('show');
+                    
+                }
             }
-        
+            $('.result-container').on('click', function() {
+                $('#modalSearch').hide();
+            });
+            $('.close').on('click', function() {
+                $('#modalSearch').show();
+            });
             
         
        
           
        
           
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

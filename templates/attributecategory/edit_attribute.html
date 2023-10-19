@@ -22,7 +22,7 @@
     <input class="form-control form-control-md" name="attributeName" type="text" placeholder="Attribute Name" required value="{{attribute_Data.attributeName}}">
   </div>
 
-  <label for="">Product</label>
+  <label for="">Add Product</label>
   <select name="ProductValue" id="" class="custom-select " value="{{attribute_Data.product}}">
     {% for x in product_Data %}
     <option  value="{{x.id}}"{% if attribute_Data.product.id == x.id %} selected {% endif %}>{{x.Product_Name}}</option>
@@ -52,13 +52,17 @@
     </div>
 
 
-  <label for="">Add On Quantity</label>
+  <!-- <label for="">Add On Quantity</label>
   <select name="AdQuantityValue" id="" class="custom-select  " value="{{attribute_Data.add_on_quantity}}">
     {% for x in product_Data %}
     <option  value="{{x.id}}"{% if attribute_Data.add_on_quantity.id == x.id %} selected {% endif %}>{{x.Product_Name}} </option>
     {% endfor %}
   </select>
-  <br><br>
+  <br><br> -->
+  <label for="">Add on Quantity</label>
+  <input class="form-control form-control-md  " name="adOnQuantity" type="number" placeholder="Price" required value="{{attribute_Data.add_on_quantity}}">
+ 
+
       
   <label for="">Extra</label>
   <select name="ExtraValue" id="" class="custom-select  "  value="{{attribute_Data.extra}}">
@@ -76,7 +80,7 @@
 </div>
   
   </form>
-
+</div>
 </div>
 </div>
 {% endblock %}

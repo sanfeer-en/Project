@@ -48,7 +48,7 @@
                 </div>
              
              </div>
-   <div class="tableRap w-100 bg-success" style="height: 70%;overflow-y: scroll;">
+   <div class="tableRap w-100 " style="height: 70%;overflow-y: scroll;">
         <table class="w-100 mt-1  tablescontent" style="height: 400px ;">
             <thead>
                 <tr style="border: 2px solid rgb(216, 216, 216);">
@@ -285,7 +285,7 @@
 
 <!-- modaaaaaaaaaaaaal seachdiv -->
 
-<div class="modal fade" id="modalSearch" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="modalSearch" data-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -299,9 +299,41 @@
                 <input type="text" class="form-control" id="searchInput" placeholder="Search Products" >
             </div>
         
-            <div class="result-container">
+            <div class="result-container" data-toggle="modal" data-target="#modalVariens">
+                <!-- <a href="#" >Open Modal</a> -->
+
         
             </div>
+            
+        </div>
+        
+      </div>
+    </div>
+  </div>
+   <!-- .........................varientsmodal show -->
+
+  <div class="modal fade" data-backdrop="static" id="modalVariens" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Variants</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <div class="result-varients">
+                <div class="card ">
+                    <img src=""  alt="" width="100px" height="120px">
+                    <p>attributeName:-</p>
+                    <p>Add On:-<span> add_on_quantity:-</span></p>
+                    <p>Extra:-<span> extra_quantity:-</span></p>
+                    <p>Price:-</p>
+
+                </div>
+
+            </div>
+           
             
         </div>
         
@@ -315,6 +347,6 @@
   
     </script>
     <script src="{% static 'js/bill.js' %}"></script>
-    <script src="{% static 'js/modal.js' %}"></script>
+    <!-- <script src="{% static 'js/modal.js' %}"></script> -->
     
 {% endblock HomeBilling %}

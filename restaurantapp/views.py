@@ -2,6 +2,7 @@ from django.shortcuts import render , redirect ,HttpResponse
 from django.http import JsonResponse
 from .models import *
 
+from django.forms.models import model_to_dict
 from .serializers import *
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -123,8 +124,10 @@ def attribute_add(request):
         add_on_Id = request.POST.get('AddOnValue')
         add_on =Product.objects.get(id=add_on_Id)
 
-        add_on_Quantity_Id = request.POST.get('AdQuantityValue')
-        add_on_quantity =Product.objects.get(id=add_on_Quantity_Id)
+        # add_on_Quantity_Id = request.POST.get('AdQuantityValue')
+        # add_on_quantity =Product.objects.get(id=add_on_Quantity_Id)
+
+        ad_Quantity = request.POST.get('adOnQuantity')
 
         extra_Id = request.POST.get('ExtraValue')
         extra_Value =Product.objects.get(id=extra_Id)
@@ -132,7 +135,7 @@ def attribute_add(request):
       
         extra_Quantity = request.POST.get('ExtraQunatitytValue')
 
-        attributedata=attributecategory(attributeName=attributename,product =products,quantity =quantities,price=prices ,add_On=add_on,add_on_quantity=add_on_quantity,
+        attributedata=attributecategory(attributeName=attributename,product =products,quantity =quantities,price=prices ,add_On=add_on,add_on_quantity=ad_Quantity,
                                         extra=extra_Value,extra_quantity=extra_Quantity)
         attributedata.save()
         return redirect ('/attribute_table')
@@ -175,11 +178,13 @@ def attribute_update(request,atrictgry):
 
         attribute_data.price = request.POST['PriceValue']
 
-        ad_On_quan_id =request.POST['AdQuantityValue']
-        attribute_data.add_on_quantity =Product.objects.get(id=ad_On_quan_id)
+        # ad_On_quan_id =request.POST['AdQuantityValue']
+        # attribute_data.add_on_quantity =Product.objects.get(id=ad_On_quan_id)
 
-        extra_id =request.POST['AdQuantityValue']
-        attribute_data.extra =Product.objects.get(id=extra_id)
+        attribute_data.add_on_quantity = request.POST['adOnQuantity']
+
+        # extra_id =request.POST['AdQuantityValue']
+        # attribute_data.extra =Product.objects.get(id=extra_id)
 
         attribute_data.extra_quantity = request.POST['ExtraQunatitytValue']
 
@@ -523,17 +528,26 @@ class CategoryProductApi(generics.ListAPIView):
     permission_classes = [permissions.DjangoModelPermissionsOrAnonReadOnly]
 
 
+def AttributeCategoryViewSet(request):
+    queryset = attributecategory.objects.all()
+    serializer = AttributeCategorySerializer(queryset, many=True)
+    # data = [model_to_dict(item) for item in queryset]
+    print(serializer)
+    return JsonResponse(serializer.data, safe=False)
 
-class AttributeCategoryViewSet(APIView):
-    def get_queryset(self):
-        product_name = self.request.data.get('product_name')
-        return attributecategory.objects.filter(product__Product_Name=product_name)
 
-    def get(self, request):
-        attribute = self.get_queryset()
-        print(attribute)
-        serializer = AttributeCategorySerializer(attribute, many=True)
-        return Response(serializer.data, status=200)
+# class AttributeCategoryViewSet(APIView):
+#     def get_queryset(self):
+#         product_name = self.request.data.get('product_name')
+#         print(f"Product Name: {product_name}") 
+#         return attributecategory.objects.all()
+
+#     def get(self, request):
+#         attribute = self.get_queryset()
+#         print(attribute)
+#         serializer = AttributeCategorySerializer(attribute, many=True)
+#         return Response(serializer.data, status=200)
+#
     
     
 

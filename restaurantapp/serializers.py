@@ -20,6 +20,9 @@ class StockSerializer(serializers.ModelSerializer):
         fields = '__all__'
         
 class AttributeCategorySerializer(serializers.ModelSerializer):
+    product = ProductSerializer()
+    add_On = ProductSerializer()
+    extra = ProductSerializer()
     class Meta:
         model = attributecategory
         fields = '__all__'
