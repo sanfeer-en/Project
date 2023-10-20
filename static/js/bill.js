@@ -165,38 +165,34 @@ $(document).ready(function () {
                     modalBody.empty();
                 
                     // Assuming filteredData contains only one item (you can loop if there can be multiple)
-                    const item = filteredData[0];
-                    // console.log(item);
-                    // Extract relevant information from the item
-                    const productImg= item.product.Product_Image;
-                    console.log(productImg)
-                    const attributeName = item.attributeName;
-                    console.log(attributeName)
-                    const addOn = item.add_On.Product_Name;
-                    console.log(addOn)
-                    const addOnQuantity = item.add_on_quantity;
-                    console.log(addOnQuantity)
-                    const extra = item.extra.Product_Name;
-                    console.log(extra)
-                    const extraQuantity = item.extra_quantity;
-                    console.log(extraQuantity)
-                    const price = item.price;
-                    console.log(price)
-                
-                    // Create HTML elements with the extracted information
-                    const card = $('<div class="card w-50"></div>');
-                    card.append(`<img src="${productImg}" alt="" class="product_Image">`);
-                    card.append(`<p>attributeName: ${attributeName}</p>`);
-                    card.append(`<p>Add On: ${addOn}<span> add_on_quantity: ${addOnQuantity}</span></p>`);
-                    card.append(`<p>Extra: ${extra}<span> extra_quantity: ${extraQuantity}</span></p>`);
-                    card.append(`<p>Price: ${price}</p>`);
-                    
-                
-                    // Append the card to the modal body
-                    modalBody.append(card);
-                
+                    const items = filteredData;
+
+                    for (const item of items) {
+                        // Extract relevant information from the item
+                        const productImg = item.product.Product_Image;
+                        const attributeName = item.attributeName;
+                        const addOn = item.add_On.Product_Name;
+                        const addOnQuantity = item.add_on_quantity;
+                        const extra = item.extra.Product_Name;
+                        const extraQuantity = item.extra_quantity;
+                        const price = item.price;
+
+                        // Create HTML elements with the extracted information
+                        const card = $('<div class="col card cardVariants "></div>');
+                        card.append(`<img src="${productImg}" alt="" class="product_Image">`);
+                        card.append(`<small class="font-weight-bold">Attribute:<small>${attributeName}</small></small>`);
+                        card.append(`<small class="font-weight-bold">Add On: <small>${addOn}</small></small>`);
+                        card.append(`<small  class="font-weight-bold">Add On Quantity:<small> ${addOnQuantity}</small></small>`);
+                        card.append(`<small  class="font-weight-bold"> Extra Quantity:<small> ${extraQuantity}</small></small>`);
+                        card.append(`<small class="font-weight-bold">Extra:<small>  ${extra}</small></small>`);
+                        card.append(`<span class="font-weight-bold">Price: <small>${price}</small></span>`);
+                        
+                        // Append the card to the modal body
+                        modalBody.append(card);
+                    }
+                                    
                     // Show the modal
-                    modal.modal('show');
+                    // modal.modal('show');
                     
                 }
             }
