@@ -46,24 +46,24 @@
 
     /* Track (the area where the scrollbar moves) */
     .tableRap::-webkit-scrollbar-track {
-        background: #f1f1f1; /* Color of the track */
+        background: #727272; /* Color of the track */
     }
 
     /* Thumb (the draggable part of the scrollbar) */
     .tableRap::-webkit-scrollbar-thumb {
-        background: #bbbbbb; /* Color of the thumb */
+        background: #a4a4a4; /* Color of the thumb */
         border-radius: 5px; /* Rounded corners */
     }
 
     /* On hover, the thumb color */
     .tableRap::-webkit-scrollbar-thumb:hover {
-        background:  rgb(192, 192, 192)
+        background:  rgb(170, 170, 170)
     }
 
     /* Custom scrollbar for Firefox */
     .tableRap {
         scrollbar-width: thin; /* Set the width of the scrollbar */
-        scrollbar-color: #d6d6d6 #f1f1f1; /* Thumb and track colors */
+        scrollbar-color: #7b7b7b #acacac; /* Thumb and track colors */
     }
 
     /* Your existing styles for the .tableRap container */
@@ -131,24 +131,24 @@
     }
 
     .parentproduct::-webkit-scrollbar {
-        width: 5px; /* Set the width of the scrollbar */
+        width: 10px;/* Set the width of the scrollbar */
         height: 10px;
     }
     
     /* Track (the area where the scrollbar moves) */
     .parentproduct::-webkit-scrollbar-track {
-        background: #999595; /* Color of the track */
+        background: #727272;/* Color of the track */
     }
     
     /* Thumb (the draggable part of the scrollbar) */
     .parentproduct::-webkit-scrollbar-thumb {
-        background: #d5d0d0; /* Color of the thumb */
-        border-radius: 5px; /* Rounded corners */
+        background: #a4a4a4; /* Color of the thumb */
+        border-radius: 5px;
     }
     
     /* On hover, the thumb color */
     .parentproduct::-webkit-scrollbar-thumb:hover {
-        background:  rgb(74, 74, 74)
+        background:  rgb(170, 170, 170)
     }
     
     /* Custom scrollbar for Firefox */
@@ -220,6 +220,11 @@
     
 }
 
+.listingProducts {
+    background-color: rgb(238, 238, 238);
+    height: 62px;
+    margin-top: 5px;
+}
 .img-product{
    
     max-width: 100%; /* Ensure the image doesn't exceed the width of the listin */
@@ -259,6 +264,10 @@
     cursor: pointer;
 }
 
+.cardVariants {
+    height: 250px;
+    margin-top: 5px;
+}
 
    .modalstyle {
     display: none;
@@ -315,4 +324,7 @@
     width: 100%;
     height: 120px;
 
+}
+input:focus {
+    background-color:rgba(166, 175, 212, 0.125); 
 }

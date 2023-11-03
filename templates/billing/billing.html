@@ -57,9 +57,9 @@
                     <th  class="text-center w-25">Price</th>
                 </tr>
                  </thead>
-                 <tbody>
-                <tr >
-                    <td >Tomato</td>
+                 <tbody >
+                <tr class="border-right">
+                    <td  >Tomato</td>
                     
                     
                 </tr>
@@ -186,20 +186,20 @@
                 <table class="w-100 rounded" style="height: 90px;">
                 <tfoot   style="border: 1px solid rgb(195, 194, 194);">
                     <tr>
-                        <td class=" custom-border">Customer</td>
-                        <td class="custom-border">Sub Total</td>
-                        <td style="width: 170px">Rs</td>
+                        <td class="custom-border border-bottom">Customer</td>
+                        <td class="custom-border border-bottom">Sub Total</td>
+                        <td style="width: 170px" class=" border-bottom">Rs</td>
                     </tr>
                     <tr>
-                        <td class="custom-border">Order Type</td>
-                        <td class="custom-border">Discount Rs</td>
-                        <td> Rs</td>
+                        <td class="custom-border border-bottom">Order Type</td>
+                        <td class="custom-border border-bottom">Discount Rs</td>
+                        <td class=" border-bottom"> Rs</td>
                         
                     </tr>
                     <tr>
                         <td class="custom-border table-success "></td>
                         <td class="custom-border table-success font-weight-bold">Total</td>
-                        <td class="table-success ">Rs</td>
+                        <td class="table-success border-bottom ">Rs</td>
                     </tr>
                     
                 </tfoot>
@@ -228,28 +228,18 @@
                             <div class="searchdiv " id="searchdiv" data-target="#modalSearch" data-toggle="modal"  data-product-name="product-name">
                                 <span ><i class="fa-solid fa-magnifying-glass"></i></span>
                             </div>
-                            <!-- #.......................modal....... -->
-                            <!-- <div class="modal modalstyle fade" tabindex="-1" id="modalSearch" > 
 
-                                <div class="modal-content modal-dialog  modal-dialog-centered">
-                                <div id="closeModal" class="btn-close"  >
-                                    <i class="fa-solid fa-xmark" data-dismiss="modal"></i>
-                                </div>
-                               
-                                </div>
-                            </div> -->
-                            
-
-                     
-                        <div class="gridDiv">
-                            <span class=""><i class="fa-solid fa-barcode"></i></span>
-                        </div>
+                            <div class="gridDiv">
+                                <span class=""><i class="fa-solid fa-barcode"></i></span>
+                            </div>
+                            <input type="text input" class="border-0 w-100" id="barcodeNumber" >
 
                     </div>
+                    
                     <div class=" parentproduct">
                         <div class="productDiv">
                             {% for category in categories %}
-                                <div data-category-name='{{category.Namecategory}}' class="category-item">
+                                <div data-category-name='{{category.Namecategory}}' class="category-item" >
                                     {% if category.Imagecategory %}
                                         <div class="image-container">
                                              <img src="{{ category.Imagecategory.url }}" alt="{{ category.Namecategory }} Image" height="120px" width="134px"   > 
@@ -262,17 +252,16 @@
                             {% endfor %}
                         </div>
                     </div>
-
-                    <div class="product-list parent-listin" data-view="grid">
-                        <div class="listin card text-center">
-                            <img src="" alt="" class="img-product">
-                            <span id="categoryName"></span>
-                            <span id="sellingAmountDetails">Rs:-</span>
-                            <span id="quantityDetails">Quantity:-</span>
-                            
+                    <div class="product-list parent-listin" data-view="grid" >
+                        <div class="card  text-center "  data-product_name="${productName}" >
+                            <ul>
+                               <li></li>
+                               <li></li>
+                               <li></li>
+                            </ul>
                         </div>
                     </div>
-
+                    
                 
                  </section>
 
@@ -284,64 +273,47 @@
 </div>
 
 <!-- modaaaaaaaaaaaaal seachdiv -->
-
 <div class="modal fade" id="modalSearch" data-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Search Products</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-            <div class="input-group mt-3">
-                <input type="text" class="form-control" id="searchInput" placeholder="Search Products" >
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Search Products</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
-        
-            <div class="result-container" data-toggle="modal" data-target="#modalVariens">
-                <!-- <a href="#" >Open Modal</a> -->
+            <div class="modal-body searchBody">
+                <div class="input-group mt-3">
+                    <input type="text" class="form-control" id="searchInput" placeholder="Search Products">
+                </div>
 
-        
+                <div class="result-container" data-toggle="modal" data-target="#modalVariens">
+                    <!-- Your result container content here -->
+                </div>
+
             </div>
-            
         </div>
-        
-      </div>
     </div>
-  </div>
-   <!-- .........................varientsmodal show -->
-
-  <div class="modal fade" data-backdrop="static" id="modalVariens" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+</div>
+<!-- ..........modalvarieans........ -->
+<div class="modal fade" data-backdrop="static"  id="modalVariens" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="z-index: 1050;">
     <div class="modal-dialog">
-      <div class="modal-content ">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Variants</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body d-flex row row-cols-2">
-            <div class="result-varients">
-                
-                <!-- <div class="card ">
-                    <img src=""  alt=""height="120px">
-                    <p>attributeName:-</p>
-                    <p>Add On:-<span> add_on_quantity:-</span></p>
-                    <p>Extra:-<span> extra_quantity:-</span></p>
-                    <p>Price:-</p>
-                </div> -->
-
-                <div><h1>hello</h1></div>
-
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Variants</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
-           
-            
+            <div class="modal-body variantbody d-flex row row-cols-2">
+                <div class="result-varients">
+                    <!-- Your content here -->
+                </div>
+            </div>
         </div>
-        
-      </div>
     </div>
-  </div>
+</div>
+
 <script>
     function resetPage() {
         window.location.reload(); // Reloads the page
