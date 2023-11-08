@@ -1,3 +1,56 @@
+let billDetails = {
+    holdingId:0,
+    waiter: user_id,
+    billing_staff : user_id,
+    kot:false,
+    bill_status:'None',
+    selectedProducts: [],
+    subTotal: 0,
+    totalAmount: 0,
+    discount: {
+      type: '',
+      value: 0,
+      discountedPrice: 0
+    },
+    order: {
+      type: '',
+      deliveryAddress: ''
+    },
+    customer: {
+      customer_id:'',
+      customer_name:'',
+    },
+    comment: {
+      text: '',
+      showOnBill: false
+    },
+    referenceCode: '', 
+    payment_method: '',
+    table:{
+      table_on:0,
+      table_status:'',
+
+    }
+    // id: productId,
+    //   p_name: productName,
+    //   attributeId: null,
+    //   quantity: 1,
+    //   price: productPrice,
+    //   total: productPrice,
+    //   delete: false,
+    //   attr_name:"None",
+    //   deleted_from :"None",
+    //   attr_add:"None",
+    //   attr_extra: "None",
+    //   add_on_deleted_from :"None",
+    //   extra_deleted_from :"None",
+    //   old_quantity : 0,
+    //   product_status:'None',
+    //   product_type:'None',
+  };
+
+  
+
 $(document).ready(function () {
     $('.category-item').on('click', function () {
         const category_name = $(this).data('category-name');
@@ -296,6 +349,7 @@ $(document).ready(function () {
         }
     });
     
+   
 
 
     

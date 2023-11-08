@@ -328,3 +328,6 @@
 input:focus {
     background-color:rgba(166, 175, 212, 0.125); 
 }
+.buttonKot{
+    background-color: #fd7e14;
+}

@@ -531,7 +531,6 @@ class CategoryProductApi(generics.ListAPIView):
 def AttributeCategoryViewSet(request):
     queryset = attributecategory.objects.all()
     serializer = AttributeCategorySerializer(queryset, many=True)
-    # data = [model_to_dict(item) for item in queryset]
     return JsonResponse(serializer.data, safe=False)
 
 
