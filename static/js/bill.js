@@ -1,5 +1,9 @@
 
 $(document).ready(function () {
+    
+   
+
+
     $('.category-item').on('click', function () {
         const category_name = $(this).data('category-name');
         console.log(category_name);
@@ -133,6 +137,7 @@ $(document).ready(function () {
             type: 'GET',
             dataType: 'json',
             success: function (data) {
+                
                 // Display the products in the modal.
                 displayModalProducts(data, searchText);
                 
@@ -154,12 +159,13 @@ $(document).ready(function () {
     
             if (productName.toLowerCase().includes(searchText) && data[i].Product.Is_for_sale) {
                 let content = `
-                <div class="w-100 listingProducts  card  text-center"  data-product_name="${productName}" >
-                    <ul>
-                        <li id="categoryName">${productName}</li>
-                        <li id="sellingAmountDetails">Rs: ${price}</li>
-                        <li id="quantityDetails">Quantity: ${quantityValue}</li>
-                    </ul>
+                <div class="w-100 listingProducts text-center"  data-product_name="${productName}" >
+                
+                <li id="categoryName" class="productValue" data-product_name="${productName}">${productName}</li>
+                <li id="sellingAmountDetails" class="priceValue" data-price="${price}">Rs: ${price}</li>
+                <li id="quantityDetails" class="quantityValue" data-quantity="${quantityValue}">Quantity: ${quantityValue}</li>
+                
+                    
                 </div>
                 `;
     
@@ -169,7 +175,7 @@ $(document).ready(function () {
     
         $('.result-container div').on('click', function () {
             const product_name = $(this).data('product_name');
-            console.log(product_name);
+            
         
             $.ajax({
                 url: '/api/attribute/',
@@ -297,12 +303,44 @@ $(document).ready(function () {
             });
         }
     });
+
+
     
-   
+        // Use event delegation to handle click events on dynamically created .listingProducts elements
+        $(document).on('click', '.listingProducts', function() {
+            const productName = $(this).find('.productValue').data('product_name');
+            console.log(productName);
+            const price = $(this).find('.priceValue').data('price');
+            console.log(price);
+            const quantityValue = $(this).find('.quantityValue').data('quantity');
+            console.log(quantityValue);
+
+            const productData = {
+                productName,
+                price,
+                quantityValue,
+            };
+
+            console.log(productData);
+        });
+
+
+        function processProductData(productName, price, quantityValue) {
+            const productData = {
+                productName,
+                price,
+                quantityValue,
+            };
+        
+            return productData;
+        }
+        
+
+}); 
+
 
 
     
  
 
-});
 
