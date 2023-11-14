@@ -1,12 +1,45 @@
 
 $(document).ready(function () {
     
+    let billDetails = {
+        holdingId:0,
+        waiter: '',
+        billing_staff : '',
+        kot:false,
+        bill_status:'None',
+        selectedProducts: [],
+        subTotal: 0,
+        totalAmount: 0,
+        discount: {
+          type: '',
+          value: 0,
+          discountedPrice: 0
+        },
+        order: {
+          type: '',
+          deliveryAddress: ''
+        },
+        customer: {
+          customer_id:'',
+          customer_name:'',
+        },
+        comment: {
+          text: '',
+          showOnBill: false
+        },
+        referenceCode: '',
+        payment_method: '',
+        table:{
+          table_on:0,
+          table_status:'',
+        }
+      };
    
 
 
     $('.category-item').on('click', function () {
         const category_name = $(this).data('category-name');
-        console.log(category_name);
+       
         $.ajax({
             url: '/api/category',
             type: 'GET',
@@ -23,7 +56,7 @@ $(document).ready(function () {
     
     function displayCategoryProducts(data, category_name) {
         const filteredData = data.filter(stock => {
-            console.log(stock)
+        
     
             return stock.Product.Category_Fr.Namecategory  === category_name && stock.Product.Is_for_sale === true;
         });
@@ -102,7 +135,7 @@ $(document).ready(function () {
 
         const productName = $(this).data('product-name');
 
-        console.log(productName);
+      
             // Check if the clicked .listin product is in filteredData
             $.ajax({
                 url: '/api/attribute/',
@@ -152,30 +185,34 @@ $(document).ready(function () {
     function displayModalProducts(data, searchText) {
         const resultContainerDiv = $('.result-container');
         resultContainerDiv.empty();
+    
         for (let i = 0; i < data.length; i++) {
             const productName = data[i].Product.Product_Name;
             const quantityValue = data[i].Quantity;
             const price = data[i].Selling_Amount;
-    
+        
+            const productID = data[i].Product.id ;
+        
             if (productName.toLowerCase().includes(searchText) && data[i].Product.Is_for_sale) {
                 let content = `
-                <div class="w-100 listingProducts text-center"  data-product_name="${productName}" >
-                
-                <li id="categoryName" class="productValue" data-product_name="${productName}">${productName}</li>
-                <li id="sellingAmountDetails" class="priceValue" data-price="${price}">Rs: ${price}</li>
-                <li id="quantityDetails" class="quantityValue" data-quantity="${quantityValue}">Quantity: ${quantityValue}</li>
-                
+                <div class="w-100 listingProducts text-center" data-product_name="${productName}">
+                  
+                        <li id="categoryName" class="productValue" data-product_name="${productName}">${productName}</li>
+                        <li id="sellingAmountDetails" class="priceValue" data-price="${price}">Rs: ${price}</li>
+                        <li id="quantityDetails" class="quantityValue" data-quantity="${quantityValue}">Quantity: ${quantityValue}</li>
                     
+                    <input type="text" hidden class="productId" value="${productID}">
                 </div>
-                `;
-    
+            `;
                 resultContainerDiv.append(content);
             }
         }
+
+    
     
         $('.result-container div').on('click', function () {
             const product_name = $(this).data('product_name');
-            
+      
         
             $.ajax({
                 url: '/api/attribute/',
@@ -189,7 +226,9 @@ $(document).ready(function () {
                     if (filteredData.length > 0) {
                         displayVariantDiv(filteredData, $('#modalVariens'));
                     } else {
-                        alert('No data found for the selected product.');
+                        directBill()
+                        $('.variantbody').modal('hide');
+                        
                     }
                 },
                 error: function (error) {
@@ -220,12 +259,12 @@ $(document).ready(function () {
             // Create HTML elements with the extracted information
             const card = $('<div class="col card cardVariants gy-5"></div>');
             card.append(`<img src="${productImg}" alt="" class="product_Image w-100">`);
-            card.append(`<small class="font-weight-bold">Attribute:<small>${attributeName}</small></small>`);
-            card.append(`<small class="font-weight-bold">Add On: <small>${addOn}</small></small>`);
-            card.append(`<small class="font-weight-bold">Add On Quantity:<small> ${addOnQuantity}</small></small>`);
-            card.append(`<small class="font-weight-bold">Extra Quantity:<small> ${extraQuantity}</small></small>`);
-            card.append(`<small class="font-weight-bold">Extra:<small> ${extra}</small></small>`);
-            card.append(`<span class="font-weight-bold">Price: <small>${price}</small></span>`);
+            card.append(`<small class="font-weight-bold attrubuteClass"  data-Attribute_name="${attributeName}" >Attribute:${attributeName}</small>`);
+            card.append(`<small class="font-weight-bold addOnclass" data-adOn="${addOn}" >Add On: ${addOn}</small>`);
+            card.append(`<small class="font-weight-bold addQuantity"  data-adQuantity="${addOnQuantity}" >Add On Quantity: ${addOnQuantity}</small>`);
+            card.append(`<small class="font-weight-bold " >Extra Quantity: ${extraQuantity}</small>`);
+            card.append(`<small class="font-weight-bold Extra"  data-extra="${extra}">Extra: ${extra}</small>`);
+            card.append(`<span class="font-weight-bold Prices" data-price=" ${price}">Price: ${price}</span>`);
 
             // Append the card to the modal body
             modalBody.append(card);
@@ -240,7 +279,7 @@ $(document).ready(function () {
     
         // Extract the last 5 digits
         const last5Digits = product_code.slice(-5);
-        console.log(last5Digits);
+        
     
         // Check if the last5Digits exist in the Stock table
         $.ajax({
@@ -248,14 +287,14 @@ $(document).ready(function () {
             type: 'GET',
             dataType: 'json',
             success: function (stockData) {
-                console.log(stockData);
+                
                 if (stockData.length > 0) {
                     // Product exists in the Stock table
                     
     
                     // Call the displayprocode function with the filtered data
                     const filteredData = displayprocode(stockData, last5Digits);
-                    console.log('Filtered Data:', filteredData);
+                   
                     const product_names =filteredData.Product.Product_Name
                     barcodeAtttribute(product_names)
 
@@ -305,35 +344,72 @@ $(document).ready(function () {
     });
 
 
-    
-        // Use event delegation to handle click events on dynamically created .listingProducts elements
-        $(document).on('click', '.listingProducts', function() {
-            const productName = $(this).find('.productValue').data('product_name');
-            console.log(productName);
-            const price = $(this).find('.priceValue').data('price');
-            console.log(price);
-            const quantityValue = $(this).find('.quantityValue').data('quantity');
-            console.log(quantityValue);
-
-            const productData = {
-                productName,
-                price,
-                quantityValue,
-            };
-
-            console.log(productData);
-        });
-
-
-        function processProductData(productName, price, quantityValue) {
-            const productData = {
-                productName,
-                price,
-                quantityValue,
-            };
+   
+    function directBill() {
+        const productName = $('.listingProducts').find('.productValue').data('product_name');
         
-            return productData;
-        }
+    
+        // Retrieve the product ID from the hidden input
+        const productIdElement = $('.productId').val();
+       
+    
+       
+        const price = $('.listingProducts').find('.priceValue').data('price');
+       
+    
+        const quantityValue = $('.listingProducts').find('.quantityValue').data('quantity');
+        // 
+    
+        
+        updateBill(productName,productIdElement,price,quantityValue) 
+    };
+
+    function updateBill(productName,productIdElement,price,quantityValue) {
+      let product = { id: productIdElement,
+        p_name: productName,
+        attributeId: null,
+        quantity: 1,
+        price: price,
+        total: price,
+        delete: false,
+        attr_name:"None",
+        deleted_from :"None",
+        attr_add:"None",
+        attr_extra: "None",
+        add_on_deleted_from :"None",
+        extra_deleted_from :"None",
+        old_quantity : 0,
+        product_status:'None',
+        product_type:'None',
+
+    }
+    billDetails.selectedProducts.push(product)
+
+}
+
+// Use event delegation to handle click events on dynamically created .cardVariants elements
+$(document).on('click', '.cardVariants', function() {
+    // Call your variantsBill function or perform other actions with the clicked element
+    variantsBill(this);
+});
+
+// Function to handle data when a cardVariant is clicked
+function variantsBill(clickedElement) {
+    const attribute_Name = $('.cardVariants').find('.attrubuteClass').data('Attribute_name');
+    console.log(attribute_Name);
+    const ad_On = $('.cardVariants').find('.addOnclass').data('adOn');
+    console.log(ad_On);
+    const aad_Quantity = $('.cardVariants').find('.addQuantity').data('adQuantity');
+    console.log(aad_Quantity);
+    const extraa = $('.cardVariants').find('.Extra').data('extra');
+    console.log(extraa);
+    const pricess = $('.cardVariants').find('.Prices').data('price');
+    console.log(pricess);
+    
+    // Your logic here
+}
+
+
         
 
 }); 
