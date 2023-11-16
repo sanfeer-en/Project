@@ -208,6 +208,7 @@ $(document).ready(function () {
             }
         }
 
+        
     
     
         $('.result-container div').on('click', function () {
@@ -242,6 +243,7 @@ $(document).ready(function () {
     }
 
 
+
     function displayVariantDiv(filteredData, modal) {
         const modalBody = modal.find(".variantbody");
         modalBody.empty();
@@ -259,12 +261,12 @@ $(document).ready(function () {
             // Create HTML elements with the extracted information
             const card = $('<div class="col card cardVariants gy-5"></div>');
             card.append(`<img src="${productImg}" alt="" class="product_Image w-100">`);
-            card.append(`<small class="font-weight-bold attrubuteClass"  data-Attribute_name="${attributeName}" >Attribute:${attributeName}</small>`);
-            card.append(`<small class="font-weight-bold addOnclass" data-adOn="${addOn}" >Add On: ${addOn}</small>`);
-            card.append(`<small class="font-weight-bold addQuantity"  data-adQuantity="${addOnQuantity}" >Add On Quantity: ${addOnQuantity}</small>`);
-            card.append(`<small class="font-weight-bold " >Extra Quantity: ${extraQuantity}</small>`);
-            card.append(`<small class="font-weight-bold Extra"  data-extra="${extra}">Extra: ${extra}</small>`);
-            card.append(`<span class="font-weight-bold Prices" data-price=" ${price}">Price: ${price}</span>`);
+            card.append(`<small class="font-weight-bold attrubuteClass" id="attributId" data-attribute_name="${attributeName}" >Attribute:${attributeName}</small>`);
+            card.append(`<small class="font-weight-bold addOnclass" data-adon="${addOn}" >Add On: ${addOn}</small>`);
+            card.append(`<small class="font-weight-bold addQuantity"  data-adquantity="${addOnQuantity}" >Add On Quantity: ${addOnQuantity}</small>`);
+            card.append(`<small class="font-weight-bold ExtQTy" data-extraqty="${extraQuantity}" >Extra Quantity: ${extraQuantity}</small>`);
+            card.append(`<small class="font-weight-bold Extra"  data-extra="${extra}"   >Extra: ${extra}</small>`);
+            card.append(`<span class="font-weight-bold Prices" data-price="${price}"   >Price: ${price}</span>`);
 
             // Append the card to the modal body
             modalBody.append(card);
@@ -272,8 +274,47 @@ $(document).ready(function () {
 
         // Open the modal
         modal.modal("show");
+
+        $(document).on('click', '.cardVariants', function() {
+            // Call your VariantBill function or perform other actions with the clicked element
+            VariantBill(this);
+        });
+        
        
     }
+
+
+
+function VariantBill(clickedElement) {
+    // console.log('Clicked Element:', clickedElement);
+
+    const attribute_Name = $(clickedElement).find('#attributId').data('attribute_name');
+    // console.log('Attribute Name:', attribute_Name);
+    
+    const ad_On = $(clickedElement).find('.addOnclass').data('adon');
+    // console.log('Add On:', ad_On);
+    
+    const aad_Quantity = $(clickedElement).find('.addQuantity').data('adquantity');
+    // console.log('Add On Quantity:', aad_Quantity);
+    
+    const extraa = $(clickedElement).find('.Extra').data('extra');
+    // console.log('Extra:', extraa);
+    
+    const pricess = $(clickedElement).find('.Prices').data('price');
+    // console.log('Price:', pricess);
+    
+    const Extra_Quantity = $(clickedElement).find('.ExtQTy').data('extraqty');
+    // console.log('Extra Quantity:', Extra_Quantity);
+
+    // Your logic here
+    updateBill(attribute_Name,ad_On,extraa)
+}
+
+
+
+
+
+
     $('#barcodeNumber').on('change', function () {
         const product_code = $(this).val();
     
@@ -364,7 +405,7 @@ $(document).ready(function () {
         updateBill(productName,productIdElement,price,quantityValue) 
     };
 
-    function updateBill(productName,productIdElement,price,quantityValue) {
+    function updateBill(productName,productIdElement,price,quantityValue,attribute_Name,ad_On,extraa) {
       let product = { id: productIdElement,
         p_name: productName,
         attributeId: null,
@@ -372,10 +413,10 @@ $(document).ready(function () {
         price: price,
         total: price,
         delete: false,
-        attr_name:"None",
+        attr_name:attribute_Name,
         deleted_from :"None",
-        attr_add:"None",
-        attr_extra: "None",
+        attr_add:ad_On,
+        attr_extra: extraa,
         add_on_deleted_from :"None",
         extra_deleted_from :"None",
         old_quantity : 0,
@@ -384,30 +425,9 @@ $(document).ready(function () {
 
     }
     billDetails.selectedProducts.push(product)
-
+console.log(product);
 }
 
-// Use event delegation to handle click events on dynamically created .cardVariants elements
-$(document).on('click', '.cardVariants', function() {
-    // Call your variantsBill function or perform other actions with the clicked element
-    variantsBill(this);
-});
-
-// Function to handle data when a cardVariant is clicked
-function variantsBill(clickedElement) {
-    const attribute_Name = $('.cardVariants').find('.attrubuteClass').data('Attribute_name');
-    console.log(attribute_Name);
-    const ad_On = $('.cardVariants').find('.addOnclass').data('adOn');
-    console.log(ad_On);
-    const aad_Quantity = $('.cardVariants').find('.addQuantity').data('adQuantity');
-    console.log(aad_Quantity);
-    const extraa = $('.cardVariants').find('.Extra').data('extra');
-    console.log(extraa);
-    const pricess = $('.cardVariants').find('.Prices').data('price');
-    console.log(pricess);
-    
-    // Your logic here
-}
 
 
         
