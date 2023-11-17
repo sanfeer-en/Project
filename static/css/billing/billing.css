@@ -335,3 +335,8 @@ input:focus {
 .buttonKot{
     background-color: #fd7e14;
 }
+
+
+.cardVariants:hover, .cardVariants:active, .cardVariants:visited {
+    background-color: #B0E0E6;
+}

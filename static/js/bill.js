@@ -284,31 +284,59 @@ $(document).ready(function () {
     }
 
 
-
-function VariantBill(clickedElement) {
-    // console.log('Clicked Element:', clickedElement);
-
-    const attribute_Name = $(clickedElement).find('#attributId').data('attribute_name');
-    // console.log('Attribute Name:', attribute_Name);
+    function VariantBill(clickedElement) {
+        console.log('Clicked Element:', clickedElement);
     
-    const ad_On = $(clickedElement).find('.addOnclass').data('adon');
-    // console.log('Add On:', ad_On);
+        const attribute_Name = $(clickedElement).find('#attributId').data('attribute_name');
+        console.log('Attribute Name:', attribute_Name);
+        
+        const ad_On = $(clickedElement).find('.addOnclass').data('adon');
+        console.log('Add On:', ad_On);
+        
+        const aad_Quantity = $(clickedElement).find('.addQuantity').data('adquantity');
+        console.log('Add On Quantity:', aad_Quantity);
+        
+        const extraa = $(clickedElement).find('.Extra').data('extra');
+        console.log('Extra:', extraa);
+        
+        const pricess = $(clickedElement).find('.Prices').data('price');
+        console.log('Price:', pricess);
+        
+        const Extra_Quantity = $(clickedElement).find('.ExtQTy').data('extraqty');
+        console.log('Extra Quantity:', Extra_Quantity);
     
-    const aad_Quantity = $(clickedElement).find('.addQuantity').data('adquantity');
-    // console.log('Add On Quantity:', aad_Quantity);
+        // Call the updateBill function with the extracted data
+        updatedBill(pricess, attribute_Name, ad_On, extraa);
     
-    const extraa = $(clickedElement).find('.Extra').data('extra');
-    // console.log('Extra:', extraa);
+        // Your logic here
+    }
     
-    const pricess = $(clickedElement).find('.Prices').data('price');
-    // console.log('Price:', pricess);
+    function updatedBill(pricess, attribute_Name, ad_On, extraa) {
+        let product = {
+            id: null,  // Set to null or any appropriate value
+            p_name: null,  // Set to null or any appropriate value
+            attributeId: null,
+            quantity: 1,
+            price: pricess,
+            total: pricess,
+            delete: false,
+            attr_name: attribute_Name,
+            deleted_from: "None",
+            attr_add: ad_On,
+            attr_extra: extraa,
+            add_on_deleted_from: "None",
+            extra_deleted_from: "None",
+            old_quantity: 0,
+            product_status: 'None',
+            product_type: 'None',
+        };
     
-    const Extra_Quantity = $(clickedElement).find('.ExtQTy').data('extraqty');
-    // console.log('Extra Quantity:', Extra_Quantity);
-
-    // Your logic here
-    updateBill(attribute_Name,ad_On,extraa)
-}
+        // Push the product into the selectedProducts array in billDetails
+        billDetails.selectedProducts.push(product);
+    
+        // Log the product to the console
+        console.log(product);
+    }
 
 
 
@@ -405,7 +433,7 @@ function VariantBill(clickedElement) {
         updateBill(productName,productIdElement,price,quantityValue) 
     };
 
-    function updateBill(productName,productIdElement,price,quantityValue,attribute_Name,ad_On,extraa) {
+    function updateBill(productName,productIdElement,price,quantityValue,) {
       let product = { id: productIdElement,
         p_name: productName,
         attributeId: null,
@@ -413,10 +441,10 @@ function VariantBill(clickedElement) {
         price: price,
         total: price,
         delete: false,
-        attr_name:attribute_Name,
+        attr_name:"None",
         deleted_from :"None",
-        attr_add:ad_On,
-        attr_extra: extraa,
+        attr_add:"None",
+        attr_extra: "None",
         add_on_deleted_from :"None",
         extra_deleted_from :"None",
         old_quantity : 0,
