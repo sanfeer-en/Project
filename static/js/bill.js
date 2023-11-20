@@ -192,6 +192,7 @@ $(document).ready(function () {
             const price = data[i].Selling_Amount;
         
             const productID = data[i].Product.id ;
+          
         
             if (productName.toLowerCase().includes(searchText) && data[i].Product.Is_for_sale) {
                 let content = `
@@ -257,6 +258,18 @@ $(document).ready(function () {
             const extra = item.extra.Product_Name;
             const extraQuantity = item.extra_quantity;
             const price = item.price;
+       
+            const product_names = item.product.Product_Name;
+
+            const attribute_id = item.id;
+            console.log(attribute_id);
+            
+
+            const product_id = item.product.id;
+
+
+            // console.log(product_id);
+            
 
             // Create HTML elements with the extracted information
             const card = $('<div class="col card cardVariants gy-5"></div>');
@@ -268,12 +281,18 @@ $(document).ready(function () {
             card.append(`<small class="font-weight-bold Extra"  data-extra="${extra}"   >Extra: ${extra}</small>`);
             card.append(`<span class="font-weight-bold Prices" data-price="${price}"   >Price: ${price}</span>`);
 
+            card.append(`<input type="text" hidden class="productnameid" value="${product_names}">`);
+            card.append(`<input type="text" hidden class="productid" value="${product_id}">`);
+            card.append(`<input type="text" hidden class="attributeid" value="${attribute_id}">`);
+
             // Append the card to the modal body
             modalBody.append(card);
         }
 
         // Open the modal
         modal.modal("show");
+        
+        //doubt to clear:------
 
         $(document).on('click', '.cardVariants', function() {
             // Call your VariantBill function or perform other actions with the clicked element
@@ -285,37 +304,44 @@ $(document).ready(function () {
 
 
     function VariantBill(clickedElement) {
-        console.log('Clicked Element:', clickedElement);
+        // console.log('Clicked Element:', clickedElement);
     
         const attribute_Name = $(clickedElement).find('#attributId').data('attribute_name');
-        console.log('Attribute Name:', attribute_Name);
+       
         
         const ad_On = $(clickedElement).find('.addOnclass').data('adon');
-        console.log('Add On:', ad_On);
+        // console.log('Add On:', ad_On);
         
         const aad_Quantity = $(clickedElement).find('.addQuantity').data('adquantity');
-        console.log('Add On Quantity:', aad_Quantity);
+        // console.log('Add On Quantity:', aad_Quantity);
         
         const extraa = $(clickedElement).find('.Extra').data('extra');
-        console.log('Extra:', extraa);
+        // console.log('Extra:', extraa);
         
         const pricess = $(clickedElement).find('.Prices').data('price');
-        console.log('Price:', pricess);
+        // console.log('Price:', pricess);
         
         const Extra_Quantity = $(clickedElement).find('.ExtQTy').data('extraqty');
-        console.log('Extra Quantity:', Extra_Quantity);
+
+         const product_Nameses = $('.productnameid').val();
+        // console.log('Extra Quantity:', Extra_Quantity);
+
+        const product_Ide = $('.productid').val();
+        // console.log('Extra Quantity:', Extra_Quantity);
+
+        const attributes_Ide = $('.attributeid').val();
     
         // Call the updateBill function with the extracted data
-        updatedBill(pricess, attribute_Name, ad_On, extraa);
+        updatedBill(pricess, attribute_Name, ad_On, extraa,product_Nameses,product_Ide,attributes_Ide);
     
         // Your logic here
     }
     
-    function updatedBill(pricess, attribute_Name, ad_On, extraa) {
+    function updatedBill(pricess, attribute_Name, ad_On, extraa,product_Nameses,product_Ide,attributes_Ide) {
         let product = {
-            id: null,  // Set to null or any appropriate value
-            p_name: null,  // Set to null or any appropriate value
-            attributeId: null,
+            id: product_Ide,  // Set to null or any appropriate value
+            p_name: product_Nameses,  // Set to null or any appropriate value
+            attributeId: attributes_Ide,
             quantity: 1,
             price: pricess,
             total: pricess,

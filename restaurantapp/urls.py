@@ -62,6 +62,7 @@ urlpatterns = [
     path('bills', billing_Form, name='billing'),
     
     path('api/category/',CategoryProductApi.as_view(),),
+
     path('api/attribute/',AttributeCategoryViewSet,),
     # path('api/category/',category_product_api, name='category_product_api'),
     # path('api/category/',category_product_api, name='category_product_api'),
@@ -69,3 +70,4 @@ urlpatterns = [
 
    
 ]
+
