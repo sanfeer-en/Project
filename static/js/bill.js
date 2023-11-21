@@ -262,7 +262,7 @@ $(document).ready(function () {
             const product_names = item.product.Product_Name;
 
             const attribute_id = item.id;
-            console.log(attribute_id);
+            // console.log(attribute_id);
             
 
             const product_id = item.product.id;
