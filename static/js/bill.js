@@ -356,13 +356,43 @@ $(document).ready(function () {
             product_status: 'None',
             product_type: 'None',
         };
-    
+      
         // Push the product into the selectedProducts array in billDetails
         billDetails.selectedProducts.push(product);
-    
+
+        displaySelectedProducts(billDetails.selectedProducts)
         // Log the product to the console
         console.log(product);
     }
+
+
+
+    function displaySelectedProducts(product) {
+    
+        let tableBody = $("#productTableBody");
+      
+
+      
+        for (let i = 0; i < product.length; i++) {
+          
+          console.log(`product: ${product[i].p_name}`);
+          html = `
+          <tr class="tablerow">
+          <td class="border-right  border-bottom tableTd">${product[i].p_name}
+             <br> <span>price:${product[1].price}
+             </span>
+          </td>
+          <td class="border-right   border-bottom "><input  class="border-0 text-center" type="number" value='${product[i].quantity}'></td>
+          <td class="border-right text-center   border-bottom ">Rs.${product[i].total}</td>
+        </tr>
+          `
+          ;
+          tableBody.append(html)
+        }
+      }
+      
+      // Call the function to initially display the selected products
+      
 
 
 
@@ -479,6 +509,8 @@ $(document).ready(function () {
 
     }
     billDetails.selectedProducts.push(product)
+
+    displaySelectedProducts(billDetails.selectedProducts);
 console.log(product);
 }
 
