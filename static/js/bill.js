@@ -370,7 +370,8 @@ $(document).ready(function () {
     function displaySelectedProducts(product) {
     
         let tableBody = $("#productTableBody");
-      
+        
+        tableBody.empty();
 
       
         for (let i = 0; i < product.length; i++) {
@@ -380,7 +381,7 @@ $(document).ready(function () {
           <tr class="tablerow">
           <td class="border-right  border-bottom tableTd">${product[i].p_name}
              <br> <span>price:${product[1].price}
-             </span>
+             </span><i class="fa-solid fa-trash float-right">&nbsp;</i>
           </td>
           <td class="border-right   border-bottom "><input  class="border-0 text-center" type="number" value='${product[i].quantity}'></td>
           <td class="border-right text-center   border-bottom ">Rs.${product[i].total}</td>
