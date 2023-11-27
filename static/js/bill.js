@@ -307,29 +307,31 @@ $(document).ready(function () {
         // console.log('Clicked Element:', clickedElement);
     
         const attribute_Name = $(clickedElement).find('#attributId').data('attribute_name');
+        console.log('Attribute Name:', attribute_Name);
        
         
         const ad_On = $(clickedElement).find('.addOnclass').data('adon');
-        // console.log('Add On:', ad_On);
+        console.log('Add On:', ad_On);
         
-        const aad_Quantity = $(clickedElement).find('.addQuantity').data('adquantity');
+        // const aad_Quantity = $(clickedElement).find('.addQuantity').data('adquantity');
         // console.log('Add On Quantity:', aad_Quantity);
         
         const extraa = $(clickedElement).find('.Extra').data('extra');
-        // console.log('Extra:', extraa);
+        console.log('Extra:', extraa);
         
         const pricess = $(clickedElement).find('.Prices').data('price');
-        // console.log('Price:', pricess);
+        console.log('Price:', pricess);
         
-        const Extra_Quantity = $(clickedElement).find('.ExtQTy').data('extraqty');
+        // const Extra_Quantity = $(clickedElement).find('.ExtQTy').data('extraqty');
 
          const product_Nameses = $('.productnameid').val();
-        // console.log('Extra Quantity:', Extra_Quantity);
+        console.log('prodcutnames:', product_Nameses);
 
         const product_Ide = $('.productid').val();
-        // console.log('Extra Quantity:', Extra_Quantity);
+        console.log(product_Ide);
 
         const attributes_Ide = $('.attributeid').val();
+        console.log(attributes_Ide);
     
         // Call the updateBill function with the extracted data
         updatedBill(pricess, attribute_Name, ad_On, extraa,product_Nameses,product_Ide,attributes_Ide);
@@ -367,30 +369,30 @@ $(document).ready(function () {
 
 
 
-    function displaySelectedProducts(product) {
-    
+    function displaySelectedProducts(products) {
         let tableBody = $("#productTableBody");
-        
-        tableBody.empty();
-
-      
-        for (let i = 0; i < product.length; i++) {
-          
-          console.log(`product: ${product[i].p_name}`);
-          html = `
-          <tr class="tablerow">
-          <td class="border-right  border-bottom tableTd">${product[i].p_name}
-             <br> <span>price:${product[1].price}
-             </span><i class="fa-solid fa-trash float-right">&nbsp;</i>
-          </td>
-          <td class="border-right   border-bottom "><input  class="border-0 text-center" type="number" value='${product[i].quantity}'></td>
-          <td class="border-right text-center   border-bottom ">Rs.${product[i].total}</td>
-        </tr>
-          `
-          ;
-          tableBody.append(html)
+        tableBody.empty(); // Clear existing content
+    
+        for (let i = 0; i < products.length; i++) {
+            console.log(`product: ${products[i].p_name}`);
+            html = `
+            <tr class="tablerow">
+                <td class="border-right  border-bottom tableTd">
+                    ${products[i].p_name}<br>
+                    <span>price: ${products[i].price}</span>
+                    <i class="fa-solid fa-trash float-right">&nbsp;</i>
+                </td>
+                <td class="border-right   border-bottom ">
+                    <input class="border-0 text-center" type="number" value='${products[i].quantity}'>
+                </td>
+                <td class="border-right text-center   border-bottom ">
+                    Rs.${products[i].total}
+                </td>
+            </tr>`;
+            tableBody.append(html);
         }
-      }
+    }
+    
       
       // Call the function to initially display the selected products
       
